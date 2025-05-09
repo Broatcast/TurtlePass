@@ -1,0 +1,19 @@
+services:
+
+    main_user.entity.user_repository:
+        class: Main\UserBundle\Entity\UserRepository
+        factory: [ "@doctrine.orm.entity_manager", getRepository ]
+        arguments:
+            - Main\UserBundle\Entity\User
+
+    main_user.entity.repository.user_group:
+        class: Main\UserBundle\Entity\Repository\UserGroupRepository
+        factory: [ "@doctrine.orm.entity_manager", getRepository ]
+        arguments:
+            - Main\UserBundle\Entity\UserGroup
+
+    main_user.entity.repository.login_access_repository:
+        class: Main\UserBundle\Entity\Repository\LoginAccessRepository
+        factory: [ "@doctrine.orm.entity_manager", getRepository ]
+        arguments:
+            - Main\UserBundle\Entity\LoginAccess

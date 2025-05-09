@@ -1,0 +1,57 @@
+imports:
+    - { resource: operators.yml }
+    - { resource: functions.yml }
+
+services:
+
+    uql.query_builder_operation.filter.order_filter:
+        class: UniqueLibs\QueryBuilderOperationBundle\Filter\OrderFilter
+        arguments:
+            - 'order'
+
+    uql.query_builder_operation.services.filter_manager:
+        class: UniqueLibs\QueryBuilderOperationBundle\Services\FilterManager
+        calls:
+            - [addFilter, ['@uql.query_builder_operation.filter.order_filter']]
+            - [addFilter, ['@uql.query_builder_operation.filter.search_filter']]
+
+    uql.query_builder_operation.container.abstract_search_filter_configuration:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\SearchFilterConfiguration
+        abstract: true
+        calls:
+            - [addSearchOperator, ['@uql.query_builder_operation.filter.search_filter.operator.equal_operator']]
+            - [addSearchOperator, ['@uql.query_builder_operation.filter.search_filter.operator.not_equal_operator']]
+            - [addSearchOperator, ['@uql.query_builder_operation.filter.search_filter.operator.like_operator']]
+            - [addSearchOperator, ['@uql.query_builder_operation.filter.search_filter.operator.not_like_operator']]
+            - [addSearchOperator, ['@uql.query_builder_operation.filter.search_filter.operator.greater_than_operator']]
+            - [addSearchOperator, ['@uql.query_builder_operation.filter.search_filter.operator.greater_than_equal_operator']]
+            - [addSearchOperator, ['@uql.query_builder_operation.filter.search_filter.operator.lower_than_operator']]
+            - [addSearchOperator, ['@uql.query_builder_operation.filter.search_filter.operator.lower_than_equal_operator']]
+            - [addSearchOperator, ['@uql.query_builder_operation.filter.search_filter.operator.in_operator']]
+            - [addSearchOperator, ['@uql.query_builder_operation.filter.search_filter.operator.not_in_operator']]
+            - [addSearchOperator, ['@uql.query_builder_operation.filter.search_filter.operator.bitwise_and_operator']]
+            - [addQueryFunction, ['LOWER', '@uql.query_builder_operation.filter.query_function.lower']]
+            - [addQueryFunction, ['NOW', '@uql.query_builder_operation.filter.query_function.now']]
+            - [addQueryFunction, ['TODAY', '@uql.query_builder_operation.filter.query_function.today']]
+            - [addQueryFunction, ['YESTERDAY', '@uql.query_builder_operation.filter.query_function.yesterday']]
+            - [addQueryFunction, ['THIS_WEEK', '@uql.query_builder_operation.filter.query_function.this_week']]
+            - [addQueryFunction, ['LAST_WEEK', '@uql.query_builder_operation.filter.query_function.last_week']]
+            - [addQueryFunction, ['THIS_MONTH', '@uql.query_builder_operation.filter.query_function.this_month']]
+            - [addQueryFunction, ['LAST_MONTH', '@uql.query_builder_operation.filter.query_function.last_month']]
+            - [addQueryFunction, ['CALCULATE_DATE', '@uql.query_builder_operation.filter.query_function.calculate_date']]
+
+    uql.query_builder_operation.request_processor:
+        class: UniqueLibs\QueryBuilderOperationBundle\Processor\RequestProcessor
+        abstract: true
+
+    uql.query_builder_operation.attribute_type.string:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\AttributeTypes\StringAttributeType
+        
+    uql.query_builder_operation.attribute_type.number:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\AttributeTypes\NumberAttributeType
+        
+    uql.query_builder_operation.attribute_type.date_time:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\AttributeTypes\DateTimeAttributeType
+
+    uql.query_builder_operation.attribute_type.boolean:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\AttributeTypes\BooleanAttributeType

@@ -1,0 +1,6 @@
+Main\UserBundle\Entity\LoginAccess:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: ['ROLE_ADMIN']

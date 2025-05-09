@@ -1,0 +1,18 @@
+<div class="selection-content">
+    <div ng-controller="PasswordDetailController as detailCtrl" ng-show="detailCtrl.loaded <= 0" class="second-section">
+        <ul class="nav nav-pills mb-3" ng-show="password.access > 1 || passwordGroup.access > 1">
+            <li class="nav-item"><a class="nav-link" ui-sref="overview.group.details.main({ groupId: detailCtrl.groupId, passwordId: detailCtrl.passwordId })" ui-sref-active="active">{{'WORDS.MAIN'|translate}}</a></li>
+            <li class="nav-item" ng-show="!password.log_enabled || password.complete"><a class="nav-link" ui-sref="overview.group.details.icon({ groupId: detailCtrl.groupId, passwordId: detailCtrl.passwordId })" ui-sref-active="active">{{'WORDS.ICON'|translate}}</a></li>
+            <li class="nav-item" ng-show="!password.log_enabled || password.complete"><a class="nav-link" ui-sref="overview.group.details.edit({ groupId: detailCtrl.groupId, passwordId: detailCtrl.passwordId })" ui-sref-active="active">{{'WORDS.EDIT'|translate}}</a></li>
+            <li class="nav-item" ng-show="password.access > 2 || passwordGroup.access > 2"><a class="nav-link" ui-sref="overview.group.details.edit_permissions({ groupId: detailCtrl.groupId, passwordId: detailCtrl.passwordId })" ui-sref-active="active">{{'WORDS.PERMISSIONS'|translate}}</a></li>
+            <li class="nav-item" ng-show="password.access > 2 || passwordGroup.access > 2"><a class="nav-link" ui-sref="overview.group.details.edit_group_permissions({ groupId: detailCtrl.groupId, passwordId: detailCtrl.passwordId })" ui-sref-active="active">{{'WORDS.GROUP_PERMISSIONS'|translate}}</a></li>
+            <li class="nav-item" ng-show="password.access > 2 || passwordGroup.access > 2"><a class="nav-link" ui-sref="overview.group.details.logs({ groupId: detailCtrl.groupId, passwordId: detailCtrl.passwordId })" ui-sref-active="active">{{'WORDS.LOGS'|translate}}</a></li>
+            <li class="nav-item" ng-show="password.access > 2 || passwordGroup.access > 2"><a class="nav-link" ui-sref="overview.group.details.shares({ groupId: detailCtrl.groupId, passwordId: detailCtrl.passwordId })" ui-sref-active="active">{{'WORDS.SHARES'|translate}}</a></li>
+            <li class="nav-item" ng-show="password.access > 2 || passwordGroup.access > 2"><a class="nav-link" href="" ng-click="detailCtrl.movePassword()">{{'WORDS.MOVE'|translate}}</a></li>
+            <li class="nav-item" ng-show="password.access > 2 || passwordGroup.access > 2"><a class="nav-link" href="" ng-click="detailCtrl.addShareLink()">{{'WORDS.SHARE'|translate}}</a></li>
+            <li class="nav-item" ng-show="password.access > 2 || passwordGroup.access > 2"><a class="nav-link" href="" ng-click="detailCtrl.delete()">{{'WORDS.DELETE'|translate}}</a></li>
+        </ul>
+
+        <section ui-view></section>
+    </div>
+</div>

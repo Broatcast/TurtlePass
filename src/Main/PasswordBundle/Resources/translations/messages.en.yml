@@ -1,0 +1,4 @@
+DEFAULT_GROUP:
+    PERSONAL_PASSWORDS:
+        TITLE: 'Personal Passwords'
+        DESCRIPTION: 'Your personal passwords.'

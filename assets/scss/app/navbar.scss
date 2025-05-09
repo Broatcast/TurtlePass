@@ -1,0 +1,15 @@
+.my-navbar {
+  padding: 0!important;
+
+  > .navbar-brand {
+    padding-left: 0.4rem;
+  }
+}
+@include media-breakpoint-down(sm) {
+  .my-navbar {
+    > .navbar-brand {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}

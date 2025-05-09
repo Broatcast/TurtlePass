@@ -1,0 +1,60 @@
+services:
+    main_app.services.logout_listener:
+        class: Main\AppBundle\Services\LogoutListener
+        arguments:
+            - '@main_api.services.session_token_manager'
+            - '@router'
+
+    main_app.services.security.manager:
+        class: Main\AppBundle\Services\Security\SecurityManager
+        arguments:
+            - '@security.token_storage'
+            - '@security.authorization_checker'
+
+    main_app.services.setting_manager:
+        class: Main\AppBundle\Services\SettingManager
+        arguments:
+            - '@main_app.entity.setting_repository'
+
+    main_app.query_builder_operation.search_filter_configuration:
+        class:  UniqueLibs\QueryBuilderOperationBundle\Container\SearchFilterConfiguration
+        parent: uql.query_builder_operation.container.abstract_search_filter_configuration
+
+    main_app.query_builder_operation.exception_listener:
+        class: UniqueLibs\QueryBuilderOperationBundle\EventListener\ExceptionListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception }
+
+    main_app.event_listener.request_listerner:
+        class: Main\AppBundle\EventListener\RequestListener
+        tags:
+            - { name: kernel.event_subscriber }
+
+    main_app.twig.page_title_extension:
+        class: Main\AppBundle\Twig\PageTitleExtension
+        public: false
+        arguments:
+            - '@main_app.services.setting_manager'
+        tags:
+            - { name: twig.extension }
+
+    main_app.services.database_mailer:
+        class: Main\AppBundle\Services\DatabaseMailer
+        arguments:
+            - '@main_app.services.setting_manager'
+            - '@main_app.swiftmailer.transport.eventdispatcher'
+
+    main_app.swiftmailer.transport.eventdispatcher:
+        parent: swiftmailer.transport.eventdispatcher.abstract
+
+    main_app.form.type.setting_type:
+        class: Main\AppBundle\Form\Type\SettingType
+        arguments: ['@main_app.services.setting_manager']
+        tags:
+            - { name: form.type }
+
+    main_app.form.type.recaptcha_setting_type:
+        class: Main\AppBundle\Form\Type\RecaptchaSettingType
+        arguments: ['@main_app.services.setting_manager']
+        tags:
+            - { name: form.type }

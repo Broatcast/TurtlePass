@@ -1,0 +1,121 @@
+@import 'variables';
+
+$body-bg: #181A1E;
+$body-color: #929393;
+$input-bg: #3C3E41;
+$input-group-addon-bg: $input-bg;
+$input-color: #7E7F81;
+$input-box-shadow: none;
+$btn-box-shadow: none;
+$input-border-width: 0;
+
+// Required
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+// Optional
+@import '~bootstrap/scss/root';
+@import '~bootstrap/scss/reboot';
+@import '~bootstrap/scss/type';
+@import '~bootstrap/scss/grid';
+@import '~bootstrap/scss/forms';
+@import '~bootstrap/scss/input-group';
+@import '~bootstrap/scss/buttons';
+@import '~bootstrap/scss/alert';
+@import '~bootstrap/scss/card';
+
+@import '~font-awesome/scss/font-awesome';
+
+html, body {
+  height: 100%;
+}
+#logo_box {
+  text-align: center;
+  padding-bottom: 1rem;
+  color: black;
+  font-size: 18px;
+}
+.form-title {
+  font-size: 15px;
+  margin-bottom: 20px;
+  margin-top: 0px;
+}
+
+a {
+  cursor: pointer;
+  color: #929393;
+
+  &:focus, &:hover, &:active {
+    color: #c2c2c2;
+  }
+}
+button {
+  outline: none!important;
+}
+.btn-login {
+  color: #fff;
+  background-color: #E51D3E;
+  border: 0;
+
+  &:focus, &:hover, &:active {
+    color: #bfbfbf;
+  }
+}
+.single-page-wrapper {
+  min-width: 450px;
+  margin: auto;
+  padding-top: 50px;
+}
+.loading-text {
+  font-size: 1.3em;
+  margin: 45px auto;
+  text-align: center;
+}
+
+.single-page-wrapper {
+  width: 450px;
+  padding-top: 250px;
+}
+
+html {
+  height: 100%;
+  display: table;
+  width: 100%;
+}
+body {
+  display: table-cell;
+  vertical-align: middle;
+  margin: 0;
+}
+
+#install-dialog {
+  margin: 40px auto;
+  top: 50%;
+  color: black;
+  font-size: 16px;
+  width: 680px;
+}
+
+#install-dialog > #logo {
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+#install-dialog > .box {
+  background-color: #FFFFFF;
+  border: 1px solid #e4e5e7;
+  border-radius: 2px;
+  padding: 20px 30px;
+}
+#terms {
+    height: 120px;
+    overflow: scroll;
+}
+
+a {
+  cursor: pointer;
+}
+button {
+  outline: none!important;
+}

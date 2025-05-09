@@ -1,0 +1,74 @@
+imports:
+    - { resource: repositories.yml }
+    - { resource: entity_mappings.yml }
+    - { resource: query_builder_mappings.yml }
+    - { resource: security.yml }
+
+services:
+
+    main_password.services.password_manager:
+        class: Main\PasswordBundle\Services\PasswordManager
+        arguments:
+            - '@main_password.entity.password_repository'
+            - '@main_password.services.password_log_manager'
+
+    main_password.services.password_group_manager:
+        class: Main\PasswordBundle\Services\PasswordGroupManager
+        arguments:
+            - '@main_password.entity.password_group_repository'
+            - '@main_password.services.password_access_manager'
+            - '@main_password.services.password_user_group_access_manager'
+
+    main_password.services.access_manager:
+        class: Main\PasswordBundle\Services\AccessManager
+        arguments:
+            - '@main_password.services.password_access_manager'
+            - '@main_password.services.password_user_group_access_manager'
+
+    main_password.services.password_access_manager:
+        class: Main\PasswordBundle\Services\PasswordAccessManager
+        arguments:
+            - '@main_password.entity.password_group_access_repository'
+            - '@main_password.entity.password_access_repository'
+
+    main_password.services.password_user_group_access_manager:
+        class: Main\PasswordBundle\Services\PasswordUserGroupAccessManager
+        arguments:
+            - '@main_password.entity.password_group_user_group_access_repository'
+            - '@main_password.entity.password_user_group_access_repository'
+
+    main_password.services.password_log_manager:
+        class: Main\PasswordBundle\Services\PasswordLogManager
+        arguments:
+            - '@main_password.entity.password_log_repository'
+
+    main_password.services.password_share_manager:
+        class: Main\PasswordBundle\Services\PasswordShareManager
+        arguments:
+            - '@main_password.entity.password_share_link_repository'
+            - '@event_dispatcher'
+
+    main_password.services.password_group_sorting_manager:
+        class: Main\PasswordBundle\Services\PasswordGroupSortingManager
+        arguments:
+            - '@main_password.entity.password_group_sorting_repository'
+
+    main_password.event.user_subscriber:
+        class: Main\PasswordBundle\Event\UserSubscriber
+        arguments:
+            - '@main_password.services.password_group_manager'
+            - '@translator.default'
+        tags:
+            - { name: kernel.event_subscriber }
+
+    main_password.event.share_link_subscriber:
+        class: Main\PasswordBundle\Event\ShareLinkSubscriber
+        arguments:
+            - '@security.token_storage'
+            - '@main_password.services.password_log_manager'
+            - '@templating'
+            - '@router'
+            - '@main_app.services.database_mailer'
+            - '@main_app.services.setting_manager'
+        tags:
+            - { name: kernel.event_subscriber }

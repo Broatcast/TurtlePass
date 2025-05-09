@@ -1,0 +1,5 @@
+services:
+    main_app.query_builder_mapper.setting:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\QueryBuilderMapper
+        calls:
+            - [addMapper, ['setting', '@main_app.entity_mapper.setting', '.']]

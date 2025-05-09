@@ -1,0 +1,33 @@
+imports:
+    - { resource: repositories.yml }
+    - { resource: entity_mappings.yml }
+    - { resource: query_builder_mappings.yml }
+
+services:
+    main_api.services.token_manager:
+        class: Main\ApiBundle\Services\TokenManager
+        arguments:
+            - '@main_api.entity.access_token_repository'
+            - '@main_api.entity.client_repository'
+            - '@fos_oauth_server.access_token_manager.default'
+
+    main_api.services.session_token_manager:
+        class: Main\ApiBundle\Services\SessionTokenManager
+        arguments:
+            - '@request_stack'
+            - '@main_api.services.token_manager'
+            - '@main_app.services.security.manager'
+            - 'hpd_oauth_token'
+
+    main_api.services.backend.session_token_manager:
+        class: Main\ApiBundle\Services\SessionTokenManager
+        arguments:
+            - '@request_stack'
+            - '@main_api.services.token_manager'
+            - '@main_app.services.security.manager'
+            - 'hpd_backend_oauth_token'
+
+    main_api.security.access_token_voter:
+        class: Main\ApiBundle\Security\AccessTokenVoter
+        tags:
+            - { name: security.voter }

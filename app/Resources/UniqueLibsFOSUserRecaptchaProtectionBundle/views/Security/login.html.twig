@@ -1,0 +1,54 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}
+    {{ get_page_title() }} - Login
+{% endblock %}
+
+{% block fos_user_content %}
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <form action="{{ path("fos_user_security_check") }}" method="post">
+        {% if csrf_token %}
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        {% endif %}
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-user fa-fw"></i></span>
+                </div>
+                <input type="text" title="Please enter you username" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="{{ 'security.login.username'|trans }}" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-key fa-fw"></i></span>
+                </div>
+                <input type="password" title="Please enter your password" value="" name="_password" id="password" required="required" placeholder="{{ 'security.login.password'|trans }}" class="form-control">
+            </div>
+        </div>
+
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" id="remember_me" name="_remember_me" value="on" /> {{ 'security.login.remember_me'|trans }}
+            </label>
+        </div>
+        {% if uniquelibs_recaptcha_site_key is defined and uniquelibs_recaptcha_site_key is not null %}
+            <div style="text-align: center; margin-bottom: 5px;">
+                <div class="g-recaptcha" data-sitekey="{{ uniquelibs_recaptcha_site_key }}" style="display: inline-block;"></div>
+            </div>
+        {% endif %}
+        <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="btn btn-login btn-block" />
+    </form>
+
+    {% if registration_enabled is defined and registration_enabled %}
+        <br><a href="{{ path('fos_user_registration_register') }}" style="font-size: 14px;">{{ 'layout.register'|trans }}</a>
+    {% endif %}
+    {% if password_reset_enabled is defined and password_reset_enabled %}
+        <br><a href="{{ path('fos_user_resetting_request') }}" style="font-size: 14px;">{{ 'resetting.request.submit'|trans }}</a>
+    {% endif %}
+{% endblock fos_user_content %}

@@ -1,0 +1,5 @@
+FOS\OAuthServerBundle\Model\Token:
+    exclusion_policy: ALL
+    properties:
+        token:
+            expose: true

@@ -1,0 +1,24 @@
+<div class="modal-header">
+    <h3 class="modal-title" ng-show="editingMode" translate>TOKEN_MANAGEMENT.EDIT_TOKEN</h3>
+    <h3 class="modal-title" ng-hide="editingMode" translate>TOKEN_MANAGEMENT.ADD_TOKEN</h3>
+</div>
+
+<form name="modalForm" ng-submit="submit()" novalidate>
+    <div class="modal-body">
+        <div class="form-group row">
+            <label for="inputDescription" class="col-sm-3 col-form-label" translate>WORDS.DESCRIPTION</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputDescription" name="inputDescription" ng-model="data.description" ng-maxlength=64 required>
+                <div class="invalid-feedback d-block" ng-if="modalForm.inputDescription.$error.required" ng-show="modalForm.$submitted" translate>VALIDATION.REQUIRED</div>
+                <div class="invalid-feedback d-block" ng-if="modalForm.inputDescription.$error.maxlength" ng-show="modalForm.$submitted" translate-value-characters="64" translate>VALIDATION.MAX_LENGTH</div>
+                <div class="invalid-feedback d-block" ng-if="formErrors.description">{{formErrors.description}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-light" type="button" ng-click="cancel()" translate>WORDS.CANCEL</button>
+        <button class="btn btn-primary" type="submit" ladda="isLaddaWorking" ng-if="!editingMode">{{ 'WORDS.ADD'|translate }}</button>
+        <button class="btn btn-primary" type="submit" ladda="isLaddaWorking" ng-if="editingMode">{{ 'WORDS.EDIT'|translate }}</button>
+    </div>
+</form>

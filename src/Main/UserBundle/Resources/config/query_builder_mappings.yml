@@ -1,0 +1,15 @@
+services:
+    main_user.query_builder_mapper.user:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\QueryBuilderMapper
+        calls:
+            - [addMapper, ['user', '@main_user.entity_mapper.user', '.']]
+
+    main_user.query_builder_mapper.user_group:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\QueryBuilderMapper
+        calls:
+            - [addMapper, ['user_group', '@main_user.entity_mapper.user_group', '.']]
+
+    main_user.query_builder_mapper.login_access:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\QueryBuilderMapper
+        calls:
+            - [addMapper, ['login_access', '@main_user.entity_mapper.login_access', '.']]

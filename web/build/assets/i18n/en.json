@@ -1,0 +1,335 @@
+{
+  "NAVIGATION": {
+    "HEADER": {
+      "USER_MANAGEMENT": "User Management",
+      "GROUP_MANAGEMENT": "Group Management",
+      "SETTINGS": "Settings",
+      "LOGOUT": "Logout"
+    },
+    "SETTINGS": {
+      "CHANGE_PASSWORD": "Change Password",
+      "MANAGE_TOKENS": "Manage Tokens",
+      "EDIT_OWN": "Edit Own Data",
+      "GLOBAL_SETTINGS": "TurtlePass Settings",
+      "RECAPTCHA_CONFIGURATOR": "reCAPTCHA Configurator",
+      "CHECK_UPDATE": "Check Update",
+      "MANAGE_LOGIN_ACCESSES": "Manage Login Accesses",
+      "2_FACTOR_AUTH": "2 Factor Authentication",
+      "CSV_EXPORT": "CSV-Export"
+    }
+  },
+  "SETTINGS": {
+    "TITLE": "Settings",
+    "TEXT": {
+      "PASSWORD_CHANGED": "Password Successfully Changed",
+      "PASSWORD_CHANGED_INFORMATION": "The password has been successfully changed.",
+      "PASSWORD_CHANGE_NOT_AVAILABLE": "You cannot change your password.",
+      "OWN_USER_DATA_CHANGED": "Own Data Updated",
+      "OWN_USER_DATA_INFORMATION": "Your information have been updated successfully.",
+      "GLOBAL_SETTINGS_CHANGED": "The turtlepass configuration have been saved."
+    },
+    "GLOBAL": {
+      "TEXT": {
+        "ENABLE_PASSWORD_RESET": "You can enable and disable the forgot password functionality.",
+        "ENABLE_REGISTRATION": "You can enable and disable the user registration here.",
+        "ENABLE_CONFIRMATION_EMAIL": "You can enable and disable the confirmation email here.",
+        "MAIL_AUTH_MODE": "The authentication mode to use when using smtp as the transport.",
+        "MAIL_ENCRYPTION": "The encryption mode to use when using smtp as the transport.",
+        "MAIL_HOST": "The host to connect to when using smtp as the transport.",
+        "MAIL_PASSWORD": "The password when using smtp as the transport.",
+        "MAIL_PORT": "The port when using smtp as the transport. This defaults to 465 if encryption is ssl and 25 otherwise.",
+        "MAIL_SENDER_ADDRESS": "You can enter your sender address here.",
+        "MAIL_TRANSPORT": "The exact transport method to use to deliver emails.",
+        "MAIL_USERNAME": "The username when using smtp as the transport.",
+        "PAGE_TITLE": "You can change your page title here.",
+        "RECAPTCHA_NEEDED_FAILS": "Enter the number of invalid login trials before a recaptcha will be shown.",
+        "RECAPTCHA_PRIVATE_KEY": "Enter your recaptcha private key here. (Leave blank to disable)",
+        "RECAPTCHA_SITE_KEY": "Enter your recaptcha site key here. (Leave blank to disable)",
+        "ONLY_WHITELISTED": "Allow login only for whitelisted ip addresses. (Warning! Please whilelist your ip first)",
+        "LDAP_USER_PROFILE_FULFILLMENT_REQUIREMENT": "Is a new LDAP-User forced to fulfill his profile information."
+      }
+    }
+  },
+  "USER_MANAGEMENT": {
+    "ADD_USER": "Add User",
+    "EDIT_USER": "Edit User",
+    "TEXT": {
+      "DELETE_INFORMATION": "Do you really want to delete the user?",
+      "DELETE_COMPLETE": "The user has been successfully deleted.",
+      "USER_SUCCESSFULLY_ADDED": "The user has been successfully added.",
+      "USER_SUCCESSFULLY_UPDATED": "The user has been successfully updated.",
+      "ACTIVATE_USER_INFORMATION": "Do you really want to activate the user?",
+      "ACTIVATE_COMPLETE": "The user has been activated successfully.",
+      "DEACTIVATE_USER_INFORMATION": "Do you really want to deactivate the user?",
+      "DEACTIVATE_COMPLETE": "The user has been deactivated successfully."
+    }
+  },
+  "GROUP_MANAGEMENT": {
+    "ADD_GROUP": "Add Group",
+    "EDIT_GROUP": "Edit Group",
+    "TEXT": {
+      "DELETE_INFORMATION": "Do you really want to delete the group?",
+      "SUCCESSFULLY_DELETED": "The group has been successfully deleted.",
+      "SUCCESSFULLY_ADDED": "The group has been successfully added.",
+      "SUCCESSFULLY_UPDATED": "The group has been successfully updated.",
+      "NO_GROUP_FOUND": "No groups found."
+    }
+  },
+  "PASSWORD_MANAGEMENT": {
+    "TITLE": "Password Management",
+    "VIEW_PASSWORD": "View Password",
+    "ADD_PASSWORD": "Add Password",
+    "EDIT_PASSWORD": "Edit Password",
+    "EDIT_PASSWORD_PERMISSIONS": "Edit Password Permissions",
+    "COPY_PASSWORD_TO_CLIPBOARD": "Copy Password to Clipboard",
+    "COPY_PIN_TO_CLIPBOARD": "Copy PIN to Clipboard",
+    "COPY_USERNAME_TO_CLIPBOARD": "Copy Username to Clipboard",
+    "PASSWORD_COPIED": "Password copied to clipboard.",
+    "PIN_COPIED": "PIN copied to clipboard.",
+    "USERNAME_COPIED": "Username copied to clipboard.",
+    "ENTRY_COPIED": "{{entry}} copied to clipboard.",
+    "USERNAME_COPY_FAILED": "Copy username to clipboard failed.",
+    "PASSWORD_COPY_FAILED": "Copy password to clipboard failed.",
+    "PIN_COPY_FAILED": "Copy pin to clipboard failed.",
+    "COPY_FAILED": "Copy to clipboard failed.",
+    "SHOW_HIDE_PASSWORD": "Show/Hide Password",
+    "MOVE_PASSWORD": "Move Password",
+    "GENERATOR": {
+      "TITLE": "Generator",
+      "UPPERCASE_CHARACTERS": "Uppercase Characters",
+      "NUMBERS": "Numbers",
+      "SPECIAL_CHARACTERS": "Special Characters",
+      "BUTTON_GENERATE_NOW": "Create New Password"
+    },
+    "TEXT": {
+      "DELETE_INFORMATION": "Do you really want to delete the password?",
+      "DELETE_COMPLETE": "The password has been successfully deleted.",
+      "PASSWORD_SUCCESSFULLY_ADDED": "The password has been successfully added.",
+      "PASSWORD_SUCCESSFULLY_UPDATED": "The password has been successfully updated.",
+      "CONFIRM": "Please confirm the password access, if you want to get all information.",
+      "NO_LOGS_FOUND": "No Logs found.",
+      "PASSWORD_MOVED": "The password has been successfully moved.",
+      "MOVE_SAME_PASSWORD_GROUP": "The password is already in this group.",
+      "ICON_SUCCESSFULLY_CHANGED": "The icon has been updated successfully."
+    },
+    "TYPE": {
+      "PLAIN": "Password",
+      "BANKACCOUNT": "Bank Account",
+      "CREDIT_CARD": "Credit Card",
+      "EMAIL": "Email",
+      "SERVER": "Server",
+      "SOFTWARE_LICENSE": "Software License"
+    },
+    "LOGS": {
+      "CREATED": "Password Created",
+      "UPDATED": "Password Updated",
+      "VIEW": "Password Viewed",
+      "SHARED": "Password Shared",
+      "MOVED": "Password Moved"
+    }
+  },
+  "PASSWORD_GROUP_MANAGEMENT": {
+    "ADD_PASSWORD_GROUP": "Add Password Group",
+    "EDIT_PASSWORD_GROUP": "Edit Password Group",
+    "EDIT_PASSWORD_GROUP_PERMISSIONS": "Edit Password Group Permissions",
+    "MOVE_PASSWORD_GROUP": "Move Password Group",
+    "PARENT_GROUP": "Parent Group",
+    "TEXT": {
+      "NO_PASSWORDS_FOUND": "No passwords found in this group.",
+      "DELETE_INFORMATION": "Do you really want to delete the password group? All passwords in this group will be deleted too!",
+      "DELETE_COMPLETE": "The password group has been successfully deleted.",
+      "DELETE_NOT_ALLOWED_TITLE": "Unable to delete the group.",
+      "DELETE_NOT_ALLOWED": "You can only delete groups without children groups.",
+      "PASSWORD_GROUP_MOVED": "The password group has been moved."
+    }
+  },
+  "ACCESS_MANAGEMENT": {
+    "ADD_USER": "Add User",
+    "ADD_GROUP": "Add Group",
+    "EDIT_PERMISSIONS": "Edit Permissions",
+    "MOVE_PASSWORD_GROUP": "Move Password",
+    "TEXT": {
+      "NO_PERMISSIONS_FOUND": "No permissions found.",
+      "USER_ALREADY_HAS_ACCESS": "Given user already has access.",
+      "GROUP_ALREADY_HAS_ACCESS": "Given group already has access."
+    }
+  },
+  "TOKEN_MANAGEMENT": {
+    "ADD_TOKEN": "Generate Token",
+    "EDIT_TOKEN": "Edit Token",
+    "TEXT": {
+      "DELETE_INFORMATION": "Do you really want to delete the token?",
+      "DELETE_COMPLETE": "The token has been successfully deleted.",
+      "NONE_FOUND": "No tokens have been found."
+    }
+  },
+  "SHARE_LINK": {
+    "MODE": {
+      "READ": "Read Only",
+      "READ_WRITE": "Read/Write"
+    },
+    "ADD_LINK": "Create New Link",
+    "VALID_UNTIL": "Valid Until",
+    "SHARE_LINK_COPIED": "The Share-Link has been copied to your clipboard",
+    "SHARED_WITH_NOBODY": "Shared with nobody.",
+    "DELETE_SHARE_LINK": "Are you sure, you want to delete the share link?",
+    "DELETE_SHARE_LINK_COMPLETE": "This link is no longer valid.",
+    "SHARED_WITH_LINK": "Shared with link",
+    "CREATED_SUCCESSFULLY": "Share link successfully created",
+    "ACCESS_EXPIRED": "The share link is expired."
+  },
+  "PLACEHOLDER": {
+    "VIEW_LIMIT": "How often can this password be displayed. (Empty is unlimited)"
+  },
+  "WORDS": {
+    "ALL": "All",
+    "LANGUAGE": "Language",
+    "CANCEL": "Cancel",
+    "NAME": "Name",
+    "EMAIL": "Email",
+    "USERNAME": "Username",
+    "CURRENT_PASSWORD": "Current Password",
+    "PASSWORD": "Password",
+    "PASSWORD_REPEAT": "Password Repeat",
+    "ADMINISTRATOR": "Administrator",
+    "ADD": "Add",
+    "EDIT": "Edit",
+    "FIRST_NAME": "First Name",
+    "LAST_NAME": "Last Name",
+    "URL": "URL",
+    "OPTIONAL": "Optional",
+    "NOTICE": "Notice",
+    "ICON": "Icon",
+    "USER": "User",
+    "USERS": "Users",
+    "RIGHTS": "Rights",
+    "FINISH": "Finish",
+    "DELETE": "Delete",
+    "DESCRIPTION": "Description",
+    "TOKEN": "Token",
+    "YES": "Yes",
+    "NO": "No",
+    "CLOSE": "Close",
+    "COPY_TO_CLIPBOARD": "Copy to Clipboard",
+    "STATUS": "Status",
+    "STATUS_ACTIVE": "Active",
+    "STATUS_DISABLED": "Disabled",
+    "MOVE": "Move",
+    "SEARCH": "Search",
+    "CREATED_AT": "Created at",
+    "LAST_UPDATE": "Last Update",
+    "VIEW": "View",
+    "ACTIVATE": "Activate",
+    "DEACTIVATE": "Deactivate",
+    "NONE": "None",
+    "BANK_NAME": "Bank Name",
+    "BANK_CODE": "Bank Code",
+    "ACCOUNT_HOLDER": "Account Holder",
+    "ACCOUNT_NUMBER": "Account Number",
+    "IBAN": "IBAN",
+    "PIN": "PIN",
+    "VALID_FROM": "Valid From",
+    "VALID_TO": "Valid To",
+    "CREDIT_CARD_TYPE": "Credit Card Type",
+    "CARD_NUMBER": "Card Number",
+    "CARD_CVC": "Card CVC",
+    "VERSION": "Version",
+    "LICENSE_KEY": "License Key",
+    "EMAIL_TYPE": "Email Type",
+    "PORT": "Port",
+    "AUTH_METHOD": "Auth Method",
+    "SMTP_PORT": "SMTP Port",
+    "SMTP_AUTH_METHOD": "SMTP Auth Method",
+    "SMTP_HOST": "SMTP Host",
+    "SMTP_USERNAME": "SMTP Username",
+    "SMTP_PASSWORD": "SMTP Password",
+    "HOST": "Host",
+    "TYPE": "Type",
+    "TEXT": "Text",
+    "CONFIRM": "Confirm",
+    "MAIN": "Main",
+    "PERMISSIONS": "Permissions",
+    "GROUP_PERMISSIONS": "Group Permissions",
+    "USER_PERMISSIONS": "User Permissions",
+    "LOGS": "Logs",
+    "CUSTOM_FIELDS": "Custom Fields",
+    "ADD_CUSTOM_FIELD": "Add Custom Field",
+    "VALUE": "Value",
+    "MODE": "Mode",
+    "RECIPIENT": "Recipient",
+    "UNLIMITED": "Unlimited",
+    "SHARES": "Shares",
+    "SHARE": "Share",
+    "SHARE_LINK": "Share-Link",
+    "FROM_IP": "From IP",
+    "TO_IP": "To IP",
+    "VIEW_LIMIT": "View Limit",
+    "LDAP_USER": "LDAP-User",
+    "MY_PROFILE": "My Profile",
+    "GROUP": "Gruppe",
+    "GROUPS": "Gruppen",
+    "ENABLE_LOG": "Enable Log",
+    "SELECT_GROUPS": "Select groups",
+    "PASSWORD_GROUP": "Password Group"
+  },
+  "TEXT": {
+    "LOADING_PLEASE_WAIT": "Loading. Please wait.",
+    "NO_RESULTS_FOUND": "No results found.",
+    "ARE_YOU_SURE": "Are you sure?",
+    "SUCCESSFULLY_DELETED": "Successfully Deleted",
+    "UNKNOWN_ERROR": "Unknown Error",
+    "UNKNOWN_ERROR_INFORMATION": "An unknown error has been occurred. Please try again later.",
+    "RESOURCE_NOT_FOUND": "Resource not found",
+    "DELETE_NOT_FOUND": "Unable to delete resource. Maybe it has already been deleted. Please try again later.",
+    "OWN_ACCESS_EDIT_NOW_ALLOWED": "You can not change your own access rights.",
+    "USER_GROUP_DELETE_LOCKED": "Group can not be deleted if users or accesses are allocated.",
+    "DELETE_FAILED": "Delete failed."
+  },
+  "LANGUAGES": {
+    "EN": "English",
+    "DE": "German"
+  },
+  "VALIDATION": {
+    "REQUIRED": "Please enter the required value.",
+    "MIN_LENGTH": "Please enter at least {{characters}} characters.",
+    "MAX_LENGTH": "Please do not enter more then {{characters}} characters.",
+    "PASSWORD_EQUALS": "Entered passwords do not match.",
+    "EMAIL": "Please enter a valid email"
+  },
+  "CHECK_UPDATE": {
+    "INSTALLED_VERSION": "Installed Version",
+    "CURRENT_VERSION": "Current Version",
+    "TEXT": {
+      "CONNECTION_FAILED": "Connection to update check server failed. Please try again later or check connection to {{url}}.",
+      "VERSION_UP_TO_DATE": "Your currently installed version is up to date.",
+      "NEW_VERSION_RELEASED": "New version {{version}} released. Please check documentation for update information."
+    }
+  },
+  "LOGIN_ACCESS_MANAGEMENT": {
+    "ADD_LOGIN_ACCESS": "Add Login Access Setting",
+    "EDIT_LOGIN_ACCESS": "Edit Login Access Setting",
+    "BLACKLIST": "Blacklist",
+    "WHITELIST": "Whitelist",
+    "TEXT": {
+      "DELETE_INFORMATION": "Do you really want to delete the login access setting?",
+      "DELETE_COMPLETE": "The setting has been successfully deleted.",
+      "NONE_FOUND": "No login access settings have been found."
+    }
+  },
+  "2_FACTOR_AUTH": {
+    "CODE": "Authenticator Code",
+    "CODE_INVALID": "Authenticator code is invalid.",
+    "SUBMIT_CONFIGURE": "Confirm Configuration",
+    "DISABLE": "Disable 2 Factor Authentication",
+    "TEXT": {
+      "ENABLED": "2 factor authentication is enabled.",
+      "ADDED_TO_APP": "I added the code in my authenticator app.",
+      "DELETE_INFORMATION": "Do you really want to disable 2 factor authentication?",
+      "DELETE_COMPLETE": "2 factor authentication has been disabled.",
+      "NOT_ENABLED_TEXT_1": "We highly recommend to enable 2 factor authentication to protect your user account.",
+      "NOT_ENABLED_TEXT_2": "Therefore please install the google authenticator app on your mobile device.",
+      "CONFIGURATION_CODE_IS": "Your configuration code is:",
+      "SCAN_QR_CODE": "Please scan the followed QR code for fast configuration:"
+    }
+  }
+}

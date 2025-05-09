@@ -1,0 +1,94 @@
+.navigation-item
+{
+    height: 2.2rem;
+    padding: 0 1rem;
+    color: $navigation-item-color;
+    letter-spacing: 0.04rem;
+    cursor: pointer;
+
+    &.active
+    {
+        background-color: $navigation-item-bg-color-active;
+        color: $navigation-item-color-active!important;
+    }
+
+    &.expanded
+    {
+        background-color: $navigation-item-bg-color-active;
+        color: $navigation-item-color-expand;
+    }
+
+    > .navigation-item-icon-container
+    {
+        min-width: 16px;
+        display: inline-block;
+        position: absolute;
+        top: 0.45rem;
+    }
+
+    > .navigation-item-title
+    {
+        display: inline-block;
+        position: absolute;
+        top: 0.45rem;
+        margin-left: 1.2rem;
+    }
+
+    > .navigation-item-expand-container
+    {
+        display: inline-block;
+        float: right;
+        margin-top: 0.45rem;
+    }
+
+    > i {
+        margin-right: 15px;
+        float: right;
+        margin-top: 3px;
+    }
+
+    > span {
+        > i {
+            margin-right: 5px;
+        }
+    }
+}
+
+.navigation-sub-item-line {
+    display: none;
+}
+
+.navigation-sub-item-container
+{
+    background-color: $navigation-sub-item-bg-color;
+
+    .angular-ui-tree-nodes
+    {
+        background-color: $navigation-sub-item-bg-color;
+        padding-left: 0!important;
+    }
+
+    .active
+    {
+        background-color: $navigation-sub-item-bg-color!important;
+    }
+
+    .expanded
+    {
+        background-color: $navigation-sub-item-bg-color!important;
+        color: #88898C;
+    }
+
+    .navigation-item {
+        padding-left: 0!important;
+    }
+
+    .navigation-sub-item-line {
+        display: inline-block;
+        width: 1px;
+        height: 100%;
+        padding-right: 20px;
+        margin-left: 6px;
+        border-left: 1px solid #2B2E33;
+    }
+}

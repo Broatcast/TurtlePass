@@ -1,0 +1,15 @@
+UniqueLibs\FOSUserRecaptchaProtectionBundle\Model\LoginAccess:
+    exclusion_policy: ALL
+    properties:
+        whitelist:
+            expose: true
+            groups: ['ROLE_ADMIN']
+        createDate:
+            expose: true
+            groups: ['ROLE_ADMIN']
+        expireDate:
+            expose: true
+            groups: ['ROLE_ADMIN']
+    virtual_properties:
+        getFromIp: ~
+        getToIp: ~

@@ -1,0 +1,93 @@
+<div class="modal-header" ng-show="loaded">
+    <h3 class="modal-title" ng-show="editingMode" translate>USER_MANAGEMENT.EDIT_USER</h3>
+    <h3 class="modal-title" ng-hide="editingMode" translate>USER_MANAGEMENT.ADD_USER</h3>
+</div>
+
+<form name="modalForm" ng-submit="submit()" ng-show="loaded" novalidate>
+    <div class="modal-body">
+
+        <div class="form-group row">
+            <label for="inputUsername" class="col-sm-3 col-form-label" translate>WORDS.USERNAME</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputUsername" name="inputUsername" ng-model="data.username" ng-minlength=3 ng-maxlength=32>
+                <div class="invalid-feedback d-block" ng-if="modalForm.inputUsername.$error.minlength" ng-show="modalForm.$submitted" translate-value-characters="3" translate>VALIDATION.MIN_LENGTH</div>
+                <div class="invalid-feedback d-block" ng-if="modalForm.inputUsername.$error.maxlength" ng-show="modalForm.$submitted" translate-value-characters="32" translate>VALIDATION.MAX_LENGTH</div>
+                <div class="invalid-feedback d-block" ng-if="formErrors.username">{{formErrors.username}}</div>
+            </div>
+        </div>
+
+        <div class="form-group row" ng-if="currentUser.id != data.id">
+            <label for="inputPassword" class="col-sm-3 col-form-label" translate>WORDS.PASSWORD</label>
+            <div class="col-sm-9">
+                <input type="password" class="form-control" id="inputPassword" name="inputPassword" ng-model="data.password" ng-minlength=5 ng-maxlength=64 ng-if="editingMode">
+                <input type="password" class="form-control" id="inputPassword" name="inputPassword" ng-model="data.password" ng-minlength=5 ng-maxlength=64 required ng-if="!editingMode">
+                <div class="invalid-feedback d-block" ng-if="modalForm.inputPassword.$error.required" ng-show="modalForm.$submitted" translate>VALIDATION.REQUIRED</div>
+                <div class="invalid-feedback d-block" ng-if="modalForm.inputPassword.$error.minlength" ng-show="modalForm.$submitted" translate-value-characters="5" translate>VALIDATION.MIN_LENGTH</div>
+                <div class="invalid-feedback d-block" ng-if="modalForm.inputPassword.$error.maxlength" ng-show="modalForm.$submitted" translate-value-characters="64" translate>VALIDATION.MAX_LENGTH</div>
+                <div class="invalid-feedback d-block" ng-if="formErrors.password">{{formErrors.password}}</div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="inputFirstName" class="col-sm-3 col-form-label" translate>WORDS.FIRST_NAME</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputFirstName" name="inputFirstName" ng-model="data.first_name" ng-maxlength=255 required>
+                <div class="invalid-feedback d-block" ng-if="modalForm.inputFirstName.$error.required" ng-show="modalForm.$submitted" translate>VALIDATION.REQUIRED</div>
+                <div class="invalid-feedback d-block" ng-if="modalForm.inputFirstName.$error.maxlength" ng-show="modalForm.$submitted" translate-value-characters="255" translate>VALIDATION.MAX_LENGTH</div>
+                <div class="invalid-feedback d-block" ng-if="formErrors.first_name">{{formErrors.first_name}}</div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="inputLastName" class="col-sm-3 col-form-label" translate>WORDS.LAST_NAME</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputLastName" name="inputLastName" ng-model="data.last_name" ng-maxlength=255 required>
+                <div class="invalid-feedback d-block" ng-if="modalForm.inputLastName.$error.required" ng-show="modalForm.$submitted" translate>VALIDATION.REQUIRED</div>
+                <div class="invalid-feedback d-block" ng-if="modalForm.inputLastName.$error.maxlength" ng-show="modalForm.$submitted" translate-value-characters="255" translate>VALIDATION.MAX_LENGTH</div>
+                <div class="invalid-feedback d-block" ng-if="formErrors.last_name">{{formErrors.last_name}}</div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="inputEmail" class="col-sm-3 col-form-label" translate>WORDS.EMAIL</label>
+            <div class="col-sm-9">
+                <input type="email" class="form-control" id="inputEmail" name="inputEmail" ng-model="data.email" ng-maxlength=255 required>
+                <div class="invalid-feedback d-block" ng-if="modalForm.inputEmail.$error.required" ng-show="modalForm.$submitted" translate>VALIDATION.REQUIRED</div>
+                <div class="invalid-feedback d-block" ng-if="modalForm.inputEmail.$error.maxlength" ng-show="modalForm.$submitted" translate-value-characters="255" translate>VALIDATION.MAX_LENGTH</div>
+                <div class="invalid-feedback d-block" ng-if="modalForm.inputEmail.$error.email" ng-show="modalForm.$submitted" translate>VALIDATION.EMAIL</div>
+                <div class="invalid-feedback d-block" ng-if="formErrors.email">{{formErrors.email}}</div>
+            </div>
+        </div>
+
+        <div class="form-group row" ng-if="loaded">
+            <label for="inputEmail" class="col-sm-3 col-form-label" translate>WORDS.GROUPS</label>
+            <div class="col-sm-9">
+                <ui-select multiple data-ng-model="data.user_groups" theme="select2" style="width: 100%;">
+                    <ui-select-match ng-attr-placeholder="{{'WORDS.SELECT_GROUPS'|translate}}">{{$item.name}}</ui-select-match>
+                    <ui-select-choices data-repeat="group.id as group in groups | filter: $select.search">
+                        <span data-ng-bind-html="group.name"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+
+        <div class="form-group row" ng-if="currentUser.id != data.id">
+            <label for="inputAdmin" class="col-sm-3 col-form-label"></label>
+            <div class="col-sm-9">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" id="inputAdmin" name="inputAdmin" ng-model="data.admin"> {{ 'WORDS.ADMINISTRATOR'|translate }}
+                    </label>
+                </div>
+                <div class="invalid-feedback d-block" ng-if="formErrors.admin">{{formErrors.admin}}</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-light" type="button" ng-click="cancel()" translate>WORDS.CANCEL</button>
+        <button class="btn btn-primary" type="submit" ladda="isLaddaWorking" ng-if="editingMode">{{ 'WORDS.EDIT'|translate }}</button>
+        <button class="btn btn-primary" type="submit" ladda="isLaddaWorking" ng-if="!editingMode">{{ 'WORDS.ADD'|translate }}</button>
+    </div>
+</form>

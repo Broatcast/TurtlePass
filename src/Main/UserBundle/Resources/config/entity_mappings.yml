@@ -1,0 +1,24 @@
+services:
+    main_user.entity_mapper.user:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\EntityMapper
+        calls:
+            - [add, ['id', '@uql.query_builder_operation.attribute_type.number', ['search', 'order']]]
+            - [add, ['username', '@uql.query_builder_operation.attribute_type.string', ['search', 'order']]]
+            - [add, ['email', '@uql.query_builder_operation.attribute_type.string', ['search', 'order']]]
+            - [add, ['firstName', '@uql.query_builder_operation.attribute_type.string', ['search', 'order']]]
+            - [add, ['lastName', '@uql.query_builder_operation.attribute_type.string', ['search', 'order']]]
+            - [add, ['fullName', '@uql.query_builder_operation.attribute_type.string', ['search', 'order']]]
+
+    main_user.entity_mapper.user_group:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\EntityMapper
+        calls:
+            - [add, ['id', '@uql.query_builder_operation.attribute_type.number', ['search', 'order']]]
+            - [add, ['name', '@uql.query_builder_operation.attribute_type.string', ['search', 'order']]]
+
+    main_user.entity_mapper.login_access:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\EntityMapper
+        calls:
+            - [add, ['id', '@uql.query_builder_operation.attribute_type.number', ['search', 'order']]]
+            - [add, ['whitelist', '@uql.query_builder_operation.attribute_type.boolean', ['search', 'order']]]
+            - [add, ['createDate', '@uql.query_builder_operation.attribute_type.date_time', ['search', 'order']]]
+            - [add, ['expireDate', '@uql.query_builder_operation.attribute_type.date_time', ['search', 'order']]]

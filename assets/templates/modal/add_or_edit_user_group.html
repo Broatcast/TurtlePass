@@ -1,0 +1,26 @@
+<div class="modal-header">
+    <h3 class="modal-title" ng-show="editingMode" translate>GROUP_MANAGEMENT.EDIT_GROUP</h3>
+    <h3 class="modal-title" ng-hide="editingMode" translate>GROUP_MANAGEMENT.ADD_GROUP</h3>
+</div>
+
+<form name="modalForm" ng-submit="submit()" novalidate>
+    <div class="modal-body">
+
+        <div class="form-group row">
+            <label for="inputName" class="col-sm-3 col-form-label" translate>WORDS.NAME</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputName" name="inputName" ng-model="data.name" ng-minlength=3 ng-maxlength=32>
+                <div class="invalid-feedback d-block" ng-if="modalForm.inputName.$error.minlength" ng-show="modalForm.$submitted" translate-value-characters="3" translate>VALIDATION.MIN_LENGTH</div>
+                <div class="invalid-feedback d-block" ng-if="modalForm.inputName.$error.maxlength" ng-show="modalForm.$submitted" translate-value-characters="32" translate>VALIDATION.MAX_LENGTH</div>
+                <div class="invalid-feedback d-block" ng-if="formErrors.name">{{formErrors.name}}</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-light" type="button" ng-click="cancel()" translate>WORDS.CANCEL</button>
+        <button class="btn btn-primary" type="submit" ladda="isLaddaWorking" ng-if="editingMode">{{ 'WORDS.EDIT'|translate }}</button>
+        <button class="btn btn-primary" type="submit" ladda="isLaddaWorking" ng-if="!editingMode">{{ 'WORDS.ADD'|translate }}</button>
+    </div>
+</form>

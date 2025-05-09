@@ -1,0 +1,7 @@
+services:
+    main_api.entity_mapper.access_token:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\EntityMapper
+        calls:
+            - [add, ['id', '@uql.query_builder_operation.attribute_type.number', ['search', 'order']]]
+            - [add, ['description', '@uql.query_builder_operation.attribute_type.string', ['search', 'order']]]
+            - [add, ['token', '@uql.query_builder_operation.attribute_type.string', ['search', 'order']]]

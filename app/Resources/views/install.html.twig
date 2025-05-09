@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>{% block title %}TurtlePass Installation{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css" />
+    <link href="/build/install.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="install-dialog">
+
+    <div id="logo">
+        <img src="img/logo.png" style="height: 80px;" />
+    </div>
+
+    <div class="box">
+
+        {% if completed %}
+
+            <div class="alert alert-success" role="alert">System is ready to use.</div>
+
+            <a href="/" class="btn btn-success">To Control Panel</a>
+
+        {% else %}
+            {% if writeable_check %}
+                <div class="alert alert-danger" role="alert">The file &quot;{{ parameter_file_path }}&quot; must be writeable by the current user.</div>
+            {% endif %}
+            {% if ssl_warning %}
+                <div class="alert alert-warning" role="alert">You should use SSL to encrypt your data and protect your privacy.</div>
+            {% endif %}
+
+            {{ form_start(form) }}
+
+            <fieldset>
+                <legend>Database Settings</legend>
+
+                <div class="form-group row">
+                    <div class="col-md-4">{{ form_label(form.database_host) }}</div>
+                    <div class="col-md-8">{{ form_widget(form.database_host) }}{{ form_errors(form.database_host) }}</div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-4">{{ form_label(form.database_port) }}</div>
+                    <div class="col-md-8">{{ form_widget(form.database_port) }}{{ form_errors(form.database_port) }}</div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-4">{{ form_label(form.database_user) }}</div>
+                    <div class="col-md-8">{{ form_widget(form.database_user) }}{{ form_errors(form.database_user) }}</div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-4">{{ form_label(form.database_password) }}</div>
+                    <div class="col-md-8">{{ form_widget(form.database_password) }}{{ form_errors(form.database_password) }}</div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-4">{{ form_label(form.database_name) }}</div>
+                    <div class="col-md-8">{{ form_widget(form.database_name) }}{{ form_errors(form.database_name) }}</div>
+                </div>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Encryption Settings</legend>
+
+                <div class="form-group row">
+                    <div class="col-md-4">{{ form_label(form.secret_key) }}</div>
+                    <div class="col-md-8">{{ form_widget(form.secret_key) }}{{ form_errors(form.secret_key) }}</div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="alert alert-info"><b>Important Note:</b> This key is to encrypt your passwords in the database. Keep this key safe. Once lost you cannot recover your data! This is your personal generated key: <b>{{ encryption_key }}</b>. Feel free to use a different one.</div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Account Information</legend>
+
+                <div class="form-group row">
+                    <div class="col-md-4">{{ form_label(form.firstname) }}</div>
+                    <div class="col-md-8">{{ form_widget(form.firstname) }}{{ form_errors(form.firstname) }}</div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-4">{{ form_label(form.lastname) }}</div>
+                    <div class="col-md-8">{{ form_widget(form.lastname) }}{{ form_errors(form.lastname) }}</div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-4">{{ form_label(form.email) }}</div>
+                    <div class="col-md-8">{{ form_widget(form.email) }}{{ form_errors(form.email) }}</div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-4">{{ form_label(form.username) }}</div>
+                    <div class="col-md-8">{{ form_widget(form.username) }}{{ form_errors(form.username) }}</div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-4">{{ form_label(form.password) }}</div>
+                    <div class="col-md-8">{{ form_widget(form.password.first) }}{{ form_errors(form.password.first) }}</div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-8 offset-md-4">{{ form_widget(form.password.second) }}{{ form_errors(form.password.second) }}</div>
+                </div>
+            </fieldset>
+
+            <div class="form-group">
+                <div class="col-md-8 offset-md-4">
+                {{ form_row(form.send) }}
+                </div>
+            </div>
+            {{ form_end(form) }}
+
+        {% endif %}
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+
+    {{ form_widget(form._token) }}
+
+    {% if form_errors(form) %}
+        <div class="alert alert-danger">
+            {{ form_errors(form) }}
+        </div>
+    {% endif %}
+
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-user fa-fw"></i></span>
+            </div>
+            {{ form_widget(form.firstName, { 'attr': {'class': 'form-control', 'placeholder': 'form.first_name'|trans({}, 'FOSUserBundle')} }) }}
+        </div>
+    </div>
+
+    {{ form_errors(form.firstName) }}
+
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-user fa-fw"></i></span>
+            </div>
+            {{ form_widget(form.lastName, { 'attr': {'class': 'form-control', 'placeholder': 'form.last_name'|trans({}, 'FOSUserBundle')} }) }}
+        </div>
+    </div>
+
+    {{ form_errors(form.lastName) }}
+
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-user fa-fw"></i></span>
+            </div>
+            {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': 'form.username'|trans({}, 'FOSUserBundle')} }) }}
+        </div>
+    </div>
+
+    {{ form_errors(form.username) }}
+
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-envelope fa-fw"></i></span>
+            </div>
+            {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'form.email'|trans({}, 'FOSUserBundle')} }) }}
+        </div>
+    </div>
+
+    {{ form_errors(form.email) }}
+
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-key fa-fw"></i></span>
+            </div>
+            {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'form.password'|trans({}, 'FOSUserBundle')} }) }}
+        </div>
+    </div>
+
+    {{ form_errors(form.plainPassword.first) }}
+
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-key fa-fw"></i></span>
+            </div>
+            {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'form.password_confirmation'|trans({}, 'FOSUserBundle')} }) }}
+        </div>
+    </div>
+
+    {{ form_errors(form.plainPassword.second) }}
+
+    {% if uniquelibs_recaptcha_site_key is defined and uniquelibs_recaptcha_site_key is not null %}
+        <div style="text-align: center; margin-bottom: 5px;">
+            <div class="g-recaptcha" data-sitekey="{{ uniquelibs_recaptcha_site_key }}" style="display: inline-block;"></div>
+        </div>
+    {% endif %}
+
+    <div>
+        <input type="submit" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" class="btn btn-login btn-block" />
+    </div>
+{{ form_end(form) }}
+
+<br><a href="{{ path('fos_user_security_login') }}" style="font-size: 14px;">{{ 'registration.back'|trans({}, 'FOSUserBundle') }}</a>

@@ -1,0 +1,27 @@
+services:
+    main_password.security.password_voter:
+        class: Main\PasswordBundle\Security\PasswordVoter
+        arguments: ['@main_password.services.access_manager']
+        public: false
+        tags:
+            - { name: security.voter }
+
+    main_password.security.password_group_voter:
+        class: Main\PasswordBundle\Security\PasswordGroupVoter
+        arguments: ['@main_password.services.access_manager']
+        public: false
+        tags:
+            - { name: security.voter }
+
+    main_password.security.password_share_link_voter:
+        class: Main\PasswordBundle\Security\PasswordShareLinkVoter
+        arguments:
+            - '@request_stack'
+            - '@main_password.services.password_share_manager'
+            - '@main_password.services.password_access_manager'
+        tags:
+            - { name: security.voter }
+
+
+    main_password.security_firewall.api_entry_point:
+        class: Main\PasswordBundle\Security\Firewall\ApiEntryPoint

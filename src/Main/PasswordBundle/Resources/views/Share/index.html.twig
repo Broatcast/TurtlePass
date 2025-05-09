@@ -1,0 +1,25 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/login.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div ui-view></div>
+{% endblock body %}
+
+{% block javascripts %}
+    <script>
+        var JS_CONFIGURATION = {
+            locale: "en",
+            userInformation: "",
+            userToken: "",
+            baseUrl: "{{ url('main_template_default_index') }}api/",
+            version: {{ version }}
+        };
+    </script>
+
+    {{ parent() }}
+{% endblock %}

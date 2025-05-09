@@ -1,0 +1,7 @@
+services:
+    main_app.entity_mapper.setting:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\EntityMapper
+        calls:
+            - [add, ['id', '@uql.query_builder_operation.attribute_type.string', ['search', 'order']]]
+            - [add, ['setting_type', '@uql.query_builder_operation.attribute_type.string', ['search', 'order']]]
+            - [add, ['value', '@uql.query_builder_operation.attribute_type.string', ['search', 'order']]]

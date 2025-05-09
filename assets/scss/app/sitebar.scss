@@ -1,0 +1,124 @@
+.navbar-header {
+    position: relative;
+    min-width: $my-sidebar-width;
+}
+.sidebar-toggle {
+    position: relative;
+    right: 0;
+    float: left;
+    top: 13px;
+    line-height: 1;
+    color: #fff;
+    padding: 6px 7px 7px 7px;
+    margin-left: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    height: 26px;
+    cursor: pointer;
+}
+.sidebar {
+    display: none;
+    position: fixed;
+    top: $my-topbar-height;
+    left: 0;
+    min-height: 100%;
+    z-index: 1000;
+    float: left;
+    width: $my-sidebar-width;
+    background-color: #2B2E33;
+}
+.navbar-header {
+    width: 100%;
+}
+
+.sitebar-nav
+{
+    font-size: $font-size-base;
+    padding-top: 20px;
+    width: 100%;
+
+    > .title
+    {
+        color: #DEEFF3;
+        font-size: 13px;
+        padding: 0 20px 15px 20px;
+        text-transform: uppercase;
+    }
+}
+.angular-ui-tree
+{
+    height: calc(#{"100% - 140px"});
+    overflow: auto;
+    position: absolute;
+    width: 100%;
+}
+.angular-ui-tree-empty
+{
+    background-color: transparent!important;
+    background-image: none!important;
+    border: 0!important;
+}
+
+@include media-breakpoint-up(sm) {
+    .navbar-header {
+        float: left;
+    }
+    .sidebar {
+        display: block!important;
+    }
+    .sidebar-toggle {
+        display: none;
+    }
+}
+@include media-breakpoint-down(sm) {
+    .sidebar {
+        top: $my-topbar-height*2;
+    }
+}
+@include media-breakpoint-down(xs) {
+    .sidebar {
+        top: $my-topbar-height*3-0.1;
+    }
+}
+
+.list-group-container {
+    position:fixed;
+    height: calc(100% - 17rem);
+    width: 21rem;
+    top: 17rem;
+}
+
+.list-group-container .list-group {
+    max-height: 100%;
+    overflow-y: scroll;
+    height: 100%;
+}
+
+.selection-sitebar
+{
+    width: 21rem;
+    height: 100%;
+    position: fixed;
+    display: none;
+    margin-top: 13rem;
+}
+.password-title-sitebar
+{
+    width: 21rem;
+    display: block;
+}
+
+@include media-breakpoint-up(xl) {
+    .selection-sitebar
+    {
+        display: block;
+    }
+    .selection-content
+    {
+        margin-left: 22rem;
+        padding-top: 3rem;
+    }
+    .password-title-sitebar
+    {
+        position: fixed;
+    }
+}

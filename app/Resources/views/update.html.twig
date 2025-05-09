@@ -1,0 +1,122 @@
+{% form_theme form 'install_bootstrap_3_horizontal_layout.html.twig' %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>{% block title %}TurtlePass Update{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css" />
+    <link href="/build/install.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="install-dialog">
+
+    <div id="logo">
+        <img src="/img/logo.png" style="height: 80px;" />
+    </div>
+
+    <div class="box">
+
+        {% if completed %}
+
+            <div class="alert alert-success" role="alert">System is ready to use.</div>
+
+            <a href="/" class="btn btn-success">To Control Panel</a>
+
+        {% else %}
+
+            <div class="alert alert-warning" role="alert"><b>WANING:</b><br>Always create a backup before updating TurtlePass. In case of an failed update, all data can be lost!</div>
+
+            {{ form_start(form) }}
+
+            <fieldset class="form-group">
+                <legend>Update to Version 1.4</legend>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <div class="card card-body bg-light">
+                            <div id="terms">
+                                <b>Release Notes 1.4:</b><br>
+                                <ul>
+                                    <li>[Update] Update to Symfony Framework Version 3</li>
+                                    <li>[Update] Update Bootstrap 3 to Bootstrap 4</li>
+                                    <li>[New Feature] Move Passwords to other Groups</li>
+                                    <li>[Bugfix] Fixed change own password</li>
+                                    <li>[Bugfix] Edit own user and user groups</li>
+                                    <li>[Bugfix] Some template and language fixes</li>
+                                    <li>[Bugfix] Fixed share password</li>
+                                </ul>
+                                <b>Release Notes 1.3:</b><br>
+                                <ul>
+                                    <li>[Bugfix] Sharing a password didn't email the recipient</li>
+                                    <li>[New Setting] New setting for the availability to choose if new users should confirm their email address</li>
+                                    <li>[New Feature] LDAP/AD Support</li>
+                                    <li>[New Feature] Sharing a password can now be limited to views</li>
+                                    <li>[New Setting] You can now decide when the reCAPTCHA flood protection will be shown</li>
+                                    <li>[New Feature] All passwords can be downloaded to a CSV file</li>
+                                    <li>[New Feature] Sorting password groups on the left-hand side is now available by drag'n drop for each user</li>
+                                    <li>[New Feature] User groups for easier managing sharing passwords with users</li>
+                                    <li>[Bugfix] Clicking on the backgroud closed the modal popups</li>
+                                    <li>[Update] Updated 3rd party libraries</li>
+                                </ul>
+                                <b>Release Notes 1.2.1:</b><br>
+                                <ul>
+                                    <li>[Bug] Fixed search user and other objects</li>
+                                    <li>[Bug] Installation design was broken</li>
+                                </ul>
+                                <b>Release Notes 1.2:</b><br>
+                                <ul>
+                                    <li>[Feature] Added 2-Way-Authentication support</li>
+                                    <li>[Feature] Share passwords with others (link or email) and optional the possibility for them to change the information</li>
+                                    <li>[Feature] Check for new TurtlePass updates</li>
+                                    <li>[Feature] Added custom fields for passwords</li>
+                                    <li>[Feature] Whitelist and blacklist ip addresses for restricted access</li>
+                                    <li>[Feature] Allow login only for whitelisted ip addresses if enabled</li>
+                                    <li>[Feature] Support for Microsoft IIS web server</li>
+                                    <li>[Feature] ReCaptcha configuration wizard</li>
+                                    <li>[Improvement] Extended readme</li>
+                                    <li>[Improvement] Reduced file size</li>
+                                    <li>[Improvement] Framework and component updates</li>
+                                    <li>[Improvement] Extended installation checks</li>
+                                    <li>[Bug] Deleted user can not login anymore</li>
+                                    <li>[Bug] Deleting users do not block username anymore</li>
+                                    <li>[Bug] Some style fixes</li>
+                                </ul>
+                                <b>Release Notes 1.1:</b><br>
+                                <ul>
+                                    <li>[Feature] Added a registration form for new users (can be switched off in the settings)</li>
+                                    <li>[Bug] Fixed issue during the installation process, that may occurs</li>
+                                    <li>[Feature] Added settings for TurtlePass</li>
+                                    <li>[Feature] Login is now flood protected</li>
+                                    <li>[Feature] Forgot password function is now available</li>
+                                    <li>[Feature] Added new update process</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 checkbox">
+                        <div class="checkbox">
+                            <label>
+                                {{ form_widget(form.backup) }}{{ form_errors(form.backup) }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <div class="form-group">
+                <div class="col-md-12 text-center">
+                    <input type="submit" value="Update" class="btn btn-danger">
+                </div>
+            </div>
+            {{ form_end(form) }}
+
+        {% endif %}
+
+    </div>
+</div>
+</body>
+</html>

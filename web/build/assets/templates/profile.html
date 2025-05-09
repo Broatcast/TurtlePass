@@ -1,0 +1,91 @@
+<div class="sidebar" ng-controller="SettingNavController">
+    <div class="sitebar-nav">
+        <div class="title">
+            {{ 'SETTINGS.TITLE'|translate }}
+        </div>
+        <div style="color: #727399;">
+            <ol class="angular-ui-tree-nodes">
+                <li class="angular-ui-tree-node" ng-if="isAdmin">
+                    <div class="navigation-item" ui-sref="profile.global_settings" ng-class="{'active': $state.includes('profile.global_settings')}">
+                        <span class="navigation-item-icon-container">
+                            <i class="fa fa-cog" aria-hidden="true"></i>
+                        </span>
+                        <span class="navigation-item-title" translate>NAVIGATION.SETTINGS.GLOBAL_SETTINGS</span>
+                    </div>
+                </li>
+                <li class="angular-ui-tree-node" ng-if="isAdmin">
+                    <div class="navigation-item" ui-sref="profile.check_update" ng-class="{'active': $state.includes('profile.check_update')}">
+                        <span class="navigation-item-icon-container">
+                            <i class="fa fa-globe" aria-hidden="true"></i>
+                        </span>
+                        <span class="navigation-item-title" translate>NAVIGATION.SETTINGS.CHECK_UPDATE</span>
+                    </div>
+                </li>
+                <li class="angular-ui-tree-node" ng-if="isAdmin">
+                    <div class="navigation-item" ui-sref="profile.login_accesses" ng-class="{'active': $state.includes('profile.login_accesses')}">
+                        <span class="navigation-item-icon-container">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </span>
+                        <span class="navigation-item-title" translate>NAVIGATION.SETTINGS.MANAGE_LOGIN_ACCESSES</span>
+                    </div>
+                </li>
+                <li class="angular-ui-tree-node">
+                    <div class="navigation-item" ui-sref="profile.auth" ng-class="{'active': $state.includes('profile.auth')}">
+                        <span class="navigation-item-icon-container">
+                            <i class="fa fa-mobile" aria-hidden="true"></i>
+                        </span>
+                        <span class="navigation-item-title" translate>NAVIGATION.SETTINGS.2_FACTOR_AUTH</span>
+                    </div>
+                </li>
+                <li class="angular-ui-tree-node" ng-show="passwordChangeAvailable">
+                    <div class="navigation-item" ui-sref="profile.change_password" ng-class="{'active': $state.includes('profile.change_password')}">
+                        <span class="navigation-item-icon-container">
+                            <i class="fa fa-key" aria-hidden="true"></i>
+                        </span>
+                        <span class="navigation-item-title" translate>NAVIGATION.SETTINGS.CHANGE_PASSWORD</span>
+                    </div>
+                </li>
+                <li class="angular-ui-tree-node">
+                    <div class="navigation-item" ui-sref="profile.tokens" ng-class="{'active': $state.includes('profile.tokens')}">
+                        <span class="navigation-item-icon-container">
+                            <i class="fa fa-ticket" aria-hidden="true"></i>
+                        </span>
+                        <span class="navigation-item-title" translate>NAVIGATION.SETTINGS.MANAGE_TOKENS</span>
+                    </div>
+                </li>
+                <li class="angular-ui-tree-node">
+                    <div class="navigation-item" ui-sref="profile.edit_own" ng-class="{'active': $state.includes('profile.edit_own')}">
+                        <span class="navigation-item-icon-container">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        </span>
+                        <span class="navigation-item-title" translate>NAVIGATION.SETTINGS.EDIT_OWN</span>
+                    </div>
+                </li>
+                <li class="angular-ui-tree-node" ng-if="isAdmin">
+                    <div class="navigation-item" ng-click="goToRecaptchaConfiguration()">
+                        <span class="navigation-item-icon-container">
+                            <i class="fa fa-rocket" aria-hidden="true"></i>
+                        </span>
+                        <span class="navigation-item-title" translate>NAVIGATION.SETTINGS.RECAPTCHA_CONFIGURATOR</span>
+                    </div>
+                </li>
+                <li class="angular-ui-tree-node" ng-if="isAdmin">
+                    <div class="navigation-item" ng-click="goToExport()">
+                        <span class="navigation-item-icon-container">
+                            <i class="fa fa-download" aria-hidden="true"></i>
+                        </span>
+                        <span class="navigation-item-title" translate>NAVIGATION.SETTINGS.CSV_EXPORT</span>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <div id="madeby">
+        proudly made by <a href="https://www.5werk.de" target="_blank">5werk</a> - Version {{ version }}
+    </div>
+</div>
+
+<div class="page-content">
+    <section ui-view></section>
+</div>

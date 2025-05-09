@@ -1,0 +1,9 @@
+# Recaptcha
+recaptcha:
+    invalid: Invalid Recaptcha.
+
+# Protection
+protection:
+    ip_address_not_whitelisted: Your ip address is not whitelisted.
+    ip_address_blacklisted: You are not allowed to login.
+    login_fail_limit_exceeded: You have exceeded your login fail limit.

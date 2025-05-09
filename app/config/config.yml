@@ -1,0 +1,151 @@
+imports:
+    - { resource: parameters.yml }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: en
+
+app:
+    version: '1.4'
+
+framework:
+    #esi: ~
+    translator: { fallbacks: ['%locale%'] }
+    secret: '%secret%'
+    router:
+        resource: '%kernel.project_dir%/app/config/routing.yml'
+        strict_requirements: ~
+    form: ~
+    csrf_protection: ~
+    validation: { enable_annotations: true }
+    #serializer: { enable_annotations: true }
+    default_locale: '%locale%'
+    trusted_hosts: ~
+    session:
+        handler_id: ~
+    fragments: ~
+    http_method_override: true
+    assets: ~
+    templating:
+        engines: ['twig']
+    php_errors:
+        log: true
+
+# Twig Configuration
+twig:
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver: pdo_mysql
+        host: '%database_host%'
+        port: '%database_port%'
+        dbname: '%database_name%'
+        user: '%database_user%'
+        password: '%database_password%'
+        server_version: 5.6
+        charset: UTF8
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: '%kernel.project_dir%/var/data/data.sqlite'
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #path: '%database_path%'
+
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+
+sensio_framework_extra:
+   router:
+        annotations: false
+
+# FosUserBundle
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: Main\UserBundle\Entity\User
+    from_email:
+        address: "dev@turtlepass.net"
+        sender_name: "dev@turtlepass.net"
+    service:
+        mailer:       main_fos_user_recaptcha_protection_bundle.mailer.mailer
+        user_manager: main_user.services.user_manager
+#    registration:
+#        form:
+#            type:     my_fos_user_registration
+#            handler:  main_fos_user_recaptcha_protection_bundle.form.handler.registration_form_handler
+
+# Fos oAuth
+fos_oauth_server:
+    db_driver: orm       # Driver availables: orm, mongodb, or propel
+    client_class:        Main\ApiBundle\Entity\Client
+    access_token_class:  Main\ApiBundle\Entity\AccessToken
+    refresh_token_class: Main\ApiBundle\Entity\RefreshToken
+    auth_code_class:     Main\ApiBundle\Entity\AuthCode
+    service:
+        user_provider:   fos_user.user_provider
+
+nelmio_api_doc:
+    sandbox:
+        authentication:
+            name: Authorization
+            delivery: http
+            type:     bearer
+            custom_endpoint: false
+        request_format:
+            formats:
+                json: application/json
+
+# Fos Rest
+fos_rest:
+    param_fetcher_listener: true
+    body_listener: true
+    format_listener: true
+    view:
+        view_response_listener: 'force'
+        serialize_null: true
+        formats:
+            json: true
+            xml: false
+    routing_loader:
+        default_format: json
+        include_format: false
+    serializer:
+        serialize_null: true
+
+unique_libs_fos_user_recaptcha_protection:
+    invalid_login_class: Main\UserBundle\Entity\InvalidLogin
+    login_access_class: Main\UserBundle\Entity\LoginAccess
+
+ambta_doctrine_encrypt:
+    secret_key:           "%secret_key%"
+    encryptor:            rijndael256
+    encryptor_class:      Main\AppBundle\Encryptors\PhpSecLibEncryptor
+
+bazinga_hateoas:
+    metadata:
+        cache:                file
+        file_cache:
+            dir:              %kernel.cache_dir%/hateoas
+
+unique_libs_query_builder_operation:
+    search_filter_configuration: "main_app.query_builder_operation.search_filter_configuration"
+
+jms_serializer:
+    metadata:
+        auto_detection: true
+        directories:
+            FOSUserBundle:
+                path: "%kernel.root_dir%/Resources/FOSUserBundle/serializer"
+                namespace_prefix: "FOS\\UserBundle"
+            FOSOAuthServerBundle:
+                path: "%kernel.root_dir%/Resources/FOSOAuthServerBundle/serializer"
+                namespace_prefix: "FOS\\OAuthServerBundle"
+            UniqueLibsFOSUserRecaptchaProtectionBundle:
+                path: "%kernel.root_dir%/Resources/UniqueLibsFOSUserRecaptchaProtectionBundle/serializer"
+                namespace_prefix: "UniqueLibs\\FOSUserRecaptchaProtectionBundle"

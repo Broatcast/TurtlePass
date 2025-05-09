@@ -1,0 +1,5 @@
+services:
+    main_language.query_builder_mapper.language:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\QueryBuilderMapper
+        calls:
+            - [addMapper, ['language', '@main_language.entity_mapper.language', '.']]

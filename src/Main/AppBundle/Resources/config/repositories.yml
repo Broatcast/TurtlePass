@@ -1,0 +1,6 @@
+services:
+    main_app.entity.setting_repository:
+        class: Main\AppBundle\Entity\SettingRepository
+        factory: [ "@doctrine.orm.entity_manager", getRepository ]
+        arguments:
+            - Main\AppBundle\Entity\Setting

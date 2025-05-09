@@ -1,0 +1,44 @@
+<div ng-controller="TokenOverviewCtrl as tableCtrl">
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" translate>NAVIGATION.HEADER.SETTINGS</li>
+            <li class="breadcrumb-item active" translate>NAVIGATION.SETTINGS.MANAGE_TOKENS</li>
+        </ol>
+    </nav>
+
+    <button class="btn btn-primary btn-sm mb-3" ng-click="tableCtrl.addToken()">
+        <i class="fa fa-ticket fa-lg"></i> {{ 'TOKEN_MANAGEMENT.ADD_TOKEN'|translate }}</button>
+
+    <div loading-container="tableParams.settings().$loading" ng-hide="tableCtrl.loading" class="table-wrapper">
+        <table ng-table="tableParams" show-filter="true" class="table table-striped table-bordered">
+            <colgroup>
+                <col style="width: 10%">
+                <col style="width: 40%">
+                <col style="width: 40%">
+                <col style="width: 10%">
+            </colgroup>
+            <tr ng-repeat="token in $data">
+                <td width="100" data-title="'#'" filter="{ 'id': 'text' }" sortable="'id'">
+                    {{token.id}}
+                </td>
+                <td data-title="'WORDS.DESCRIPTION'|translate" filter="{ 'description': 'text' }" sortable="'description'">
+                    {{token.description}}
+                </td>
+                <td data-title="'WORDS.TOKEN'|translate" filter="{ 'token': 'text' }" sortable="'token'">
+                    {{token.token}}
+                </td>
+                <td>
+                    <div class="btn-group" style="display: inline-block;">
+                        <a ng-click="tableCtrl.editToken(token)" class="btn btn-light btn-sm" aria-haspopup="true" uib-tooltip="{{ 'WORDS.EDIT'|translate }}" tooltip-append-to-body="true"><i class="fa fa-edit fa-fw"></i></a>
+                        <a ng-click="tableCtrl.delete(token)" class="btn btn-light btn-sm" aria-haspopup="true" uib-tooltip="{{ 'WORDS.DELETE'|translate }}" tooltip-append-to-body="true"><i class="fa fa-trash-o fa-fw"></i></a>
+                    </div>
+                </td>
+            </tr>
+            <tr ng-show="!$data.length">
+                <td colspan="4" translate>TOKEN_MANAGEMENT.TEXT.NONE_FOUND</td>
+            </tr>
+        </table>
+    </div>
+</div>
+

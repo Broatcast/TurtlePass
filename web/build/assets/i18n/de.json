@@ -1,0 +1,335 @@
+{
+  "NAVIGATION": {
+    "HEADER": {
+      "USER_MANAGEMENT": "Benutzerverwaltung",
+      "GROUP_MANAGEMENT": "Gruppenverwaltung",
+      "SETTINGS": "Einstellungen",
+      "LOGOUT": "Ausloggen"
+    },
+    "SETTINGS": {
+      "CHANGE_PASSWORD": "Passwort ändern",
+      "MANAGE_TOKENS": "Tokens verwalten",
+      "EDIT_OWN": "Eigene Daten bearbeiten",
+      "GLOBAL_SETTINGS": "TurtlePass Einstellungen",
+      "RECAPTCHA_CONFIGURATOR": "reCAPTCHA Konfigurator",
+      "CHECK_UPDATE": "Update prüfen",
+      "MANAGE_LOGIN_ACCESSES": "Loginzugriff verwalten",
+      "2_FACTOR_AUTH": "Zwei-Faktor-Authentifizierung",
+      "CSV_EXPORT": "CSV-Export"
+    }
+  },
+  "SETTINGS": {
+    "TITLE": "Einstellungen",
+    "TEXT": {
+      "PASSWORD_CHANGED": "Passwort geändert",
+      "PASSWORD_CHANGED_INFORMATION": "Das Passwort wurde erfolgreich geändert.",
+      "PASSWORD_CHANGE_NOT_AVAILABLE": "Sie können Ihr Passwort nicht ändern.",
+      "OWN_USER_DATA_CHANGED": "Eigene Daten bearbeitet",
+      "OWN_USER_DATA_INFORMATION": "Ihre Daten wurden erfolgreich bearbeitet.",
+      "GLOBAL_SETTINGS_CHANGED": "Die TurtlePass Einstellungen wurden gespeichert."
+    },
+    "GLOBAL": {
+      "TEXT": {
+        "ENABLE_PASSWORD_RESET": "Aktivieren oder deaktiveren Sie die Passwort vergessen Funktion.",
+        "ENABLE_REGISTRATION": "Aktivieren oder deaktivieren Sie das Registrationsformular.",
+        "ENABLE_CONFIRMATION_EMAIL": "Aktivieren oder deaktivieren Sie eine Bestätigungsemail.",
+        "MAIL_AUTH_MODE": "Die Authentifizierungsmethode, wenn smtp als Transport ausgewählt wurde.",
+        "MAIL_ENCRYPTION": "Die Verschlüsselungsmethode, wenn smtp als Transport ausgewählt wurde.",
+        "MAIL_HOST": "Der Host, wenn smtp als Transport ausgewählt wurde.",
+        "MAIL_PASSWORD": "Das Passwort, wenn smtp als Transport ausgewählt wurde.",
+        "MAIL_PORT": "Der Port, wenn smtp als Transport ausgewählt wurde. Standart ist 465, wenn als Verschlüsselung ssl gewählt wurde. Sonst 25.",
+        "MAIL_SENDER_ADDRESS": "Geben Sie hier Ihre Absender-Adresse.",
+        "MAIL_TRANSPORT": "Die exakte Transportmethode zum versenden von E-Mails via smtp.",
+        "MAIL_USERNAME": "Der Benutzername, wenn smtp als Transport ausgewählt wurde.",
+        "PAGE_TITLE": "Ändern Sie hier den Title ihrer Seite.",
+        "RECAPTCHA_NEEDED_FAILS": "Geben Sie die Anzahl ungültiger Anmeldeversuche ein, bevor ein Recaptcha angezeigt wird.",
+        "RECAPTCHA_PRIVATE_KEY": "Ihr Recaptcha Private Key. (Frei lassen zum deaktivieren)",
+        "RECAPTCHA_SITE_KEY": "Ihr recaptcha Site Key. (Frei lassen zum deaktivieren)",
+        "ONLY_WHITELISTED": "Login nur für freigegebene IP-Adressen erlauben. (Vorsicht! Bitte erst Ihre IP freigeben)",
+        "LDAP_USER_PROFILE_FULFILLMENT_REQUIREMENT": "Soll ein neuer LDAP-Benutzer gezwungen werden sein Profil zu vervollständigen."
+      }
+    }
+  },
+  "USER_MANAGEMENT": {
+    "ADD_USER": "Benutzer hinzufügen",
+    "EDIT_USER": "Benutzer bearbeiten",
+    "TEXT": {
+      "DELETE_INFORMATION": "Möchten Sie den Benutzer wirklich löschen?",
+      "DELETE_COMPLETE": "Der Benutzer wurde erfolgreich gelöscht.",
+      "USER_SUCCESSFULLY_ADDED": "Der Benutzer wurde erfolgreich hinzugefügt.",
+      "USER_SUCCESSFULLY_UPDATED": "Der Benutzer wurde erfolgreich bearbeitet.",
+      "ACTIVATE_USER_INFORMATION": "Möchten Sie den Benutzer wirklich aktivieren?",
+      "ACTIVATE_COMPLETE": "Der Benutzer wurde erfolgreich aktiviert.",
+      "DEACTIVATE_USER_INFORMATION": "Möchten Sie den Benutzer wirklich deaktivieren?",
+      "DEACTIVATE_COMPLETE": "Der Benutzer wurde erfolgreich deaktiviert."
+    }
+  },
+  "GROUP_MANAGEMENT": {
+    "ADD_GROUP": "Gruppe hinzufügen",
+    "EDIT_GROUP": "Gruppe bearbeiten",
+    "TEXT": {
+      "DELETE_INFORMATION": "Möchten Sie die Gruppe wirklich löschen?",
+      "SUCCESSFULLY_DELETED": "Die Gruppe wurde erfolgreich gelöscht.",
+      "SUCCESSFULLY_ADDED": "Die Gruppe wurde erfolgreich hinzugefügt.",
+      "SUCCESSFULLY_UPDATED": "Die Gruppe wurde erfolgreich bearbeitet.",
+      "NO_GROUP_FOUND": "Keine Gruppen gefunden."
+    }
+  },
+  "PASSWORD_MANAGEMENT": {
+    "TITLE": "Passwortverwaltung",
+    "VIEW_PASSWORD": "Passwort anzeigen",
+    "ADD_PASSWORD": "Passwort hinzufügen",
+    "EDIT_PASSWORD": "Passwort bearbeiten",
+    "EDIT_PASSWORD_PERMISSIONS": "Passwort Berechtigungen bearbeiten",
+    "COPY_PASSWORD_TO_CLIPBOARD": "Passwort in die Zwischenablage kopieren.",
+    "COPY_PIN_TO_CLIPBOARD": "PIN in die Zwischenablage kopieren.",
+    "COPY_USERNAME_TO_CLIPBOARD": "Benutzername in die Zwischenablage kopieren.",
+    "PASSWORD_COPIED": "Das Passwort wurde in die Zwischenablage kopiert.",
+    "PIN_COPIED": "Der PIN wurde in die Zwischenablage kopiert.",
+    "USERNAME_COPIED": "Der Benutzername wurde in die Zwischenablage kopiert.",
+    "ENTRY_COPIED": "{{entry}} wurde in die Zwischenablage kopiert.",
+    "USERNAME_COPY_FAILED": "Der Benutzername konnte nicht in die Zwischenablage kopiert werden.",
+    "PASSWORD_COPY_FAILED": "Das Passwort konnte nicht in die Zwischenablage kopiert werden.",
+    "PIN_COPY_FAILED": "Der PIN konnte nicht in die Zwischenablage kopiert werden.",
+    "COPY_FAILED": "Kopieren in die Zwischenablage fehlgeschlagen.",
+    "SHOW_HIDE_PASSWORD": "Passwort anzeigen/verstecken",
+    "MOVE_PASSWORD": "Passwort verschieben",
+    "GENERATOR": {
+      "TITLE": "Generator",
+      "UPPERCASE_CHARACTERS": "Großbuchstaben",
+      "NUMBERS": "Zahlen",
+      "SPECIAL_CHARACTERS": "Sonderzeichen",
+      "BUTTON_GENERATE_NOW": "Passwort generieren"
+    },
+    "TEXT": {
+      "DELETE_INFORMATION": "Möchten Sie das Passwort wirklich löschen?",
+      "DELETE_COMPLETE": "Das Passwort wurde erfolgreich gelöscht.",
+      "PASSWORD_SUCCESSFULLY_ADDED": "Das Passwort wurde erfolgreich hinzugefügt.",
+      "PASSWORD_SUCCESSFULLY_UPDATED": "Das Passwort wurde erfolgreich bearbeitet.",
+      "CONFIRM": "Bitte bestätigen Sie, dass Sie das Passwort abfragen möchten.",
+      "NO_LOGS_FOUND": "Keine Logs gefunden.",
+      "PASSWORD_MOVED": "Das Passwort wurde erfolgreich verschoben.",
+      "MOVE_SAME_PASSWORD_GROUP": "Das Passwort befindet sich bereits in dieser Gruppe.",
+      "ICON_SUCCESSFULLY_CHANGED": "Das Icon wurde erfolgreich geändert."
+    },
+    "TYPE": {
+      "PLAIN": "Passwort",
+      "BANKACCOUNT": "Bankkonto",
+      "CREDIT_CARD": "Kreditkarte",
+      "EMAIL": "E-Mail",
+      "SERVER": "Server",
+      "SOFTWARE_LICENSE": "Softwarelizenz"
+    },
+    "LOGS": {
+      "CREATED": "Passwort erstellt",
+      "UPDATED": "Passwort geändert",
+      "VIEW": "Passwort abgerufen",
+      "SHARED": "Passwort geteilt",
+      "MOVED": "Passwort verschoben"
+    }
+  },
+  "PASSWORD_GROUP_MANAGEMENT": {
+    "ADD_PASSWORD_GROUP": "Passwortgruppe hinzufügen",
+    "EDIT_PASSWORD_GROUP": "Passwortgruppe bearbeiten",
+    "EDIT_PASSWORD_GROUP_PERMISSIONS": "Passwortgruppen Berechtigungen bearbeiten",
+    "MOVE_PASSWORD_GROUP": "Passwortgruppe verschieben",
+    "PARENT_GROUP": "Übergeordnete-Gruppe",
+    "TEXT": {
+      "NO_PASSWORDS_FOUND": "Keine Passwörter in der Gruppe vorhanden.",
+      "DELETE_INFORMATION": "Möchten Sie die Passwortgruppe wirklich löschen? Alle beinhalteten Passwörter werden auch gelöscht!",
+      "DELETE_COMPLETE": "Die Passwortgruppe wurde erfolgreich gelöscht.",
+      "DELETE_NOT_ALLOWED_TITLE": "Die Gruppe kann nicht gelöscht werden.",
+      "DELETE_NOT_ALLOWED": "Es dürfen nur Gruppen ohne Untergruppen gelöscht werden.",
+      "PASSWORD_GROUP_MOVED": "Die Passwort Gruppe wurde verschoben."
+    }
+  },
+  "ACCESS_MANAGEMENT": {
+    "ADD_USER": "Benutzer hinzufügen",
+    "ADD_GROUP": "Gruppe hinzufügen",
+    "EDIT_PERMISSIONS": "Berechtigung bearbeiten",
+    "MOVE_PASSWORD_GROUP": "Passwort verschieben",
+    "TEXT": {
+      "NO_PERMISSIONS_FOUND": "Keine Berechtigungen gefunden.",
+      "USER_ALREADY_HAS_ACCESS": "Der Benutzer hat bereits Berechtigungen.",
+      "GROUP_ALREADY_HAS_ACCESS": "Die Gruppe hat bereits Berechtigungen."
+    }
+  },
+  "TOKEN_MANAGEMENT": {
+    "ADD_TOKEN": "Token generieren",
+    "EDIT_TOKEN": "Token bearbeiten",
+    "TEXT": {
+      "DELETE_INFORMATION": "Möchten Sie den Token wirklich löschen?",
+      "DELETE_COMPLETE": "Der Token wurde erfolgreich gelöscht.",
+      "NONE_FOUND": "Keine Tokens gefunden."
+    }
+  },
+  "SHARE_LINK": {
+    "MODE": {
+      "READ": "Nur Lesen",
+      "READ_WRITE": "Lesen/Bearbeiten"
+    },
+    "ADD_LINK": "Neue Freigabe erstellen",
+    "VALID_UNTIL": "Gültig bis",
+    "SHARE_LINK_COPIED": "Der Freigabe-Link wurde in Ihre Zwischenablage kopiert",
+    "SHARED_WITH_NOBODY": "Mit niemandem geteilt",
+    "DELETE_SHARE_LINK": "Möchten Sie den Freigabe-Link wirklich löschen?",
+    "DELETE_SHARE_LINK_COMPLETE": "Der Freigabe-Link ist nun nicht mehr gültig.",
+    "SHARED_WITH_LINK": "Via Link freigegeben",
+    "CREATED_SUCCESSFULLY": "Die Freigabe wurde erfolgreich erstellt",
+    "ACCESS_EXPIRED": "Die Freigabe ist abgelaufen"
+  },
+  "PLACEHOLDER": {
+    "VIEW_LIMIT": "Wie oft kann dieses Passwort angezeigt werden. (Leer ist unbegrenzt)"
+  },
+  "WORDS": {
+    "ALL": "Alle",
+    "LANGUAGE": "Sprache",
+    "CANCEL": "Abbrechen",
+    "NAME": "Name",
+    "EMAIL": "E-Mail",
+    "USERNAME": "Benutzername",
+    "CURRENT_PASSWORD": "Aktuelles Passwort",
+    "PASSWORD": "Passwort",
+    "PASSWORD_REPEAT": "Passwort (wdh.)",
+    "ADMINISTRATOR": "Administrator",
+    "ADD": "Hinzufügen",
+    "EDIT": "Bearbeiten",
+    "FIRST_NAME": "Vorname",
+    "LAST_NAME": "Nachname",
+    "URL": "URL",
+    "OPTIONAL": "Optional",
+    "NOTICE": "Notiz",
+    "ICON": "Icon",
+    "USER": "Benutzer",
+    "USERS": "Benutzer",
+    "RIGHTS": "Rechte",
+    "FINISH": "Abschließen",
+    "DELETE": "Löschen",
+    "DESCRIPTION": "Beschreibung",
+    "TOKEN": "Token",
+    "YES": "Ja",
+    "NO": "Nein",
+    "CLOSE": "Schließen",
+    "COPY_TO_CLIPBOARD": "In die Zwischenablage kopieren",
+    "STATUS": "Status",
+    "STATUS_ACTIVE": "Aktiv",
+    "STATUS_DISABLED": "Inaktiv",
+    "MOVE": "Verschieben",
+    "SEARCH": "Suchen",
+    "CREATED_AT": "Erstellt am",
+    "LAST_UPDATE": "Letzte Änderung",
+    "VIEW": "Anzeigen",
+    "ACTIVATE": "Aktivieren",
+    "DEACTIVATE": "Deaktivieren",
+    "NONE": "Nicht vorhanden",
+    "BANK_NAME": "Bank Name",
+    "BANK_CODE": "Bank Code",
+    "ACCOUNT_HOLDER": "Account Holder",
+    "ACCOUNT_NUMBER": "Account Number",
+    "IBAN": "IBAN",
+    "PIN": "PIN",
+    "VALID_FROM": "Gültig von",
+    "VALID_TO": "Gültig bis",
+    "CREDIT_CARD_TYPE": "Kreditkarten Art",
+    "CARD_NUMBER": "Kartennummer",
+    "CARD_CVC": "CVC",
+    "VERSION": "Version",
+    "LICENSE_KEY": "Lizenz-Key",
+    "EMAIL_TYPE": "E-Mail Typ",
+    "PORT": "Port",
+    "AUTH_METHOD": "Authentifizierungsmethode",
+    "SMTP_PORT": "SMTP Port",
+    "SMTP_AUTH_METHOD": "SMTP Authentifizierungsmethode",
+    "SMTP_HOST": "SMTP Host",
+    "SMTP_USERNAME": "SMTP Benutzername",
+    "SMTP_PASSWORD": "SMTP Passwort",
+    "HOST": "Host",
+    "TYPE": "Typ",
+    "TEXT": "Text",
+    "CONFIRM": "Bestätigen",
+    "MAIN": "Allgemein",
+    "PERMISSIONS": "Zugriffsrechte",
+    "GROUP_PERMISSIONS": "Gruppen Zugriffsrechte",
+    "USER_PERMISSIONS": "Benutzer Zugriffsrechte",
+    "LOGS": "Logs",
+    "CUSTOM_FIELDS": "Benutzerdefinierte Felder",
+    "ADD_CUSTOM_FIELD": "Neues Feld hinzufügen",
+    "VALUE": "Wert",
+    "MODE": "Modus",
+    "RECIPIENT": "Empfänger",
+    "UNLIMITED": "Unbegrenzt",
+    "SHARES": "Freigaben",
+    "SHARE": "Freigeben",
+    "SHARE_LINK": "Freigabe-Link",
+    "FROM_IP": "Von IP",
+    "TO_IP": "Bis IP",
+    "VIEW_LIMIT": "Ansichtsbeschränkung",
+    "LDAP_USER": "LDAP-Benutzer",
+    "MY_PROFILE": "Mein Profil",
+    "GROUP": "Gruppe",
+    "GROUPS": "Gruppen",
+    "ENABLE_LOG": "Log Aktivieren",
+    "SELECT_GROUPS": "Gruppen auswählen",
+    "PASSWORD_GROUP": "Passwort Gruppe"
+  },
+  "TEXT": {
+    "LOADING_PLEASE_WAIT": "Wird geladen. Bitte warten.",
+    "NO_RESULTS_FOUND": "Keine Einträge gefunden.",
+    "ARE_YOU_SURE": "Sind Sie sicher?",
+    "SUCCESSFULLY_DELETED": "Löschvorgang erfolgreich",
+    "UNKNOWN_ERROR": "Unbekannter Fehler",
+    "UNKNOWN_ERROR_INFORMATION": "Ein unbekannter Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.",
+    "RESOURCE_NOT_FOUND": "Eintrag nicht gefunden",
+    "DELETE_NOT_FOUND": "Löschvorgang fehlgeschlagen. Vieleicht wurde der Eintrag schon gelöscht. Versuchen Sie es später erneut.",
+    "OWN_ACCESS_EDIT_NOW_ALLOWED": "Das bearbeiten Ihrer eigenen Rechte ist nicht möglich.",
+    "USER_GROUP_DELETE_LOCKED": "Die Gruppe kein nicht gelöscht werden, solange es zugewiesene Benutzer oder Zugriffe gibt.",
+    "DELETE_FAILED": "Löschen nicht möglich."
+  },
+  "LANGUAGES": {
+    "EN": "Englisch",
+    "DE": "Deutsch"
+  },
+  "VALIDATION": {
+    "REQUIRED": "Bitte füllen Sie das Feld aus.",
+    "MIN_LENGTH": "Bitte geben Sie mindestens {{characters}} Zeichen ein.",
+    "MAX_LENGTH": "Bitte geben Sie nicht mehr als {{characters}} Zeichen ein.",
+    "PASSWORD_EQUALS": "Die eingegebenen Passwörter stimmen nicht überein.",
+    "EMAIL": "Bitte geben Sie eine gültige E-Mail Adresse ein."
+  },
+  "CHECK_UPDATE": {
+    "INSTALLED_VERSION": "Installierte Version",
+    "CURRENT_VERSION": "Aktuelle Version",
+    "TEXT": {
+      "CONNECTION_FAILED": "Die Verbindung zum Updatecheck Server ist fehlgeschlagen. Bitte versuchen Sie es später erneut und prüfen Sie die Verbindung zu {{url}}.",
+      "VERSION_UP_TO_DATE": "Ihre installierte Version ist aktuell.",
+      "NEW_VERSION_RELEASED": "Eine neue Version {{version}} wurde veröffentlicht. Weitere Informationen zum Update finden Sie in der Dokumentation."
+    }
+  },
+  "LOGIN_ACCESS_MANAGEMENT": {
+    "ADD_LOGIN_ACCESS": "Einstellung hinzufügen",
+    "EDIT_LOGIN_ACCESS": "Einstellung bearbeiten",
+    "BLACKLIST": "Blacklist",
+    "WHITELIST": "Whitelist",
+    "TEXT": {
+      "DELETE_INFORMATION": "Möchten Sie die Einstellung für den Loginzugriff wirlich löschen?",
+      "DELETE_COMPLETE": "The setting has been successfully deleted.",
+      "NONE_FOUND": "Es wurden keine Einstellungen für den Loginzugriff gefunden."
+    }
+  },
+  "2_FACTOR_AUTH": {
+    "CODE": "Authenticator Code",
+    "CODE_INVALID": "Authenticator code ist ungültig.",
+    "SUBMIT_CONFIGURE": "Konfiguration bestätigen",
+    "DISABLE": "Zwei-Faktor-Authentifizierung deaktivieren",
+    "TEXT": {
+      "ENABLED": "Die Zwei-Faktor-Authentifizierung ist aktiv.",
+      "ADDED_TO_APP": "Ich habe den Code meiner App hinzugefügt.",
+      "DELETE_INFORMATION": "Möchten Sie die Zwei-Faktor-Authentifizierung wirlich deaktivieren?",
+      "DELETE_COMPLETE": "Die Zwei-Faktor-Authentifizierung wurde deaktiviert.",
+      "NOT_ENABLED_TEXT_1": "Wir empfehlen Ihnen stark die Zwei-Faktor-Authentifizierung zu aktivieren, um Ihren Account zu schützen.",
+      "NOT_ENABLED_TEXT_2": "Bitte installieren Sie dafür die Google Authenticator App auf Ihrem Handy.",
+      "CONFIGURATION_CODE_IS": "Ihr Konfigurationscode lautet:",
+      "SCAN_QR_CODE": "Bitte scannen Sie den QR-Code für eine schnelle Einrichtung:"
+    }
+  }
+}

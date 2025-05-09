@@ -1,0 +1,10 @@
+services:
+    main_app.listener.angular_csrf_validation_listener:
+        class: Main\AppBundle\EventListener\AngularCsrfValidationListener
+        arguments:
+            - '@dunglas_angular_csrf.token_manager'
+            - '@main_app.services.security.manager'
+            - '@main_api.services.token_manager'
+            - '%dunglas_angular_csrf.header.name%'
+        tags:
+            - { name: kernel.event_listener, event: kernel.request }

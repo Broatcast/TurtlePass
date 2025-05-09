@@ -1,0 +1,50 @@
+services:
+    main_password.entity_mapper.password:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\EntityMapper
+        calls:
+            - [add, ['id', '@uql.query_builder_operation.attribute_type.number', ['search', 'order']]]
+            - [add, ['name', '@uql.query_builder_operation.attribute_type.string', ['search', 'order'], 'nameCanonical']]
+            - [add, ['url', '@uql.query_builder_operation.attribute_type.string', ['search', 'order']]]
+            - [add, ['username', '@uql.query_builder_operation.attribute_type.string', ['search', 'order'], 'usernameCanonical']]
+            - [add, ['createDate', '@uql.query_builder_operation.attribute_type.date_time', ['search', 'order']]]
+            - [add, ['lastUpdateDate', '@uql.query_builder_operation.attribute_type.date_time', ['search', 'order']]]
+
+    main_password.entity_mapper.password_access:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\EntityMapper
+        calls:
+            - [add, ['id', '@uql.query_builder_operation.attribute_type.number', ['search', 'order']]]
+            - [add, ['right', '@uql.query_builder_operation.attribute_type.number', ['search', 'order']]]
+
+    main_password.entity_mapper.password_user_group_access:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\EntityMapper
+        calls:
+            - [add, ['id', '@uql.query_builder_operation.attribute_type.number', ['search', 'order']]]
+            - [add, ['right', '@uql.query_builder_operation.attribute_type.number', ['search', 'order']]]
+
+    main_password.entity_mapper.password_group_access:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\EntityMapper
+        calls:
+            - [add, ['id', '@uql.query_builder_operation.attribute_type.number', ['search', 'order']]]
+            - [add, ['right', '@uql.query_builder_operation.attribute_type.number', ['search', 'order']]]
+
+    main_password.entity_mapper.password_group_user_group_access:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\EntityMapper
+        calls:
+            - [add, ['id', '@uql.query_builder_operation.attribute_type.number', ['search', 'order']]]
+            - [add, ['right', '@uql.query_builder_operation.attribute_type.number', ['search', 'order']]]
+
+    main_password.entity_mapper.password_log:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\EntityMapper
+        calls:
+            - [add, ['key', '@uql.query_builder_operation.attribute_type.string', ['search', 'order']]]
+            - [add, ['createDate', '@uql.query_builder_operation.attribute_type.date_time', ['search', 'order']]]
+
+    main_password.entity_mapper.password_share_link:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\EntityMapper
+        calls:
+            - [add, ['id', '@uql.query_builder_operation.attribute_type.number', ['search', 'order']]]
+            - [add, ['mode', '@uql.query_builder_operation.attribute_type.number', ['search', 'order']]]
+            - [add, ['token', '@uql.query_builder_operation.attribute_type.string', ['search', 'order']]]
+            - [add, ['createDate', '@uql.query_builder_operation.attribute_type.date_time', ['search', 'order']]]
+            - [add, ['validTo', '@uql.query_builder_operation.attribute_type.date_time', ['search', 'order']]]
+            - [add, ['recipient', '@uql.query_builder_operation.attribute_type.string', ['search', 'order']]]

@@ -1,0 +1,16 @@
+<div class="alert alert-success" ng-show="detailCtrl.successIcon" translate>
+    PASSWORD_MANAGEMENT.TEXT.ICON_SUCCESSFULLY_CHANGED
+</div>
+
+<form name="iconForm" ng-submit="detailCtrl.submitIcon()" novalidate>
+
+    <div style="overflow: auto; height: 300px; width: 90%;">
+        <label class="btn btn-light btn-sm mr-1" ng-model="detailCtrl.radio.model" uib-btn-radio="icon" style="min-width: 45px;" ng-repeat="icon in detailCtrl.icons">
+            <i class="fa fa-fw" ng-class="icon" aria-hidden="true"></i>
+        </label>
+    </div>
+    <div class="invalid-feedback d-block" ng-if="iconErrors.icon">{{iconErrors.icon}}</div>
+
+    <button class="btn btn-primary mt-3" type="submit" ladda="detailCtrl.updateingIcon">{{ 'WORDS.EDIT'|translate }}</button>
+
+</form>

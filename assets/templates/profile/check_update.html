@@ -1,0 +1,35 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item" translate>NAVIGATION.HEADER.SETTINGS</li>
+        <li class="breadcrumb-item active" translate>NAVIGATION.SETTINGS.CHECK_UPDATE</li>
+    </ol>
+</nav>
+
+<div ng-controller="CheckUpdateCtrl as ctrl" ng-show="ctrl.loaded">
+
+    <div class="alert alert-danger" ng-show="ctrl.versionData.current_version === false">
+        {{ 'CHECK_UPDATE.TEXT.CONNECTION_FAILED'|translate:'{ url: "turtlepass.net/update.txt"}' }}
+    </div>
+
+    <div class="alert alert-success" ng-show="ctrl.versionData.current_version !== false && ctrl.versionData.installed_version === ctrl.versionData.current_version">
+        {{ 'CHECK_UPDATE.TEXT.VERSION_UP_TO_DATE'|translate }}
+    </div>
+
+    <div class="alert alert-warning" ng-show="ctrl.versionData.current_version !== false && ctrl.versionData.installed_version !== ctrl.versionData.current_version">
+        {{ 'CHECK_UPDATE.TEXT.NEW_VERSION_RELEASED'|translate:'{ version: ctrl.versionData.current_version}' }}
+    </div>
+
+    <table class="table table-bordered table-condensed" style="width: 300px;">
+        <tr>
+            <td style="font-weight: bold;" translate>CHECK_UPDATE.INSTALLED_VERSION</td>
+            <td>{{ ctrl.versionData.installed_version }}</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold;" translate>CHECK_UPDATE.CURRENT_VERSION</td>
+            <td>
+                <span ng-show="ctrl.versionData.current_version !== false">{{ ctrl.versionData.current_version }}</span>
+                <span ng-show="ctrl.versionData.current_version === false">n/a</span>
+            </td>
+        </tr>
+    </table>
+</div>

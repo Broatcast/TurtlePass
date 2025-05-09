@@ -1,0 +1,25 @@
+{{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
+
+    {{ form_widget(form._token) }}
+
+    <div class="input-group form-group">
+        <div class="input-group-append">
+            <span class="input-group-text"><i class="fa fa-key fa-fw" aria-hidden="true"></i></span>
+        </div>
+        {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'form.new_password'|trans({}, 'FOSUserBundle')} }) }}
+    </div>
+
+    {{ form_errors(form.plainPassword.first) }}
+
+    <div class="input-group form-group">
+        <div class="input-group-append">
+            <span class="input-group-text"><i class="fa fa-key fa-fw" aria-hidden="true"></i></span>
+        </div>
+        {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'form.new_password_confirmation'|trans({}, 'FOSUserBundle')} }) }}
+    </div>
+
+    {{ form_errors(form.plainPassword.second) }}
+    <div>
+        <input type="submit" value="{{ 'resetting.reset.submit'|trans({}, 'FOSUserBundle') }}" class="btn btn-login btn-block" />
+    </div>
+{{ form_end(form) }}

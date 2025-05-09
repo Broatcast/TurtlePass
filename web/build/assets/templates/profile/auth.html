@@ -1,0 +1,46 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item" translate>NAVIGATION.HEADER.SETTINGS</li>
+        <li class="breadcrumb-item active" translate>NAVIGATION.SETTINGS.2_FACTOR_AUTH</li>
+    </ol>
+</nav>
+
+<div ng-controller="AuthController as ctrl" ng-show="ctrl.loaded">
+
+    <div ng-show="ctrl.hasSecret">
+        <div class="alert alert-success" translate>
+            2_FACTOR_AUTH.TEXT.ENABLED
+        </div>
+
+        <button class="btn btn-danger" ng-click="ctrl.disable()" translate>WORDS.DEACTIVATE</button>
+    </div>
+
+    <div ng-show="!ctrl.hasSecret">
+        <div class="alert alert-info">
+            {{ '2_FACTOR_AUTH.TEXT.NOT_ENABLED_TEXT_1'|translate }}<br>
+            {{ '2_FACTOR_AUTH.TEXT.NOT_ENABLED_TEXT_2'|translate }}
+        </div>
+
+        <strong>{{ '2_FACTOR_AUTH.TEXT.CONFIGURATION_CODE_IS'|translate }}</strong><br>
+        {{ ctrl.secretData.secret }}<br>
+        <br>
+        <strong>{{ '2_FACTOR_AUTH.TEXT.SCAN_QR_CODE'|translate }}</strong>
+        <br><br>
+        <img ng-src="{{ ctrl.secretData.url }}" alt="" ng-show="!ctrl.hasSecret">
+        <br><br>
+
+        <button class="btn btn-primary" ng-click="ctrl.step = 2" ng-show="ctrl.step === 1">{{ '2_FACTOR_AUTH.TEXT.ADDED_TO_APP'|translate }}</button>
+
+        <form name="authForm" ng-submit="ctrl.submit()" ng-show="ctrl.step === 2" novalidate>
+            <div class="form-group">
+                <label for="code">Authenticator Code</label>
+                <input type="text" class="form-control" id="code" name="code" ng-model="ctrl.code" required>
+                <div class="invalid-feedback d-block" ng-if="authForm.code.$error.required" ng-show="authForm.$submitted" translate>VALIDATION.REQUIRED</div>
+                <div class="invalid-feedback d-block" ng-if="ctrl.formError">{{ '2_FACTOR_AUTH.CODE_INVALID'|translate }}</div>
+            </div>
+
+            <button class="btn btn-primary" type="submit" ladda="ctrl.isLaddaWorking">{{ '2_FACTOR_AUTH.SUBMIT_CONFIGURE'|translate }}</button>
+        </form>
+    </div>
+
+</div>

@@ -1,0 +1,311 @@
+<div ng-show="password.log_enabled && !password.complete">
+    <br>
+    <div class="alert alert-info">
+        {{'PASSWORD_MANAGEMENT.TEXT.CONFIRM'|translate}}
+        <br>
+        <button class="btn btn-primary" ladda="detailCtrl.confirmingPassword" ng-click="detailCtrl.confirmPassword()">{{'WORDS.CONFIRM'|translate}}</button>
+    </div>
+</div>
+
+<form novalidate>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label"><i class="fa fa-fw" ng-class="password.icon" style="font-size: 1.4rem;"></i></label>
+        <div class="col-sm-10">
+            <h2 class="m-0">{{ password.name }}</h2>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="password.password_type == 'email'">
+        <label class="col-sm-2 col-form-label" clipboard uib-tooltip="{{ 'WORDS.COPY_TO_CLIPBOARD'|translate }}" tooltip-placement="right" text="password.email_type" on-copied="detailCtrl.onCopied('WORDS.EMAIL_TYPE')" on-error="detailCtrl.onCopyFailed(err, 'WORDS.EMAIL_TYPE', password.email_type)" aria-haspopup="true" style="cursor: pointer;">{{'WORDS.EMAIL_TYPE'|translate}}</label>
+        <div class="col-sm-10">
+            <div class="controls">
+                <p class="form-control-static" ng-show="password.email_type">{{password.email_type}}</p>
+                <p class="form-control-static" ng-show="!password.email_type" translate>WORDS.NONE</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="password.password_type == 'email'">
+        <label class="col-sm-2 col-form-label" clipboard uib-tooltip="{{ 'WORDS.COPY_TO_CLIPBOARD'|translate }}" tooltip-placement="right" text="password.auth_method" on-copied="detailCtrl.onCopied('WORDS.AUTH_METHOD')" on-error="detailCtrl.onCopyFailed(err, 'WORDS.AUTH_METHOD', password.auth_method)" aria-haspopup="true" style="cursor: pointer;">{{'WORDS.AUTH_METHOD'|translate}}</label>
+        <div class="col-sm-10">
+            <div class="controls">
+                <p class="form-control-static" ng-show="password.auth_method">{{password.auth_method}}</p>
+                <p class="form-control-static" ng-show="!password.auth_method" translate>WORDS.NONE</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="!password.password_type  || password.password_type == 'plain' || password.password_type == 'bankaccount' || password.password_type == 'software_license'">
+        <label class="col-sm-2 col-form-label" clipboard uib-tooltip="{{ 'WORDS.COPY_TO_CLIPBOARD'|translate }}" tooltip-placement="right" text="password.url" on-copied="detailCtrl.onCopied('WORDS.URL')" on-error="detailCtrl.onCopyFailed(err, 'WORDS.URL', password.url)" aria-haspopup="true" style="cursor: pointer;">{{'WORDS.URL'|translate}}</label>
+        <div class="col-sm-10">
+            <div class="controls">
+                <p class="form-control-static" ng-show="password.url">{{password.url}}</p>
+                <p class="form-control-static" ng-show="!password.url" translate>WORDS.NONE</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="password.password_type == 'server' || password.password_type == 'email'">
+        <label class="col-sm-2 col-form-label" clipboard uib-tooltip="{{ 'WORDS.COPY_TO_CLIPBOARD'|translate }}" tooltip-placement="right" text="password.host" on-copied="detailCtrl.onCopied('WORDS.HOST')" on-error="detailCtrl.onCopyFailed(err, 'WORDS.HOST', password.host)" aria-haspopup="true" style="cursor: pointer;">{{'WORDS.HOST'|translate}}</label>
+        <div class="col-sm-10">
+            <div class="controls">
+                <p class="form-control-static" ng-show="password.host">{{password.host}}</p>
+                <p class="form-control-static" ng-show="!password.host" translate>WORDS.NONE</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="password.password_type == 'email' || password.password_type == 'server'">
+        <label class="col-sm-2 col-form-label" clipboard uib-tooltip="{{ 'WORDS.COPY_TO_CLIPBOARD'|translate }}" tooltip-placement="right" text="password.port" on-copied="detailCtrl.onCopied('WORDS.PORT')" on-error="detailCtrl.onCopyFailed(err, 'WORDS.PORT', password.port)" aria-haspopup="true" style="cursor: pointer;">{{'WORDS.PORT'|translate}}</label>
+        <div class="col-sm-10">
+            <div class="controls">
+                <p class="form-control-static" ng-show="password.port">{{password.port}}</p>
+                <p class="form-control-static" ng-show="!password.port" translate>WORDS.NONE</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="!password.password_type  || password.password_type == 'plain' || password.password_type == 'server' || password.password_type == 'bankaccount' || password.password_type == 'email'">
+        <label class="col-sm-2 col-form-label" clipboard uib-tooltip="{{ 'WORDS.COPY_TO_CLIPBOARD'|translate }}" tooltip-placement="right" text="password.username" on-copied="detailCtrl.onCopied('WORDS.USERNAME')" on-error="detailCtrl.onCopyFailed(err, 'WORDS.USERNAME', password.username)" aria-haspopup="true" style="cursor: pointer;">{{'WORDS.USERNAME'|translate}}</label>
+        <div class="col-sm-10">
+            <div class="controls">
+                <p class="form-control-static" ng-show="password.username">{{password.username}}</p>
+                <p class="form-control-static" ng-show="!password.username" translate>WORDS.NONE</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="(!password.password_type  || password.password_type == 'plain' || password.password_type == 'server' || password.password_type == 'email') && password.complete">
+        <label class="col-sm-2 col-form-label" clipboard uib-tooltip="{{ 'WORDS.COPY_TO_CLIPBOARD'|translate }}" tooltip-placement="right" text="password.password" on-copied="detailCtrl.onCopied('WORDS.PASSWORD')" on-error="detailCtrl.onCopyFailed(err, 'WORDS.PASSWORD', password.password)" aria-haspopup="true" style="cursor: pointer;">{{'WORDS.PASSWORD'|translate}}</label>
+        <div class="col-sm-10">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><a ng-click="togglePasswordVisibility()" style="cursor: pointer;"><i class="fa fa-eye"></i></a></span>
+                </div>
+                <input type="{{passwordInputType}}" class="form-control" id="inputPassword" name="inputPassword" ng-model="password.password" readonly>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="(password.password_type == 'bankaccount' || password.password_type == 'credit_card') && password.complete">
+        <label class="col-sm-2 col-form-label" clipboard uib-tooltip="{{ 'WORDS.COPY_TO_CLIPBOARD'|translate }}" tooltip-placement="right" text="password.pin" on-copied="detailCtrl.onCopied('WORDS.PIN')" on-error="detailCtrl.onCopyFailed(err, 'WORDS.PIN', password.pin)" aria-haspopup="true" style="cursor: pointer;">{{'WORDS.PIN'|translate}}</label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <div class="input-group-append">
+                    <span class="input-group-text"><a ng-click="togglePasswordVisibility()"><i class="fa fa-eye"></i></a></span>
+                </div>
+                <input type="{{passwordInputType}}" class="form-control" name="inputPin" ng-model="password.pin" style="width: 40%;" readonly>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="password.password_type == 'bankaccount'">
+        <label class="col-sm-2 col-form-label" clipboard uib-tooltip="{{ 'WORDS.COPY_TO_CLIPBOARD'|translate }}" tooltip-placement="right" text="password.bank_name" on-copied="detailCtrl.onCopied('WORDS.BANK_NAME')" on-error="detailCtrl.onCopyFailed(err, 'WORDS.BANK_NAME', password.bank_name)" aria-haspopup="true" style="cursor: pointer;">{{'WORDS.BANK_NAME'|translate}}</label>
+        <div class="col-sm-10">
+            <div class="controls">
+                <p class="form-control-static" ng-show="password.bank_name">{{password.bank_name}}</p>
+                <p class="form-control-static" ng-show="!password.bank_name" translate>WORDS.NONE</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="password.password_type == 'bankaccount'">
+        <label class="col-sm-2 col-form-label" clipboard uib-tooltip="{{ 'WORDS.COPY_TO_CLIPBOARD'|translate }}" tooltip-placement="right" text="password.bank_code" on-copied="detailCtrl.onCopied('WORDS.BANK_CODE')" on-error="detailCtrl.onCopyFailed(err, 'WORDS.BANK_CODE', password.bank_code)" aria-haspopup="true" style="cursor: pointer;">{{'WORDS.BANK_CODE'|translate}}</label>
+        <div class="col-sm-10">
+            <div class="controls">
+                <p class="form-control-static" ng-show="password.bank_code">{{password.bank_code}}</p>
+                <p class="form-control-static" ng-show="!password.bank_code" translate>WORDS.NONE</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="password.password_type == 'bankaccount'">
+        <label class="col-sm-2 col-form-label" clipboard uib-tooltip="{{ 'WORDS.COPY_TO_CLIPBOARD'|translate }}" tooltip-placement="right" text="password.account_holder" on-copied="detailCtrl.onCopied('WORDS.ACCOUNT_HOLDER')" on-error="detailCtrl.onCopyFailed(err, 'WORDS.ACCOUNT_HOLDER', password.account_holder)" aria-haspopup="true" style="cursor: pointer;">{{'WORDS.ACCOUNT_HOLDER'|translate}}</label>
+        <div class="col-sm-10">
+            <div class="controls">
+                <p class="form-control-static" ng-show="password.account_holder">{{password.account_holder}}</p>
+                <p class="form-control-static" ng-show="!password.account_holder" translate>WORDS.NONE</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="password.password_type == 'bankaccount'">
+        <label class="col-sm-2 col-form-label" clipboard uib-tooltip="{{ 'WORDS.COPY_TO_CLIPBOARD'|translate }}" tooltip-placement="right" text="password.account_number" on-copied="detailCtrl.onCopied('WORDS.ACCOUNT_NUMBER')" on-error="detailCtrl.onCopyFailed(err, 'WORDS.ACCOUNT_NUMBER', password.account_number)" aria-haspopup="true" style="cursor: pointer;">{{'WORDS.ACCOUNT_NUMBER'|translate}}</label>
+        <div class="col-sm-10">
+            <div class="controls">
+                <p class="form-control-static" ng-show="password.account_number">{{password.account_number}}</p>
+                <p class="form-control-static" ng-show="!password.account_number" translate>WORDS.NONE</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="password.password_type == 'bankaccount'">
+        <label class="col-sm-2 col-form-label" clipboard uib-tooltip="{{ 'WORDS.COPY_TO_CLIPBOARD'|translate }}" tooltip-placement="right" text="password.iban" on-copied="detailCtrl.onCopied('WORDS.IBAN')" on-error="detailCtrl.onCopyFailed(err, 'WORDS.IBAN', password.iban)" aria-haspopup="true" style="cursor: pointer;">{{'WORDS.IBAN'|translate}}</label>
+        <div class="col-sm-10">
+            <div class="controls">
+                <p class="form-control-static" ng-show="password.iban">{{password.iban}}</p>
+                <p class="form-control-static" ng-show="!password.iban" translate>WORDS.NONE</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="password.password_type == 'credit_card'">
+        <label class="col-sm-2 col-form-label" clipboard uib-tooltip="{{ 'WORDS.COPY_TO_CLIPBOARD'|translate }}" tooltip-placement="right" text="password.card_type" on-copied="detailCtrl.onCopied('WORDS.CREDIT_CARD_TYPE')" on-error="detailCtrl.onCopyFailed(err, 'WORDS.CREDIT_CARD_TYPE', password.card_type)" aria-haspopup="true" style="cursor: pointer;">{{'WORDS.CREDIT_CARD_TYPE'|translate}}</label>
+        <div class="col-sm-10">
+            <div class="controls">
+                <p class="form-control-static" ng-show="password.card_type">{{password.card_type}}</p>
+                <p class="form-control-static" ng-show="!password.card_type" translate>WORDS.NONE</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="password.password_type == 'credit_card'">
+        <label class="col-sm-2 col-form-label" clipboard uib-tooltip="{{ 'WORDS.COPY_TO_CLIPBOARD'|translate }}" tooltip-placement="right" text="password.card_number" on-copied="detailCtrl.onCopied('WORDS.CARD_NUMBER')" on-error="detailCtrl.onCopyFailed(err, 'WORDS.CARD_NUMBER', password.card_number)" aria-haspopup="true" style="cursor: pointer;">{{'WORDS.CARD_NUMBER'|translate}}</label>
+        <div class="col-sm-10">
+            <div class="controls">
+                <p class="form-control-static" ng-show="password.card_number">{{password.card_number}}</p>
+                <p class="form-control-static" ng-show="!password.card_number" translate>WORDS.NONE</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="password.password_type == 'credit_card'">
+        <label class="col-sm-2 col-form-label" clipboard uib-tooltip="{{ 'WORDS.COPY_TO_CLIPBOARD'|translate }}" tooltip-placement="right" text="password.card_cvc" on-copied="detailCtrl.onCopied('WORDS.CARD_CVC')" on-error="detailCtrl.onCopyFailed(err, 'WORDS.CARD_CVC', password.card_cvc)" aria-haspopup="true" style="cursor: pointer;">{{'WORDS.CARD_CVC'|translate}}</label>
+        <div class="col-sm-10">
+            <div class="controls">
+                <p class="form-control-static" ng-show="password.card_type">{{password.card_cvc}}</p>
+                <p class="form-control-static" ng-show="!password.card_type" translate>WORDS.NONE</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="password.password_type == 'credit_card'">
+        <label class="col-sm-2 col-form-label" clipboard uib-tooltip="{{ 'WORDS.COPY_TO_CLIPBOARD'|translate }}" tooltip-placement="right" text="password.valid_from" on-copied="detailCtrl.onCopied('WORDS.VALID_FROM')" on-error="detailCtrl.onCopyFailed(err, 'WORDS.VALID_FROM', password.valid_from)" aria-haspopup="true" style="cursor: pointer;">{{'WORDS.VALID_FROM'|translate}}</label>
+        <div class="col-sm-10">
+            <div class="controls">
+                <p class="form-control-static" ng-show="password.valid_from">{{password.valid_from}}</p>
+                <p class="form-control-static" ng-show="!password.valid_from" translate>WORDS.NONE</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="password.password_type == 'credit_card'">
+        <label class="col-sm-2 col-form-label" clipboard uib-tooltip="{{ 'WORDS.COPY_TO_CLIPBOARD'|translate }}" tooltip-placement="right" text="password.valid_to" on-copied="detailCtrl.onCopied('WORDS.VALID_TO')" on-error="detailCtrl.onCopyFailed(err, 'WORDS.VALID_TO', password.valid_to)" aria-haspopup="true" style="cursor: pointer;">{{'WORDS.VALID_TO'|translate}}</label>
+        <div class="col-sm-10">
+            <div class="controls">
+                <p class="form-control-static" ng-show="password.valid_to">{{password.valid_to}}</p>
+                <p class="form-control-static" ng-show="!password.valid_to" translate>WORDS.NONE</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="password.password_type == 'email'">
+        <label class="col-sm-2 col-form-label" clipboard uib-tooltip="{{ 'WORDS.COPY_TO_CLIPBOARD'|translate }}" tooltip-placement="right" text="password.smtp_auth_method" on-copied="detailCtrl.onCopied('WORDS.SMTP_AUTH_METHOD')" on-error="detailCtrl.onCopyFailed(err, 'WORDS.SMTP_AUTH_METHOD', password.smtp_auth_method)" aria-haspopup="true" style="cursor: pointer;">{{'WORDS.SMTP_AUTH_METHOD'|translate}}</label>
+        <div class="col-sm-10">
+            <div class="controls">
+                <p class="form-control-static" ng-show="password.smtp_auth_method">{{password.smtp_auth_method}}</p>
+                <p class="form-control-static" ng-show="!password.smtp_auth_method" translate>WORDS.NONE</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="password.password_type == 'email'">
+        <label class="col-sm-2 col-form-label" clipboard uib-tooltip="{{ 'WORDS.COPY_TO_CLIPBOARD'|translate }}" tooltip-placement="right" text="password.smtp_host" on-copied="detailCtrl.onCopied('WORDS.SMTP_HOST')" on-error="detailCtrl.onCopyFailed(err, 'WORDS.SMTP_HOST', password.smtp_host)" aria-haspopup="true" style="cursor: pointer;">{{'WORDS.SMTP_HOST'|translate}}</label>
+        <div class="col-sm-10">
+            <div class="controls">
+                <p class="form-control-static" ng-show="password.smtp_host">{{password.smtp_host}}</p>
+                <p class="form-control-static" ng-show="!password.smtp_host" translate>WORDS.NONE</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="password.password_type == 'email'">
+        <label class="col-sm-2 col-form-label" clipboard uib-tooltip="{{ 'WORDS.COPY_TO_CLIPBOARD'|translate }}" tooltip-placement="right" text="password.smtp_port" on-copied="detailCtrl.onCopied('WORDS.SMTP_PORT')" on-error="detailCtrl.onCopyFailed(err, 'WORDS.SMTP_PORT', password.smtp_port)" aria-haspopup="true" style="cursor: pointer;">{{'WORDS.SMTP_PORT'|translate}}</label>
+        <div class="col-sm-10">
+            <div class="controls">
+                <p class="form-control-static" ng-show="password.smtp_port">{{password.smtp_port}}</p>
+                <p class="form-control-static" ng-show="!password.smtp_port" translate>WORDS.NONE</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="password.password_type == 'email'">
+        <label class="col-sm-2 col-form-label" clipboard uib-tooltip="{{ 'WORDS.COPY_TO_CLIPBOARD'|translate }}" tooltip-placement="right" text="password.smtp_username" on-copied="detailCtrl.onCopied('WORDS.SMTP_USERNAME')" on-error="detailCtrl.onCopyFailed(err, 'WORDS.SMTP_USERNAME', password.smtp_username)" aria-haspopup="true" style="cursor: pointer;">{{'WORDS.SMTP_USERNAME'|translate}}</label>
+        <div class="col-sm-10">
+            <div class="controls">
+                <p class="form-control-static" ng-show="password.smtp_username">{{password.smtp_username}}</p>
+                <p class="form-control-static" ng-show="!password.smtp_username" translate>WORDS.NONE</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="(password.password_type == 'email') && password.complete">
+        <label class="col-sm-2 col-form-label" clipboard uib-tooltip="{{ 'WORDS.COPY_TO_CLIPBOARD'|translate }}" tooltip-placement="right" text="password.smtp_password" on-copied="detailCtrl.onCopied('WORDS.SMTP_PASSWORD')" on-error="detailCtrl.onCopyFailed(err, 'WORDS.SMTP_PASSWORD', password.smtp_password)" aria-haspopup="true" style="cursor: pointer;">{{'WORDS.SMTP_PASSWORD'|translate}}</label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <div class="input-group-append">
+                    <span class="input-group-text"><a ng-click="togglePasswordVisibility()"><i class="fa fa-eye"></i></a></span>
+                </div>
+                <input type="{{passwordInputType}}" class="form-control" name="inputSmtpPassword" ng-model="password.smtp_password" style="width: 40%;" readonly>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="password.password_type == 'software_license'">
+        <label class="col-sm-2 col-form-label" clipboard uib-tooltip="{{ 'WORDS.COPY_TO_CLIPBOARD'|translate }}" tooltip-placement="right" text="password.version" on-copied="detailCtrl.onCopied('WORDS.VERSION')" on-error="detailCtrl.onCopyFailed(err, 'WORDS.VERSION', password.version)" aria-haspopup="true" style="cursor: pointer;">{{'WORDS.VERSION'|translate}}</label>
+        <div class="col-sm-10">
+            <div class="controls">
+                <p class="form-control-static" ng-show="password.version">{{password.version}}</p>
+                <p class="form-control-static" ng-show="!password.version" translate>WORDS.NONE</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="password.password_type == 'software_license'">
+        <label class="col-sm-2 col-form-label" clipboard uib-tooltip="{{ 'WORDS.COPY_TO_CLIPBOARD'|translate }}" tooltip-placement="right" text="password.license_key" on-copied="detailCtrl.onCopied('WORDS.LICENSE_KEY')" on-error="detailCtrl.onCopyFailed(err, 'WORDS.LICENSE_KEY', password.license_key)" aria-haspopup="true" style="cursor: pointer;">{{'WORDS.LICENSE_KEY'|translate}}</label>
+        <div class="col-sm-10">
+            <div class="controls">
+                <p class="form-control-static" ng-show="password.license_key">{{password.license_key}}</p>
+                <p class="form-control-static" ng-show="!password.license_key" translate>WORDS.NONE</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-if="password.complete">
+        <label class="col-sm-2 col-form-label">{{ 'WORDS.NOTICE'|translate }}</label>
+        <div class="col-sm-10">
+            <div class="controls">
+                <p class="form-control-static" ng-show="password.notice">{{password.notice}}</p>
+                <p class="form-control-static" ng-show="!password.notice" translate>WORDS.NONE</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" ng-repeat="customField in password.custom_fields">
+        <label class="col-sm-2 col-form-label">{{ customField.name }}</label>
+        <div class="col-sm-10">
+            <div class="controls">
+                <p class="form-control-static" ng-show="customField.value">{{ customField.value }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" translate>WORDS.CREATED_AT</label>
+        <div class="col-sm-10">
+            <div class="controls">
+                <p class="form-control-static">{{password.create_date|date:'medium'}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" translate>WORDS.LAST_UPDATE</label>
+        <div class="col-sm-10">
+            <div class="controls">
+                <p class="form-control-static" ng-show="password.last_update_date">{{password.last_update_date|date:'medium'}}</p>
+                <p class="form-control-static" ng-show="!password.last_update_date" translate>WORDS.NONE</p>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,56 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block title %}
+    {{ get_page_title() }} - Recaptcha Configuration
+{% endblock %}
+
+{% block fos_user_content %}
+    <br>
+    {% if is_active %}
+        <div class="alert alert-success">
+            Recaptcha is currently active!<br>
+            It will be shown after one failed login.<br><br>
+            <a href="{{ path('main_app_recaptcha_disable') }}">Disable Recaptcha</a><br>
+            <a href="{{ path('main_template_default_index') }}">Back to TurtlePass</a>
+        </div>
+    {% else %}
+        <div class="alert alert-danger">
+            Recaptcha is currently disabled!
+            <br><br>
+            <a href="{{ path('main_template_default_index') }}">Back to TurtlePass</a>
+        </div>
+    {% endif %}
+
+    {{ form_start(form) }}
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-key fa-fw"></i></span>
+                </div>
+                {{ form_widget(form.RECAPTCHA_SITE_KEY, {'attr': {'class': 'form-control', 'placeholder': 'RECAPTCHA_SITE_KEY'}}) }}
+            </div>
+        </div>
+
+        {{ form_errors(form.RECAPTCHA_SITE_KEY) }}
+
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-user fa-fw"></i></span>
+                </div>
+                {{ form_widget(form.RECAPTCHA_PRIVATE_KEY, {'attr': {'class': 'form-control', 'placeholder': 'RECAPTCHA_PRIVATE_KEY'}}) }}
+            </div>
+        </div>
+
+        {{ form_errors(form.RECAPTCHA_PRIVATE_KEY) }}
+
+        {% if recaptcha is defined and recaptcha is not null %}
+            <div style="text-align: center; margin-bottom: 5px;">
+                <div class="g-recaptcha" data-sitekey="{{ recaptcha }}" style="display: inline-block;"></div>
+            </div>
+        {% endif %}
+
+        <input type="submit" id="_submit" name="_submit" value="Continue" class="btn btn-login btn-block" />
+    {{ form_end(form) }}
+
+{% endblock fos_user_content %}

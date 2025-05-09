@@ -1,0 +1,10 @@
+services:
+    main_ldap.event_listener.ldap_login_check_listener:
+        class: Main\LdapBundle\EventListener\LdapLoginCheckListener
+        arguments:
+            - '@router'
+            - '@translator'
+            - '@security.token_storage'
+            - '@main_app.services.setting_manager'
+        tags:
+            - { name: kernel.event_subscriber }

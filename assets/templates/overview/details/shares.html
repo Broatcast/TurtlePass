@@ -1,0 +1,38 @@
+<div ng-controller="PasswordShareController as shareCtrl" ng-show="shareCtrl.loaded">
+    <div loading-container="tableParams.settings().$loading" class="table-wrapper">
+        <table ng-table="tableParams" show-filter="true" class="table table-bordered table-striped">
+            <colgroup>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+            </colgroup>
+            <tr ng-repeat="share_link in $data" ng-class="{'expired': share_link.expired}">
+                <td data-title="'WORDS.CREATED_AT'|translate" filter="{ 'create_date': 'text' }" sortable="'create_date'">
+                    {{share_link.create_date| date:'medium'}}
+                </td>
+                <td data-title="'SHARE_LINK.VALID_UNTIL'|translate" filter="{ 'valid_to': 'text' }" sortable="'valid_to'">
+                    <span ng-show="share_link.valid_to">{{share_link.valid_to| date:'medium'}}</span>
+                    <span ng-show="!share_link.valid_to" class="text-muted">{{'WORDS.UNLIMITED'|translate}}</span>
+                </td>
+                <td data-title="'WORDS.MODE'|translate" filter="{'mode': 'select'}" filter-data="selectKeys" sortable="'mode'">
+                    {{'SHARE_LINK.MODE.'+ share_link.mode | uppercase | translate}}
+                </td>
+                <td data-title="'WORDS.RECIPIENT'|translate" filter="{ 'recipient': 'text' }" sortable="'recipient'">
+                    <span ng-show="share_link.recipient">{{share_link.recipient}}</span>
+                    <span ng-show="!share_link.recipient" class="text-muted">{{'SHARE_LINK.SHARED_WITH_LINK'|translate}}</span>
+                </td>
+                <td>
+                    <div class="btn-group btn-group-nowrap">
+                        <a class="btn btn-sm btn-light" ng-hide="share_link.expired" aria-haspopup="true" tooltip-append-to-body="true" clipboard uib-tooltip="{{ 'WORDS.COPY_TO_CLIPBOARD'|translate }}" tooltip-placement="left" text="share_link.link" on-copied="shareCtrl.onCopied()" on-error="shareCtrl.onCopyFailed(err)" aria-haspopup="true" style="cursor: pointer;"><i class="fa fa-link"></i></a>
+                        <a class="btn btn-sm btn-light" ng-hide="share_link.expired" aria-haspopup="true" tooltip-append-to-body="true" ng-click="shareCtrl.delete(share_link.id)"><i class="fa fa-trash-o"></i></a>
+                    </div>
+                </td>
+            </tr>
+            <tr ng-if="!$data.length">
+                <td colspan="5" class="text-center" translate>SHARE_LINK.SHARED_WITH_NOBODY</td>
+            </tr>
+        </table>
+    </div>
+</div>

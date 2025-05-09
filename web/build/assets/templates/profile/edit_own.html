@@ -1,0 +1,51 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item" translate>NAVIGATION.HEADER.SETTINGS</li>
+        <li class="breadcrumb-item active" translate>NAVIGATION.SETTINGS.EDIT_OWN</li>
+    </ol>
+</nav>
+
+<div ng-controller="EditOwnDataController as formCtrl">
+    <form name="editOwnDataForm" ng-submit="formCtrl.submit()" novalidate>
+
+        <div class="form-group row">
+            <label for="inputEmail" class="col-sm-2 control-label" translate>WORDS.EMAIL</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" id="inputEmail" name="inputEmail" ng-model="formCtrl.data.email" ng-minlength=8 ng-maxlength=80 required>
+                <div class="invalid-feedback d-block" ng-if="changePasswordForm.inputEmail.$error.required" ng-show="changePasswordForm.$submitted" translate>VALIDATION.REQUIRED</div>
+                <div class="invalid-feedback d-block" ng-if="changePasswordForm.inputEmail.$error.minlength" ng-show="changePasswordForm.$submitted" translate-value-characters="8" translate>VALIDATION.MIN_LENGTH</div>
+                <div class="invalid-feedback d-block" ng-if="changePasswordForm.inputEmail.$error.maxlength" ng-show="changePasswordForm.$submitted" translate-value-characters="80" translate>VALIDATION.MAX_LENGTH</div>
+                <div class="invalid-feedback d-block" ng-if="formCtrl.formErrors.email">{{formCtrl.formErrors.email}}</div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="inputFirstName" class="col-sm-2 control-label" translate>WORDS.FIRST_NAME</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputFirstName" name="inputFirstName" ng-model="formCtrl.data.first_name" ng-minlength=2 ng-maxlength=64 required>
+                <div class="invalid-feedback d-block" ng-if="changePasswordForm.inputFirstName.$error.required" ng-show="changePasswordForm.$submitted" translate>VALIDATION.REQUIRED</div>
+                <div class="invalid-feedback d-block" ng-if="changePasswordForm.inputFirstName.$error.minlength" ng-show="changePasswordForm.$submitted" translate-value-characters="2" translate>VALIDATION.MIN_LENGTH</div>
+                <div class="invalid-feedback d-block" ng-if="changePasswordForm.inputFirstName.$error.maxlength" ng-show="changePasswordForm.$submitted" translate-value-characters="64" translate>VALIDATION.MAX_LENGTH</div>
+                <div class="invalid-feedback d-block" ng-if="formCtrl.formErrors.first_name">{{formCtrl.formErrors.first_name}}</div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="inputLastName" class="col-sm-2 control-label" translate>WORDS.LAST_NAME</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputLastName" name="inputLastName" ng-model="formCtrl.data.last_name" ng-minlength=2 ng-maxlength=64 required>
+                <div class="invalid-feedback d-block" ng-if="changePasswordForm.inputLastName.$error.required" ng-show="changePasswordForm.$submitted" translate>VALIDATION.REQUIRED</div>
+                <div class="invalid-feedback d-block" ng-if="changePasswordForm.inputLastName.$error.minlength" ng-show="changePasswordForm.$submitted" translate-value-characters="2" translate>VALIDATION.MIN_LENGTH</div>
+                <div class="invalid-feedback d-block" ng-if="changePasswordForm.inputLastName.$error.maxlength" ng-show="changePasswordForm.$submitted" translate-value-characters="64" translate>VALIDATION.MAX_LENGTH</div>
+                <div class="invalid-feedback d-block" ng-if="formCtrl.formErrors.last_name">{{formCtrl.formErrors.last_name}}</div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button class="btn btn-primary" type="submit" ladda="formCtrl.laddaLoading">{{ 'WORDS.EDIT'|translate }}</button>
+            </div>
+        </div>
+
+    </form>
+</div>

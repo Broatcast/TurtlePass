@@ -1,0 +1,40 @@
+{% extends 'single_base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('build/login.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('build/login.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<table cellpadding="0" cellspacing="0" width="400" align="center" style="height: 100%">
+    <tbody><tr>
+        <td>
+            <div id="logo_box">
+                <img src="/img/logo.png" border="0" style="height: 80px;">
+            </div>
+            <div id="login_box">
+                {% if app.request.hasPreviousSession %}
+                    {% for type, messages in app.session.flashbag.all() %}
+                        {% for message in messages %}
+                            <div class="alert alert-{% if message == 'resetting.flash.success' or message == 'registration.flash.user_created' %}success{% else %}danger{% endif %}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
+
+                {% block fos_user_content %}
+                {% endblock fos_user_content %}
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+{% endblock %}

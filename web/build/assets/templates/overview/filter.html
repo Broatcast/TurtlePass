@@ -1,0 +1,136 @@
+<div ng-controller="PasswordGroupDetailController as detailCtrl" ng-hide="detailCtrl.loadingPasswordGroup">
+
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb" ng-class="{'breadcrumb-fixed':($state.includes('overview.group.add') || $state.includes('overview.group.details'))}">
+			<li class="breadcrumb-item" translate>PASSWORD_MANAGEMENT.TITLE</li>
+			<li class="breadcrumb-item" ng-repeat="breadcrumb in detailCtrl.breadcrumbs"><a ui-sref="overview.group({ groupId: breadcrumb.id })">{{breadcrumb.name}}</a></li>
+			<li class="breadcrumb-item" ng-show="$state.includes('overview.group.add')">{{ 'PASSWORD_MANAGEMENT.ADD_PASSWORD'|translate }}</li>
+		</ol>
+	</nav>
+
+	<div ng-class="{'password-title-sitebar':($state.includes('overview.group.add') || $state.includes('overview.group.details'))}">
+		<div class="button-title">
+			<h2>{{ detailCtrl.passwordGroup.name }}</h2>
+		</div>
+
+		<div style="margin-bottom: 20px;">
+			<span class="label label-success" ng-show="detailCtrl.passwordGroup.access == 1">Read-Only</span>
+			<span class="label label-warning" ng-show="detailCtrl.passwordGroup.access == 2">Moderator</span>
+			<span class="label label-danger" ng-show="detailCtrl.passwordGroup.access == 3">Administrator</span>
+		</div>
+
+		<div>
+			<a class="btn btn-light" ng-click="detailCtrl.editPasswordGroup()" ng-show="detailCtrl.passwordGroup.access == 3" aria-label="{{ 'WORDS.EDIT'|translate }}" aria-haspopup="true" uib-tooltip="{{ 'WORDS.EDIT'|translate }}" tooltip-append-to-body="true">
+				<i class="fa fa-pencil-square-o fa-fw" aria-hidden="true"></i>
+			</a>
+
+			<a class="btn btn-light" ng-click="detailCtrl.editPasswordGroupAccess()" ng-show="detailCtrl.passwordGroup.access == 3" aria-label="{{ 'ACCESS_MANAGEMENT.EDIT_PERMISSIONS'|translate }}" aria-haspopup="true" uib-tooltip="{{ 'ACCESS_MANAGEMENT.EDIT_PERMISSIONS'|translate }}" tooltip-append-to-body="true">
+				<i class="fa fa-unlock fa-fw" aria-hidden="true"></i>
+			</a>
+
+			<a class="btn btn-light" ng-click="detailCtrl.movePasswordGroup()" ng-show="detailCtrl.passwordGroup.access == 3" aria-label="{{ 'WORDS.MOVE'|translate }}" aria-haspopup="true" uib-tooltip="{{ 'WORDS.MOVE'|translate }}" tooltip-append-to-body="true">
+				<i class="fa fa-share fa-fw" aria-hidden="true"></i>
+			</a>
+
+			<a class="btn btn-light" ng-click="detailCtrl.deleteGroup(detailCtrl.passwordGroup)" ng-show="detailCtrl.passwordGroup.access == 3" aria-label="{{ 'WORDS.DELETE'|translate }}" aria-haspopup="true" uib-tooltip="{{ 'WORDS.DELETE'|translate }}" tooltip-append-to-body="true">
+				<i class="fa fa-trash fa-fw" aria-hidden="true"></i>
+			</a>
+		</div>
+
+		<div class="pt-3 pb-3" ng-show="detailCtrl.passwordGroup.access >= 2">
+			<a class="btn btn-primary btn-sm" ui-sref="overview.group.add({ groupId: detailCtrl.passwordGroup.id })">
+				<i class="fa fa-key fa-lg"></i> {{ 'PASSWORD_MANAGEMENT.ADD_PASSWORD'|translate }}</a>
+		</div>
+	</div>
+
+	<div class="selection-sitebar" ng-show="$state.includes('overview.group.add') || $state.includes('overview.group.details')">
+
+		<div ng-controller="PasswordFilterCtrl as filterCtrl">
+
+			<div class="list-group-container" ng-hide="filterCtrl.passwords.length < 1">
+
+				<div class="list-group">
+					<div infinite-scroll='loadMore()' infinite-scroll-distance='2' infinite-scroll-container='".list-group"'>
+
+						<div class="subbar-alert subbar-alert-info ng-hide" ng-show="filterCtrl.listLoading">
+							<i class="fa fa-refresh fa-spin fa-fw" aria-hidden="true" style="margin-right: 7px; margin-left: 0;"></i>
+							<span translate="" class="ng-scope">Loading...</span>
+						</div>
+
+						<div ng-repeat="password in filterCtrl.passwords | orderBy:'-create_date'">
+							<a ui-sref="overview.group.details.main({ groupId: filterCtrl.currentPasswordGroupId, passwordId: password.id })" class="list-group-item password-info-list-group-item" ng-class="[($state.includes('overview.group.details', {groupId: filterCtrl.currentPasswordGroupId, passwordId: password.id})) ? 'active' : '']">
+								<i class="fa fa-fw" ng-class="password.icon"></i>
+								<span class="password-type" ng-if="!password.password_type || password.password_type == 'plain'">{{ 'PASSWORD_MANAGEMENT.TYPE.PLAIN'|translate }}</span>
+								<span class="password-type" ng-if="password.password_type == 'bankaccount'">{{ 'PASSWORD_MANAGEMENT.TYPE.BANKACCOUNT'|translate }}</span>
+								<span class="password-type" ng-if="password.password_type == 'credit_card'">{{ 'PASSWORD_MANAGEMENT.TYPE.CREDIT_CARD'|translate }}</span>
+								<span class="password-type" ng-if="password.password_type == 'email'">{{ 'PASSWORD_MANAGEMENT.TYPE.EMAIL'|translate }}</span>
+								<span class="password-type" ng-if="password.password_type == 'server'">{{ 'PASSWORD_MANAGEMENT.TYPE.SERVER'|translate }}</span>
+								<span class="password-type" ng-if="password.password_type == 'software_license'">{{ 'PASSWORD_MANAGEMENT.TYPE.SOFTWARE_LICENSE'|translate }}</span>
+								<span class="password-date">{{ password.create_date|date }}</span>
+								<h4 class="list-group-item-heading mb-0">{{ password.name }}</h4>
+								<span class="list-group-item-text" ng-if="!password.password_type || password.password_type == 'plain'" ng-show="password.username">{{ password.username }}</span>
+								<span class="list-group-item-text" ng-if="password.password_type == 'server'" ng-show="password.host">{{ password.host }}</span>
+								<span class="list-group-item-text" ng-if="password.password_type == 'bankaccount'" ng-show="password.bank_name">{{ password.bank_name }}</span>
+								<span class="list-group-item-text" ng-if="password.password_type == 'software_license'" ng-show="password.url">{{ password.url }}</span>
+								<span class="list-group-item-text" ng-if="password.password_type == 'email'" ng-show="password.host">{{ password.host }}</span>
+							</a>
+						</div>
+
+						<div style='clear: both;'></div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+
+<section ui-view></section>
+
+
+<div ng-hide="$state.includes('overview.group.add') || $state.includes('overview.group.details')" ng-controller="PasswordOverviewController as tableCtrl">
+
+	<div loading-container="tableParams.settings().$loading" ng-hide="loadingPasswords" class="table-wrapper mt-3">
+		<table ng-table="tableParams" show-filter="true" class="table table-striped table-bordered">
+			<colgroup>
+				<col style="width: 50%">
+				<col style="width: 30%">
+				<col style="width: 20%">
+			</colgroup>
+			<tr ng-repeat="password in $data">
+				<td data-title="'WORDS.NAME'|translate" filter="{ 'name': 'text' }" sortable="'name'">
+					<i class="fa fa-fw" ng-class="password.icon"></i> {{password.name}}
+				</td>
+				<td data-title="'WORDS.TYPE'|translate">
+					<span ng-if="!password.password_type || password.password_type == 'plain'">{{ 'PASSWORD_MANAGEMENT.TYPE.PLAIN'|translate }}</span>
+					<span ng-if="password.password_type == 'bankaccount'">{{ 'PASSWORD_MANAGEMENT.TYPE.BANKACCOUNT'|translate }}</span>
+					<span ng-if="password.password_type == 'credit_card'">{{ 'PASSWORD_MANAGEMENT.TYPE.CREDIT_CARD'|translate }}</span>
+					<span ng-if="password.password_type == 'email'">{{ 'PASSWORD_MANAGEMENT.TYPE.EMAIL'|translate }}</span>
+					<span ng-if="password.password_type == 'server'">{{ 'PASSWORD_MANAGEMENT.TYPE.SERVER'|translate }}</span>
+					<span ng-if="password.password_type == 'software_license'">{{ 'PASSWORD_MANAGEMENT.TYPE.SOFTWARE_LICENSE'|translate }}</span>
+				</td>
+				<td>
+					<div class="btn-group" style="padding-right: 10px; display: inline-block;">
+						<a ui-sref="overview.group.details.main({ groupId: passwordGroup.id, passwordId: password.id })" class="btn btn-light btn-sm" uib-tooltip="{{ 'WORDS.VIEW'|translate }}" aria-haspopup="true" tooltip-append-to-body="true"><i class="fa fa-eye fa-fw"></i></a>
+						<a ui-sref="overview.group.details.edit({ groupId: passwordGroup.id, passwordId: password.id })" class="btn btn-light btn-sm" ng-show="(passwordGroup.access >= 2 || password.access >= 2) && (!password.log_enabled || password.complete)" uib-tooltip="{{ 'WORDS.EDIT'|translate }}" aria-haspopup="true" tooltip-append-to-body="true"><i class="fa fa-edit fa-fw"></i></a>
+						<a ui-sref="overview.group.details.edit_permissions({ groupId: passwordGroup.id, passwordId: password.id })" class="btn btn-light btn-sm" ng-show="passwordGroup.access >= 3 || password.access >= 3" uib-tooltip="{{ 'ACCESS_MANAGEMENT.EDIT_PERMISSIONS'|translate }}" aria-haspopup="true" tooltip-append-to-body="true"><i class="fa fa-key fa-fw"></i></a>
+						<a ng-click="tableCtrl.delete(password)" class="btn btn-light btn-sm" ng-show="passwordGroup.access >= 2 || password.access >= 2" uib-tooltip="{{ 'WORDS.DELETE'|translate }}" aria-haspopup="true" tooltip-append-to-body="true"><i class="fa fa-trash-o fa-fw"></i></a>
+					</div>
+					<div class="btn-group" style="display: inline-block;">
+						<a class="btn btn-light btn-sm" ng-show="(!password.password_type  || password.password_type == 'plain' || password.password_type == 'server' || password.password_type == 'email') && !password.log_enabled" clipboard text="password.password" uib-tooltip="{{ 'PASSWORD_MANAGEMENT.COPY_PASSWORD_TO_CLIPBOARD'|translate }}" on-copied="tableCtrl.onPasswordCopied()" on-error="tableCtrl.onPasswordCopyFailed(err, password)" aria-haspopup="true" tooltip-append-to-body="true"><i class="fa fa-clipboard fa-fw"></i></a>
+						<a class="btn btn-light btn-sm" ng-show="(password.password_type == 'bankaccount' || password.password_type == 'credit_card') && !password.log_enabled" clipboard text="password.pin" uib-tooltip="{{ 'PASSWORD_MANAGEMENT.COPY_PIN_TO_CLIPBOARD'|translate }}" on-copied="tableCtrl.onPinCopied()" on-error="tableCtrl.onPinCopyFailed(err, password)" aria-haspopup="true" tooltip-append-to-body="true"><i class="fa fa-clipboard fa-fw"></i></a>
+						<a class="btn btn-light btn-sm" ng-show="(!password.password_type  || password.password_type == 'plain' || password.password_type == 'bankaccount' || password.password_type == 'server' || password.password_type == 'email') && !password.log_enabled" clipboard text="password.username" uib-tooltip="{{ 'PASSWORD_MANAGEMENT.COPY_USERNAME_TO_CLIPBOARD'|translate }}" on-copied="tableCtrl.onUsernameCopied()" on-error="tableCtrl.onUsernameCopyFailed(err, password)" aria-haspopup="true" tooltip-append-to-body="true"><i class="fa fa-user-circle-o fa-fw"></i></a>
+					</div>
+				</td>
+			</tr>
+			<tr ng-if="!$data.length">
+				<td colspan="4" translate>PASSWORD_GROUP_MANAGEMENT.TEXT.NO_PASSWORDS_FOUND</td>
+			</tr>
+		</table>
+	</div>
+
+</div>
+

@@ -1,0 +1,14 @@
+fr3d_ldap:
+    driver:
+        host:         local.example.com
+        username:     service_user@local.example.com
+        password:     service_password
+        accountDomainName: local.example.com
+        accountDomainNameShort: LOCAL
+
+    user:
+        baseDn: dc=local,dc=example,dc=com
+        filter: (&(ObjectClass=Person))
+
+    service:
+        user_hydrator: main_user_hydrator

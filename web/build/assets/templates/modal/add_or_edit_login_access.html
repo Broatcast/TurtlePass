@@ -1,0 +1,43 @@
+<div class="modal-header">
+    <h3 class="modal-title" ng-show="editingMode" translate>LOGIN_ACCESS_MANAGEMENT.EDIT_LOGIN_ACCESS</h3>
+    <h3 class="modal-title" ng-hide="editingMode" translate>LOGIN_ACCESS_MANAGEMENT.ADD_LOGIN_ACCESS</h3>
+</div>
+
+<form name="modalForm" class="form-horizontal" ng-submit="submit()" novalidate>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="inputFromIp" class="col-sm-3 control-label" translate>WORDS.FROM_IP</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputFromIp" name="inputFromIp" ng-model="data.from_ip" required>
+                <div class="invalid-feedback d-block" ng-if="modalForm.inputFromIp.$error.required" ng-show="modalForm.$submitted" translate>VALIDATION.REQUIRED</div>
+                <div class="invalid-feedback d-block" ng-if="formErrors.from_ip">{{formErrors.from_ip}}</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputToIp" class="col-sm-3 control-label" translate>WORDS.TO_IP</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputToIp" name="inputToIp" ng-model="data.to_ip" required>
+                <div class="invalid-feedback d-block" ng-if="modalForm.inputToIp.$error.required" ng-show="modalForm.$submitted" translate>VALIDATION.REQUIRED</div>
+                <div class="invalid-feedback d-block" ng-if="formErrors.to_ip">{{formErrors.to_ip}}</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="selectWhitelist" class="col-sm-3 control-label" translate>WORDS.TYPE</label>
+            <div class="col-sm-9">
+                <select class="form-control" name="selectWhitelist" id="selectWhitelist" ng-model="data.whitelist">
+                    <option value="1">{{ 'LOGIN_ACCESS_MANAGEMENT.WHITELIST'|translate }}</option>
+                    <option value="0">{{ 'LOGIN_ACCESS_MANAGEMENT.BLACKLIST'|translate }}</option>
+                </select>
+                <div class="invalid-feedback d-block" ng-if="formErrors.whitelist">{{formErrors.whitelist}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-light" type="button" ng-click="cancel()" translate>WORDS.CANCEL</button>
+        <button class="btn btn-primary" type="submit" ladda="isLaddaWorking" ng-if="!editingMode">{{ 'WORDS.ADD'|translate }}</button>
+        <button class="btn btn-primary" type="submit" ladda="isLaddaWorking" ng-if="editingMode">{{ 'WORDS.EDIT'|translate }}</button>
+    </div>
+</form>

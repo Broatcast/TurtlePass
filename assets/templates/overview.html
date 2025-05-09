@@ -1,0 +1,45 @@
+<script type="text/ng-template" id="nodes_renderer.html">
+    <div class="navigation-item" ui-tree-handle ng-class="{'active': $state.includes('overview.group', {groupId: node.id}), 'expanded': node.expand}" ng-click="openTree(node.id)">
+        <span class="navigation-sub-item-line" ng-repeat="n in getRepeat(getParents(parent))"></span>
+        <span class="navigation-item-icon-container">
+            <i class="fa fa-fw" ng-class="node.icon" aria-hidden="true"></i>
+        </span>
+        <span class="navigation-item-title">{{node.title}}</span>
+        <span class="navigation-item-expand-container">
+            <i class="fa fa-angle-right fa-fw" aria-hidden="true" ng-click="loadTree(node)" ng-show="!node.expand && node.nodes.length"></i>
+            <i class="fa fa-angle-down fa-fw" aria-hidden="true" ng-click="closeNode(node)" ng-show="node.expand"></i>
+        </span>
+    </div>
+    <ol ui-tree-nodes="" ng-model="node.nodes" ng-show="node.expand" class="navigation-sub-item-container">
+        <li ng-repeat="node in node.nodes" ui-tree-node ng-include="'nodes_renderer.html'" onload="parent=$parent.$parent.$parent">
+        </li>
+    </ol>
+</script>
+
+<div class="sidebar" ng-controller="PasswordTreeController">
+    <div class="sitebar-nav">
+        <div class="title">
+            {{ 'PASSWORD_MANAGEMENT.TITLE'|translate }}
+            <i class="fa fa-plus fa-fw" aria-hidden="true" style="margin-left: 10px; cursor: pointer;" ng-click="addPasswordGroup()"></i>
+        </div>
+        <div ui-tree="treeOptions" data-drag-enabled="true" data-max-depth="5" data-drag-delay="300">
+            <ol ui-tree-nodes ng-model="list">
+                <li ng-repeat="node in list" ui-tree-node ng-include="'nodes_renderer.html'" onload="parent=$parent.$parent"></li>
+            </ol>
+        </div>
+    </div>
+
+    <div id="madeby">
+        proudly made by <a href="https://www.5werk.de" target="_blank">5werk</a> - Version {{ version }}
+    </div>
+</div>
+
+<div class="page-content">
+    <section ui-view></section>
+
+    <div ng-if="$state.is('overview')">
+        <div ng-controller="PasswordGroupRedirectController">
+
+        </div>
+    </div>
+</div>

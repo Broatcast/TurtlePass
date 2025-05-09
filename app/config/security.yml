@@ -1,0 +1,78 @@
+dunglas_angular_csrf:
+    # Collection of patterns where to set the cookie
+    cookie:
+        set_on:
+            - { path: ^/$ }
+
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface:
+            algorithm:            pbkdf2
+            hash_algorithm:       sha512
+            encode_as_base64:     true
+            iterations:           1009
+            key_length:           40
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN:
+            - ROLE_ADMIN
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+        oauth_token:
+            pattern:    ^/oauth/v2/token
+            security:   false
+
+        oauth_authorize:
+            pattern:    ^/oauth/v2/auth
+            form_login:
+                provider: fos_userbundle
+                check_path: /oauth/v2/auth_login_check
+                login_path: /oauth/v2/auth_login
+            anonymous: true
+            # Add your favorite authentication process here
+
+        api_password_shares:
+            pattern:    ^/api/password-shares
+            fos_oauth:  false
+            stateless:  true
+            anonymous:  true
+            entry_point: "main_password.security_firewall.api_entry_point"
+
+        api:
+            pattern:    ^/api
+            fos_oauth:  true
+            stateless:  true
+            anonymous:  false # can be omitted as its default value
+
+        dev:
+            pattern: ^/(_(profiler|wdt|error)|css|images|js)/
+            security: false
+
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+            #failure_handler: uqe.fos_user_recaptcha_protection_bundle.security.authentication.authentication_failure_handler
+            logout:
+                path: /logout
+            anonymous:    true
+            remember_me:
+                secret:      "%secret%"
+                lifetime: 2592000
+                path:     /
+                domain:   ~
+                user_provider: fos_userbundle
+
+    access_control:
+        - { path: ^/api, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/reset, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/password-share, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: [ IS_AUTHENTICATED_FULLY, ROLE_IS_NOT_CROWD_USER ] }

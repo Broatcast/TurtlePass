@@ -1,0 +1,38 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item" translate>NAVIGATION.HEADER.SETTINGS</li>
+        <li class="breadcrumb-item active" translate>NAVIGATION.SETTINGS.GLOBAL_SETTINGS</li>
+    </ol>
+</nav>
+
+<div ng-controller="SettingEditCtrl as formCtrl" ng-show="formCtrl.loaded">
+    <form name="updateSettingsForm" ng-submit="formCtrl.submit()" novalidate>
+
+        <div class="form-group row" ng-repeat="globalSetting in formCtrl.settings">
+            <label class="col-sm-3 col-form-label" translate>{{ globalSetting.id }}</label>
+            <div class="col-sm-9">
+                <div ng-if="globalSetting.setting_type == 'text'">
+                    <input type="text" class="form-control" ng-model="globalSetting.value">
+                    {{'SETTINGS.GLOBAL.TEXT.'+globalSetting.id  | translate}}
+                </div>
+                <div ng-if="globalSetting.setting_type == 'boolean'">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="globalSetting.value" ng-true-value="'1'" ng-false-value="'0'"> {{'SETTINGS.GLOBAL.TEXT.'+globalSetting.id  | translate}}
+                        </label>
+                    </div>
+                </div>
+                <div ng-if="globalSetting.setting_type == 'choice'">
+                    <select ng-options="option for option in globalSetting.choices" ng-model="globalSetting.value" class="form-control"></select>
+                    {{'SETTINGS.GLOBAL.TEXT.'+globalSetting.id  | translate}}
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-offset-3 col-sm-9">
+                <button class="btn btn-primary" type="submit" ladda="formCtrl.laddaLoading">{{ 'WORDS.EDIT'|translate }}</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,33 @@
+services:
+    uql.query_builder_operation.filter.search_filter.operator.equal_operator:
+        class: UniqueLibs\QueryBuilderOperationBundle\Filter\SearchFilter\SearchOperators\EqualOperator
+
+    uql.query_builder_operation.filter.search_filter.operator.not_equal_operator:
+        class: UniqueLibs\QueryBuilderOperationBundle\Filter\SearchFilter\SearchOperators\NotEqualOperator
+
+    uql.query_builder_operation.filter.search_filter.operator.like_operator:
+        class: UniqueLibs\QueryBuilderOperationBundle\Filter\SearchFilter\SearchOperators\LikeOperator
+
+    uql.query_builder_operation.filter.search_filter.operator.not_like_operator:
+        class: UniqueLibs\QueryBuilderOperationBundle\Filter\SearchFilter\SearchOperators\NotLikeOperator
+
+    uql.query_builder_operation.filter.search_filter.operator.greater_than_operator:
+        class: UniqueLibs\QueryBuilderOperationBundle\Filter\SearchFilter\SearchOperators\GreaterThanOperator
+
+    uql.query_builder_operation.filter.search_filter.operator.greater_than_equal_operator:
+        class: UniqueLibs\QueryBuilderOperationBundle\Filter\SearchFilter\SearchOperators\GreaterThanEqualOperator
+
+    uql.query_builder_operation.filter.search_filter.operator.lower_than_operator:
+        class: UniqueLibs\QueryBuilderOperationBundle\Filter\SearchFilter\SearchOperators\LowerThanOperator
+
+    uql.query_builder_operation.filter.search_filter.operator.lower_than_equal_operator:
+        class: UniqueLibs\QueryBuilderOperationBundle\Filter\SearchFilter\SearchOperators\LowerThanEqualOperator
+
+    uql.query_builder_operation.filter.search_filter.operator.in_operator:
+        class: UniqueLibs\QueryBuilderOperationBundle\Filter\SearchFilter\SearchOperators\InOperator
+
+    uql.query_builder_operation.filter.search_filter.operator.not_in_operator:
+        class: UniqueLibs\QueryBuilderOperationBundle\Filter\SearchFilter\SearchOperators\NotInOperator
+
+    uql.query_builder_operation.filter.search_filter.operator.bitwise_and_operator:
+        class: UniqueLibs\QueryBuilderOperationBundle\Filter\SearchFilter\SearchOperators\BitwiseAndOperator

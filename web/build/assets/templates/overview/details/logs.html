@@ -1,0 +1,26 @@
+<div ng-controller="PasswordLogController as logCtrl" ng-show="logCtrl.loaded">
+    <div loading-container="tableParams.settings().$loading" class="table-wrapper">
+        <table ng-table="tableParams" show-filter="true" class="table table-bordered table-striped">
+            <colgroup>
+                <col>
+                <col>
+                <col>
+            </colgroup>
+            <tr ng-repeat="password_logs in $data">
+                <td data-title="'WORDS.TEXT'|translate" filter="{'password_log.key': 'select'}" filter-data="logCtrl.selectLogKeys" sortable="'password_log.key'">
+                    {{'PASSWORD_MANAGEMENT.LOGS.'+password_logs.key | translate}}
+                </td>
+                <td data-title="'WORDS.USER'|translate" filter="{ 'user.full_name': 'text' }" sortable="'user.full_name'">
+                    <span ng-show="password_logs.user.full_name">{{password_logs.user.full_name}}</span>
+                    <span ng-show="password_logs.share_link.id">{{ 'WORDS.SHARE_LINK' | translate }} #{{password_logs.share_link.id}}</span>
+                </td>
+                <td data-title="'WORDS.CREATED_AT'|translate" filter="{ 'password_log.create_date': 'text' }" sortable="'create_date'">
+                    {{password_logs.create_date| date:'medium'}}
+                </td>
+            </tr>
+            <tr ng-if="!$data.length">
+                <td colspan="3" translate>PASSWORD_MANAGEMENT.TEXT.NO_LOGS_FOUND</td>
+            </tr>
+        </table>
+    </div>
+</div>

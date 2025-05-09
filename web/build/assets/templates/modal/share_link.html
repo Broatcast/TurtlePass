@@ -1,0 +1,52 @@
+<div class="modal-header">
+    <h3 class="modal-title" translate>SHARE_LINK.ADD_LINK</h3>
+</div>
+
+<form name="modalForm" class="form-horizontal" ng-submit="submit()" novalidate>
+    <div class="modal-body">
+
+        <div class="form-group row">
+            <label for="vaildTo" class="col-sm-3 control-label" translate>SHARE_LINK.VALID_UNTIL</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control datetimepicker-input" id="vaildTo" name="vaildTo" placeholder="YYYY-MM-DD HH:mm" ng-model="data.valid_to" datetimepicker data-toggle="datetimepicker" data-target="#vaildTo" data-pick12HourFormat="false" data-format="YYYY-MM-DD HH:mm" data-sideBySide="true">
+                <div class="invalid-feedback d-block" ng-if="formErrors.vaildTo">{{formErrors.vaildTo}}</div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="inputRecipient" class="col-sm-3 control-label" translate>WORDS.RECIPIENT</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputRecipient" name="inputRecipient" ng-model="data.recipient" ng-maxlength=32>
+                <div class="invalid-feedback d-block" ng-if="modalForm.inputRecipient.$error.maxlength" ng-show="modalForm.$submitted" translate-value-characters="32" translate>VALIDATION.MAX_LENGTH</div>
+                <div class="invalid-feedback d-block" ng-if="modalForm.inputRecipient.$error.email" ng-show="modalForm.$submitted" translate>VALIDATION.EMAIL</div>
+                <div class="invalid-feedback d-block" ng-if="formErrors.email">{{formErrors.email}}</div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="viewLimit" class="col-sm-3 control-label" translate>WORDS.VIEW_LIMIT</label>
+            <div class="col-sm-9">
+                <input type="number" class="form-control" id="viewLimit" name="viewLimit" ng-model="data.viewLimit" ng-maxlength=10 placeholder="{{ 'PLACEHOLDER.VIEW_LIMIT'|translate }}" title="{{ 'PLACEHOLDER.VIEW_LIMIT'|translate }}">
+                <div class="invalid-feedback d-block" ng-if="modalForm.viewLimit.$error.maxlength" ng-show="modalForm.$submitted" translate-value-characters="10" translate>VALIDATION.MAX_LENGTH</div>
+                <div class="invalid-feedback d-block" ng-if="formErrors.viewLimit">{{formErrors.viewLimit}}</div>
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <label for="inputMode" class="col-sm-3 control-label" translate>WORDS.MODE</label>
+            <div class="col-sm-9">
+                <select class="form-control" id="inputMode" name="inputMode" ng-model="data.mode" required>
+                    <option value="1">READ</option>
+                    <option value="2">WRITE</option>
+                </select>
+                <div class="invalid-feedback d-block" ng-if="modalForm.inputMode.$error.maxlength" ng-show="modalForm.$submitted" translate>VALIDATION.REQUIRED</div>
+                <div class="invalid-feedback d-block" ng-if="formErrors.inputMode">{{formErrors.inputMode}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-light" type="button" ng-click="cancel()" translate>WORDS.CANCEL</button>
+        <button class="btn btn-primary" type="submit" ladda="isLaddaWorking">{{ 'WORDS.ADD'|translate }}</button>
+    </div>
+</form>

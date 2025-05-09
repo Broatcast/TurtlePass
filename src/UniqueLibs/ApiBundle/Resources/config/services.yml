@@ -1,0 +1,3 @@
+services:
+    uniquelibs.api_bundle.services.api_manager:
+        class: UniqueLibs\ApiBundle\Services\ApiManager

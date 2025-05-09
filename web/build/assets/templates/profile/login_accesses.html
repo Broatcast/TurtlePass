@@ -1,0 +1,53 @@
+<div ng-controller="LoginAccessOverviewCtrl as tableCtrl">
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" translate>NAVIGATION.HEADER.SETTINGS</li>
+            <li class="breadcrumb-item active" translate>NAVIGATION.SETTINGS.MANAGE_LOGIN_ACCESSES</li>
+        </ol>
+    </nav>
+
+    <button class="btn btn-primary btn-sm mb-3" ng-click="tableCtrl.add()">
+        <i class="fa fa-ticket fa-lg"></i> {{ 'LOGIN_ACCESS_MANAGEMENT.ADD_LOGIN_ACCESS'|translate }}</button>
+
+    <div loading-container="tableParams.settings().$loading" ng-hide="tableCtrl.loading" class="table-wrapper">
+        <table ng-table="tableParams" show-filter="true" class="table table-striped table-bordered">
+            <colgroup>
+                <col style="width: 10%">
+                <col style="width: 25%">
+                <col style="width: 25%">
+                <col style="width: 10%">
+                <col style="width: 20%">
+                <col style="width: 10%">
+            </colgroup>
+            <tr ng-repeat="loginAccess in $data">
+                <td width="100" data-title="'#'" filter="{ 'id': 'text' }" sortable="'id'">
+                    {{loginAccess.id}}
+                </td>
+                <td data-title="'WORDS.FROM_IP'|translate">
+                    {{loginAccess.from_ip}}
+                </td>
+                <td data-title="'WORDS.TO_IP'|translate">
+                    {{loginAccess.to_ip}}
+                </td>
+                <td data-title="'WORDS.TYPE'|translate" sortable="'whitelist'">
+                    <span class="label label-success" ng-show="loginAccess.whitelist">{{ 'LOGIN_ACCESS_MANAGEMENT.WHITELIST'|translate }}</span>
+                    <span class="label label-danger" ng-show="!loginAccess.whitelist">{{ 'LOGIN_ACCESS_MANAGEMENT.BLACKLIST'|translate }}</span>
+                </td>
+                <td data-title="'WORDS.CREATED_AT'|translate" sortable="'create_date'">
+                    {{loginAccess.create_date|date:'medium'}}
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <a ng-click="tableCtrl.edit(loginAccess)" class="btn btn-light btn-sm" aria-haspopup="true" uib-tooltip="{{ 'WORDS.EDIT'|translate }}" tooltip-append-to-body="true"><i class="fa fa-edit fa-fw"></i></a>
+                        <a ng-click="tableCtrl.delete(loginAccess)" class="btn btn-light btn-sm" aria-haspopup="true" uib-tooltip="{{ 'WORDS.DELETE'|translate }}" tooltip-append-to-body="true"><i class="fa fa-trash-o fa-fw"></i></a>
+                    </div>
+                </td>
+            </tr>
+            <tr ng-show="!$data.length">
+                <td colspan="6" translate>LOGIN_ACCESS_MANAGEMENT.TEXT.NONE_FOUND</td>
+            </tr>
+        </table>
+    </div>
+</div>
+

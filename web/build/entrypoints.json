@@ -1,0 +1,28 @@
+{
+  "entrypoints": {
+    "login": {
+      "css": [
+        "/build/login.css"
+      ],
+      "js": [
+        "/build/login.js"
+      ]
+    },
+    "app": {
+      "css": [
+        "/build/app.css"
+      ],
+      "js": [
+        "/build/app.js"
+      ]
+    },
+    "install": {
+      "css": [
+        "/build/install.css"
+      ],
+      "js": [
+        "/build/install.js"
+      ]
+    }
+  }
+}

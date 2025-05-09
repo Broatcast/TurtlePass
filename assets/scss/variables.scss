@@ -1,0 +1,18 @@
+$enable-rounded: false;
+$font-size-base: 0.8rem;
+
+$h1-font-size:                $font-size-base * 2 !default;
+$h2-font-size:                $font-size-base * 1.75 !default;
+$h3-font-size:                $font-size-base * 1.5 !default;
+$h4-font-size:                $font-size-base * 1.25 !default;
+$h5-font-size:                $font-size-base !default;
+$h6-font-size:                $font-size-base * 0.75 !default;
+
+$dark: #181a1d;
+
+$theme-colors: (
+    primary: #E51D3E,
+);
+
+$link-decoration: none;
+$link-hover-decoration: none;

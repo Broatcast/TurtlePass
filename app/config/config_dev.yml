@@ -1,0 +1,41 @@
+imports:
+    - { resource: config.yml }
+
+framework:
+    router:
+        resource: '%kernel.project_dir%/app/config/routing_dev.yml'
+        strict_requirements: true
+    profiler: { only_exceptions: false }
+
+web_profiler:
+    toolbar: true
+    intercept_redirects: false
+
+monolog:
+    handlers:
+        main:
+            type: stream
+            path: '%kernel.logs_dir%/%kernel.environment%.log'
+            level: debug
+            channels: ['!event']
+        console:
+            type: console
+            process_psr_3_messages: false
+            channels: ['!event', '!doctrine', '!console']
+
+#swiftmailer:
+#    delivery_addresses: ['me@example.com']
+
+services:
+    Main\ApiBundle\DataFixtures\:
+        resource: '../../src/Main/ApiBundle/DataFixtures'
+        tags: ['doctrine.fixture.orm']
+    Main\LanguageBundle\DataFixtures\:
+        resource: '../../src/Main/LanguageBundle/DataFixtures'
+        tags: ['doctrine.fixture.orm']
+    Main\PasswordBundle\DataFixtures\:
+        resource: '../../src/Main/PasswordBundle/DataFixtures'
+        tags: ['doctrine.fixture.orm']
+    Main\UserBundle\DataFixtures\:
+        resource: '../../src/Main/UserBundle/DataFixtures'
+        tags: ['doctrine.fixture.orm']

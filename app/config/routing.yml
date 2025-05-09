@@ -1,0 +1,137 @@
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_profile_show:
+    path: /login
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /doc
+
+main_template:
+    resource: "@MainTemplateBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+main_recaptcha:
+    resource: "@AppBundle/Controller/RecaptchaController.php"
+    type:     annotation
+    prefix:   /
+
+main_export:
+    resource: "@AppBundle/Controller/ExportController.php"
+    type:     annotation
+    prefix:   /
+
+main_password_share:
+    resource: "@MainPasswordBundle/Controller/ShareController.php"
+    type:     annotation
+    prefix:   /
+
+main_token:
+    type:     rest
+    resource: "@MainApiBundle/Controller/Api/TokenController.php"
+    prefix:   /api
+
+main_user:
+    type:     rest
+    resource: "@MainUserBundle/Controller/Api/UserController.php"
+    prefix:   /api
+
+main_user_group:
+    type:     rest
+    resource: "@MainUserBundle/Controller/Api/UserGroupController.php"
+    prefix:   /api
+
+main_language:
+    type:     rest
+    resource: "@MainLanguageBundle/Controller/Api/LanguageController.php"
+    prefix:   /api
+
+main_user_password:
+    type:     rest
+    resource: "@MainUserBundle/Controller/Api/PasswordController.php"
+    prefix:   /api
+
+main_password:
+    type:     rest
+    resource: "@MainPasswordBundle/Controller/PasswordController.php"
+    prefix:   /api
+
+main_password_access:
+    type:     rest
+    resource: "@MainPasswordBundle/Controller/PasswordAccessController.php"
+    prefix:   /api
+
+main_password_user_group_access:
+    type:     rest
+    resource: "@MainPasswordBundle/Controller/PasswordUserGroupAccessController.php"
+    prefix:   /api
+
+main_password_group:
+    type:     rest
+    resource: "@MainPasswordBundle/Controller/PasswordGroupController.php"
+    prefix:   /api
+
+main_password_group_access:
+    type:     rest
+    resource: "@MainPasswordBundle/Controller/PasswordGroupAccessController.php"
+    prefix:   /api
+
+main_password_group_user_group_access:
+    type:     rest
+    resource: "@MainPasswordBundle/Controller/PasswordGroupUserGroupAccessController.php"
+    prefix:   /api
+
+main_password_log:
+    type:     rest
+    resource: "@MainPasswordBundle/Controller/PasswordLogController.php"
+    prefix:   /api
+
+main_password_share_api:
+    type:     rest
+    resource: "@MainPasswordBundle/Controller/ShareApiController.php"
+    prefix:   /api
+
+main_add_password:
+    type:     rest
+    resource: "@MainPasswordBundle/Controller/AddPasswordController.php"
+    prefix:   /api
+
+main_edit_password:
+    type:     rest
+    resource: "@MainPasswordBundle/Controller/EditPasswordController.php"
+    prefix:   /api
+
+main_setting:
+    type:     rest
+    resource: "@AppBundle/Controller/Api/SettingController.php"
+    prefix:   /api
+
+main_version:
+    type:     rest
+    resource: "@AppBundle/Controller/Api/VersionController.php"
+    prefix:   /api
+
+main_user_login_access:
+    type:     rest
+    resource: "@MainUserBundle/Controller/Api/LoginAccessController.php"
+    prefix:   /api
+
+main_user_secret:
+    type:     rest
+    resource: "@MainUserBundle/Controller/Api/SecretController.php"
+    prefix:   /api
+
+main_ldap:
+    resource: "@MainLdapBundle/Controller/ProfileController.php"
+    type:     annotation
+    prefix:   /

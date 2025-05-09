@@ -1,0 +1,29 @@
+<form action="{{ path('fos_user_resetting_send_email') }}" method="POST">
+    <div>
+        {% if invalid_recaptcha is defined %}
+            <div class="alert alert-danger">{{ 'recaptcha.invalid'|trans({}, 'UniqueLibsFOSUserRecaptchaProtectionBundle') }}</div>
+        {% endif %}
+        {% if invalid_username is defined %}
+            <div class="alert alert-danger">{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}</div>
+        {% endif %}
+
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-user fa-fw"></i></span>
+                </div>
+                <input type="text" name="username" id="username" required="required" placeholder="{{ 'resetting.request.username'|trans({}, 'FOSUserBundle') }}" class="form-control">
+            </div>
+        </div>
+    </div>
+    {% if uniquelibs_recaptcha_site_key is defined and uniquelibs_recaptcha_site_key is not null %}
+        <div style="text-align: center; margin-bottom: 5px;">
+            <div class="g-recaptcha" data-sitekey="{{ uniquelibs_recaptcha_site_key }}" style="display: inline-block;"></div>
+        </div>
+    {% endif %}
+    <div>
+        <input type="submit" value="{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}" class="btn btn-login btn-block" />
+    </div>
+</form>
+
+<br><a href="{{ path('fos_user_security_login') }}" style="font-size: 14px;">{{ 'registration.back'|trans({}, 'FOSUserBundle') }}</a>

@@ -1,0 +1,12 @@
+services:
+    main_api.entity.access_token_repository:
+        class: Main\ApiBundle\Entity\AccessTokenRepository
+        factory: [ "@doctrine.orm.entity_manager", getRepository ]
+        arguments:
+            - Main\ApiBundle\Entity\AccessToken
+
+    main_api.entity.client_repository:
+        class: Main\ApiBundle\Entity\ClientRepository
+        factory: [ "@doctrine.orm.entity_manager", getRepository ]
+        arguments:
+            - Main\ApiBundle\Entity\Client

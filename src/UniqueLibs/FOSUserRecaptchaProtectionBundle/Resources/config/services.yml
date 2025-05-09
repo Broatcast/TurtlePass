@@ -1,0 +1,52 @@
+services:
+    uqe.fos_user_recaptcha_protection_bundle.configuration_manager:
+        class: UniqueLibs\FOSUserRecaptchaProtectionBundle\Configuration\ConfigurationManager
+        arguments:
+            - '%uqe.fos_user_recaptcha_protection_bundle.invalid_login_class%'
+            - '%uqe.fos_user_recaptcha_protection_bundle.login_access_class%'
+            - '%uqe.fos_user_recaptcha_protection_bundle.recaptcha_site_key%'
+            - '%uqe.fos_user_recaptcha_protection_bundle.recaptcha_private_key%'
+            - '%uqe.fos_user_recaptcha_protection_bundle.recaptcha_needed_fails%'
+            - '%uqe.fos_user_recaptcha_protection_bundle.recaptcha_on_password_reset%'
+            - '%uqe.fos_user_recaptcha_protection_bundle.recaptcha_on_registration%'
+            - '%uqe.fos_user_recaptcha_protection_bundle.lock_time%'
+            - '%uqe.fos_user_recaptcha_protection_bundle.allowed_retries%'
+            - '%uqe.fos_user_recaptcha_protection_bundle.allow_only_whitelisted%'
+
+
+    uqe.fos_user_recaptcha_protection_bundle.invalid_login_manager:
+        class: UniqueLibs\FOSUserRecaptchaProtectionBundle\Services\InvalidLoginManager
+        arguments:
+            - '@doctrine'
+            - '@uqe.fos_user_recaptcha_protection_bundle.configuration_manager'
+
+    uqe.fos_user_recaptcha_protection_bundle.login_access_manager:
+        class: UniqueLibs\FOSUserRecaptchaProtectionBundle\Services\LoginAccessManager
+        arguments:
+            - '@doctrine'
+            - '@uqe.fos_user_recaptcha_protection_bundle.configuration_manager'
+
+    uqe.fos_user_recaptcha_protection_bundle.protection_manager:
+        class: UniqueLibs\FOSUserRecaptchaProtectionBundle\Services\ProtectionManager
+        arguments:
+            - '@uqe.fos_user_recaptcha_protection_bundle.configuration_manager'
+            - '@uqe.fos_user_recaptcha_protection_bundle.invalid_login_manager'
+            - '@uqe.fos_user_recaptcha_protection_bundle.login_access_manager'
+
+    uqe.fos_user_recaptcha_protection_bundle.event_listener.login_check_listener:
+        class: UniqueLibs\FOSUserRecaptchaProtectionBundle\EventListener\LoginCheckListener
+        arguments:
+            - '@router'
+            - '@translator'
+            - '@uqe.fos_user_recaptcha_protection_bundle.protection_manager'
+        tags:
+            - { name: kernel.event_subscriber }
+
+    uqe.fos_user_recaptcha_protection_bundle.security.authentication.authentication_failure_handler:
+        class: UniqueLibs\FOSUserRecaptchaProtectionBundle\Security\Authentication\AuthenticationFailureHandler
+        arguments:
+            - '@http_kernel'
+            - '@security.http_utils'
+            - []
+            - ~
+            - '@uqe.fos_user_recaptcha_protection_bundle.protection_manager'

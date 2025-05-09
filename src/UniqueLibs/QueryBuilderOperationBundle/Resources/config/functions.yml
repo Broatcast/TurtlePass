@@ -1,0 +1,31 @@
+services:
+    uql.query_builder_operation.filter.query_function.lower:
+        class: UniqueLibs\QueryBuilderOperationBundle\Filter\QueryFunction\LowerFunction
+
+    uql.query_builder_operation.filter.query_function.now:
+        class: UniqueLibs\QueryBuilderOperationBundle\Filter\QueryFunction\NowFunction
+
+    uql.query_builder_operation.filter.query_function.now:
+        class: UniqueLibs\QueryBuilderOperationBundle\Filter\QueryFunction\NowFunction
+
+    uql.query_builder_operation.filter.query_function.today:
+        class: UniqueLibs\QueryBuilderOperationBundle\Filter\QueryFunction\TodayFunction
+
+    uql.query_builder_operation.filter.query_function.yesterday:
+        class: UniqueLibs\QueryBuilderOperationBundle\Filter\QueryFunction\YesterdayFunction
+
+    uql.query_builder_operation.filter.query_function.this_week:
+        class: UniqueLibs\QueryBuilderOperationBundle\Filter\QueryFunction\ThisWeekFunction
+
+    uql.query_builder_operation.filter.query_function.last_week:
+        class: UniqueLibs\QueryBuilderOperationBundle\Filter\QueryFunction\LastWeekFunction
+
+    uql.query_builder_operation.filter.query_function.this_month:
+        class: UniqueLibs\QueryBuilderOperationBundle\Filter\QueryFunction\ThisMonthFunction
+
+    uql.query_builder_operation.filter.query_function.last_month:
+        class: UniqueLibs\QueryBuilderOperationBundle\Filter\QueryFunction\LastMonthFunction
+
+    uql.query_builder_operation.filter.query_function.calculate_date:
+        class: UniqueLibs\QueryBuilderOperationBundle\Filter\QueryFunction\CalculateDateFunction
+

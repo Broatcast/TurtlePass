@@ -1,0 +1,38 @@
+imports:
+    - { resource: repositories.yml }
+    - { resource: entity_mappings.yml }
+    - { resource: query_builder_mappings.yml }
+
+services:
+    main_user.services.user_manager:
+        class: Main\UserBundle\Services\UserManager
+        arguments:
+            - '@fos_user.util.password_updater'
+            - '@fos_user.util.canonical_fields_updater'
+            - '@fos_user.object_manager'
+            - 'Main\UserBundle\Entity\User'
+            - '@main_user.entity.user_repository'
+            - '@main_language.services.language_manager'
+            - '@event_dispatcher'
+
+    main_user.services.user_delete_manager:
+        class: Main\UserBundle\Services\UserDeleteManager
+        arguments:
+            - '@main_user.services.user_manager'
+            - '@main_password.services.password_access_manager'
+
+    main_user.services.user_group_manager:
+        class: Main\UserBundle\Services\UserGroupManager
+        arguments:
+            - '@main_user.entity.repository.user_group'
+
+    main_user_hydrator:
+        class: Main\UserBundle\Ldap\UserHydrator
+        arguments:
+            - '@main_language.services.language_manager'
+            - '@fos_user.user_manager'
+
+    main_user.security.user_voter:
+        class: Main\UserBundle\Security\UserVoter
+        tags:
+            - { name: security.voter }

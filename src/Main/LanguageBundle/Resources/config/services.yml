@@ -1,0 +1,22 @@
+services:
+    gedmo.listener.translatable:
+        class: Gedmo\Translatable\TranslatableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ '@annotation_reader' ] ]
+            - [ setDefaultLocale, [ 'en' ] ]
+            - [ setTranslatableLocale, [ 'en' ] ]
+            - [ setTranslationFallback, [ true ] ]
+
+    main_language.entity.language_repository:
+        class: Main\LanguageBundle\Entity\LanguageRepository
+        factory: [ "@doctrine", getRepository ]
+        arguments:
+            - Main\LanguageBundle\Entity\Language
+
+    main_language.services.language_manager:
+        class: Main\LanguageBundle\Services\LanguageManager
+        arguments:
+            - '@request_stack'
+            - '@main_language.entity.language_repository'

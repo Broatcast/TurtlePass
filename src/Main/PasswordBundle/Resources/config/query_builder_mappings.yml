@@ -1,0 +1,41 @@
+services:
+    main_password.query_builder_mapper.password:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\QueryBuilderMapper
+        calls:
+            - [addMapper, ['password', '@main_password.entity_mapper.password', '.']]
+
+    main_password.query_builder_mapper.password_access:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\QueryBuilderMapper
+        calls:
+            - [addMapper, ['password_access', '@main_password.entity_mapper.password_access', '.']]
+            - [addMapper, ['user', '@main_user.entity_mapper.user', 'user']]
+
+    main_password.query_builder_mapper.password_user_group_access:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\QueryBuilderMapper
+        calls:
+            - [addMapper, ['password_user_group_access', '@main_password.entity_mapper.password_user_group_access', '.']]
+            - [addMapper, ['user_group', '@main_user.entity_mapper.user_group', 'user_group']]
+
+    main_password.query_builder_mapper.password_group_access:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\QueryBuilderMapper
+        calls:
+            - [addMapper, ['password_group_access', '@main_password.entity_mapper.password_group_access', '.']]
+            - [addMapper, ['user', '@main_user.entity_mapper.user', 'user']]
+
+    main_password.query_builder_mapper.password_group_user_group_access:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\QueryBuilderMapper
+        calls:
+            - [addMapper, ['password_group_user_group_access', '@main_password.entity_mapper.password_group_user_group_access', '.']]
+            - [addMapper, ['user_group', '@main_user.entity_mapper.user_group', 'user_group']]
+
+    main_password.query_builder_mapper.password_log:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\QueryBuilderMapper
+        calls:
+            - [addMapper, ['password_log', '@main_password.entity_mapper.password_log', '.']]
+            - [addMapper, ['user', '@main_user.entity_mapper.user', 'user']]
+
+    main_password.query_builder_mapper.password_share_link:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\QueryBuilderMapper
+        calls:
+            - [addMapper, ['password_share_link', '@main_password.entity_mapper.password_share_link', '.']]
+            - [addMapper, ['password', '@main_password.entity_mapper.password']]

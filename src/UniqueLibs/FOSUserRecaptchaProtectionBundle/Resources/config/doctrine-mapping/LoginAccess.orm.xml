@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <mapped-superclass name="UniqueLibs\FOSUserRecaptchaProtectionBundle\Model\LoginAccess">
+
+        <field name="fromIp" type="binary" column="from_ip_address"/>
+        <field name="toIp" type="binary" column="to_ip_address"/>
+        <field name="whitelist" type="boolean" column="is_whitelist"/>
+        <field name="createDate" type="datetime" column="create_date"/>
+        <field name="expireDate" type="datetime" column="expire_date" nullable="true" />
+
+    </mapped-superclass>
+</doctrine-mapping>

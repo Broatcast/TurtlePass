@@ -1,0 +1,5 @@
+services:
+    main_api.query_builder_mapper.access_token:
+        class: UniqueLibs\QueryBuilderOperationBundle\Container\QueryBuilderMapper
+        calls:
+            - [addMapper, ['access_token', '@main_api.entity_mapper.access_token', '.']]

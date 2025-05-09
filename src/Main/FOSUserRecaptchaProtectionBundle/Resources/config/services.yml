@@ -1,0 +1,78 @@
+services:
+    main_fos_user_recaptcha_protection_bundle.form.type.registration_form_type:
+        class: Main\FOSUserRecaptchaProtectionBundle\Form\Type\RegistrationFormType
+        arguments:
+            - 'Main\UserBundle\Entity\User'
+        tags:
+            - { name: form.type, alias: my_fos_user_registration }
+
+    main_fos_user_recaptcha_protection_bundle.form.handler.registration_form_handler:
+        class: Main\FOSUserRecaptchaProtectionBundle\Form\Handler\RegistrationFormHandler
+        public: false
+        scope: request
+        arguments:
+            - '@fos_user.registration.form'
+            - '@request'
+            - '@main_user.services.user_manager'
+            - '@fos_user.mailer'
+            - '@fos_user.util.token_generator'
+
+    main_fos_user_recaptcha_protection_bundle.mailer.mailer:
+        class: Main\FOSUserRecaptchaProtectionBundle\Mailer\Mailer
+        public: false
+        scope: request
+        arguments:
+            - '@main_app.services.database_mailer'
+            - '@router'
+            - '@templating'
+            - { "confirmation.template": "FOSUserBundle:Registration:email.txt.twig", "resetting.template": "FOSUserBundle:Resetting:email.txt.twig" }
+            - '@main_app.services.setting_manager'
+
+    main_fos_user_recaptcha_protection_bundle.event_listener.setting_listener:
+        class: Main\FOSUserRecaptchaProtectionBundle\EventListener\SettingListener
+        arguments:
+            - '@uqe.fos_user_recaptcha_protection_bundle.configuration_manager'
+            - '@main_app.services.setting_manager'
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, priority: 255 }
+
+    fos_user.security.controller:
+        class: Main\FOSUserRecaptchaProtectionBundle\Controller\SecurityController
+        arguments:
+            - '@security.csrf.token_manager'
+        calls:
+            - [setContainer, ['@service_container']]
+
+    fos_user.resetting.controller:
+        class: Main\FOSUserRecaptchaProtectionBundle\Controller\ResettingController
+        arguments:
+            - '@event_dispatcher'
+            - '@fos_user.resetting.form.factory'
+            - '@fos_user.user_manager'
+            - '@fos_user.util.token_generator'
+            - '@fos_user.mailer'
+            - '%fos_user.resetting.retry_ttl%'
+        calls:
+            - [setContainer, ['@service_container']]
+
+    fos_user.registration.controller:
+        class: Main\FOSUserRecaptchaProtectionBundle\Controller\RegistrationController
+        arguments:
+            - '@event_dispatcher'
+            - '@fos_user.registration.form.factory'
+            - '@fos_user.user_manager'
+            - '@security.token_storage'
+        calls:
+            - [setContainer, ['@service_container']]
+
+    fos_user.registration.form.type:
+        class: Main\FOSUserRecaptchaProtectionBundle\Form\Type\RegistrationFormType
+        tags: ['fos_user_registration']
+
+    fos_user.registration.form.factory:
+        class: FOS\UserBundle\Form\Factory\FormFactory
+        arguments:
+            - '@form.factory'
+            - '%fos_user.registration.form.name%'
+            - 'Main\FOSUserRecaptchaProtectionBundle\Form\Type\RegistrationFormType'
+            - '%fos_user.registration.form.validation_groups%'

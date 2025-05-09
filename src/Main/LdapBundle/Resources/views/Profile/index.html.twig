@@ -1,0 +1,56 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block title %}
+    {{ get_page_title() }} - Login
+{% endblock %}
+
+{% block fos_user_content %}
+
+    {{ form_start(form) }}
+
+        <div class="alert alert-info">
+            {{ 'LDAP.INFORMATION.ACCOUNT_CREATED' | trans }}
+        </div>
+
+        {% if form_errors(form) %}
+            <div class="alert alert-danger">
+                {{ form_errors(form) }}
+            </div>
+        {% endif %}
+
+        <div class="input-group form-group">
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
+            </div>
+            {{ form_widget(form.first_name, { 'attr': {'class': 'form-control', 'placeholder': 'form.first_name'|trans({}, 'FOSUserBundle')} }) }}
+        </div>
+
+        {{ form_errors(form.first_name) }}
+
+        <div class="input-group form-group">
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
+            </div>
+            {{ form_widget(form.last_name, { 'attr': {'class': 'form-control', 'placeholder': 'form.last_name'|trans({}, 'FOSUserBundle')} }) }}
+        </div>
+
+        {{ form_errors(form.last_name) }}
+
+        <div class="input-group form-group">
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="fa fa-envelope fa-fw" aria-hidden="true"></i></span>
+            </div>
+            {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'form.email'|trans({}, 'FOSUserBundle')} }) }}
+        </div>
+
+        {{ form_errors(form.email) }}
+
+        <div>
+            <input type="submit" value="{{ 'LDAP.BUTTON.FULFILL_INFORMATION'|trans }}" class="btn btn-login btn-block" />
+        </div>
+    </form>
+
+    <br>
+    <a href="{{ path('fos_user_security_logout') }}" style="font-size: 14px;">{{ 'LDAP.BUTTON.ABORT' | trans }}</a>
+
+{% endblock fos_user_content %}

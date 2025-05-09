@@ -1,0 +1,118 @@
+{% extends '::base.html.twig' %}
+
+{% block javascripts %}
+	<script>
+		var JS_CONFIGURATION = {
+			locale: "{{ user.language.id }}",
+			userInformation: JSON.parse({{ user | serialize | json_encode() | raw }}),
+			userToken: "{{ token }}",
+			baseUrl: "{{ url('main_template_default_index') }}api/",
+			version: {{ version }}
+		};
+	</script>
+
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<script type="text/ng-template" id="searchTemplate.html">
+		<a class="typeahead-supporter dropdown-item">
+			<span ng-bind-html="match.model.name | uibTypeaheadHighlight:query"></span>
+			<br />
+			<span ng-bind-html="match.model.username | uibTypeaheadHighlight:query" ng-show="match.model.username"></span>
+		</a>
+	</script>
+
+    <div class="navbar navbar-dark bg-dark fixed-top my-navbar" style="justify-content: normal; display: block;">
+		<div class="navbar-brand">
+			<a ui-sref="overview">
+				<img src="/img/logo.png" border="0" style="height: 40px;">
+			</a>
+		</div>
+		<div class="form-group" ng-controller="PasswordSearchController as searchCtrl">
+			<input type="text" placeholder="{{"{{ 'WORDS.SEARCH'|translate }}"|raw }}" ng-model="password" autocomplete="off" typeahead-template-url="searchTemplate.html" uib-typeahead="password as (password.name) for password in searchPassword($viewValue)" typeahead-no-results="noResults" typeahead-on-select="typeaheadOnSelect($item, $model, $label, $event)" typeahead-editable="false" typeahead-wait-ms="100" class="search-input form-control" required>
+		</div>
+		<a class="sidebar-toggle"><i class="fa fa-bars"></i></a>
+
+		<div ng-controller="UserDropdownCtrl as userDropdownCtrl" style="float: right;">
+			<div uib-dropdown is-open="userDropdownCtrl.status.isopen" class="topbar-element topbar-element-user">
+				<a href ng-click="userDropdownCtrl.toggleDropdown($event)">
+					<span class="topbar-user-info-name">{{ "{{ userDropdownCtrl.currentUser.full_name }}"|raw }} <cite>{{ "{{ userDropdownCtrl.currentUser.email }}"|raw }}</cite></span>
+				</a>
+				<ul uib-dropdown-menu aria-labelledby="simple-dropdown">
+					<li>
+						<a href="{{ path('nelmio_api_doc_index') }}" target="_blank">
+							<div>
+								<span class="topbar-user-info-icon"><i class="fa fa-book fa-fw"></i></span>
+								<span class="topbar-user-info-label">API</span>
+							</div>
+						</a>
+					</li>
+					<li ng-if="isAdmin">
+						<a ui-sref="user">
+							<div>
+								<span class="topbar-user-info-icon"><i class="fa fa-users fa-fw"></i></span>
+								<span class="topbar-user-info-label" translate>NAVIGATION.HEADER.USER_MANAGEMENT</span>
+							</div>
+						</a>
+					</li>
+					<li ng-if="isAdmin">
+						<a ui-sref="user_group">
+							<div>
+								<span class="topbar-user-info-icon"><i class="fa fa-group fa-fw"></i></span>
+								<span class="topbar-user-info-label" translate>NAVIGATION.HEADER.GROUP_MANAGEMENT</span>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a ui-sref="profile.global_settings">
+							<div>
+								<span class="topbar-user-info-icon"><i class="fa fa-cogs fa-fw"></i></span>
+								<span class="topbar-user-info-label" translate>NAVIGATION.HEADER.SETTINGS</span>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a ui-sref="profile.change_password">
+							<div>
+								<span class="topbar-user-info-icon"><i class="fa fa-key fa-fw"></i></span>
+								<span class="topbar-user-info-label" translate>NAVIGATION.SETTINGS.CHANGE_PASSWORD</span>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="{{ path('fos_user_security_logout') }}">
+							<div>
+								<span class="topbar-user-info-icon"><i class="fa fa-lock fa-fw"></i></span>
+								<span class="topbar-user-info-label" translate>NAVIGATION.HEADER.LOGOUT</span>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div ng-controller="LanguageDropdownCtrl as languageDropdownCtrl" style="float: right;">
+			<div uib-dropdown is-open="languageDropdownCtrl.status.isopen" class="topbar-element topbar-element-language">
+				<a href ng-click="languageDropdownCtrl.toggleDropdown($event)">
+					<span class="topbar-language-name" translate>WORDS.LANGUAGE</span>
+					<span class="topbar-language-thumb"><img ng-src="{{"{{ languageDropdownCtrl.src }}"|raw }}" alt="image" id="topbarLanguageIcon"></span>
+				</a>
+				<ul uib-dropdown-menu aria-labelledby="simple-dropdown">
+					{% for language in languages %}
+						<li>
+							<a href ng-click="languageDropdownCtrl.changeLanguage('{{ language.id }}')">
+								<div>
+									<span class="topbar-user-info-icon"><img src="/img/icons/country/{{ language.id }}.png" border="0" width="16" height="11"></span>
+									<span class="topbar-user-info-label" translate>LANGUAGES.{{ language.id|upper }}</span>
+								</div>
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+    </div>
+
+	<section class="first-section" ui-view></section>
+{% endblock %}

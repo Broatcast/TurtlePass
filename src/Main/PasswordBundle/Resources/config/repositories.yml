@@ -1,0 +1,55 @@
+services:
+
+    main_password.entity.password_repository:
+        class: Main\PasswordBundle\Entity\PasswordRepository
+        factory: [ "@doctrine.orm.entity_manager", getRepository ]
+        arguments:
+            - Main\PasswordBundle\Entity\Password
+
+    main_password.entity.password_access_repository:
+        class: Main\PasswordBundle\Entity\PasswordAccessRepository
+        factory: [ "@doctrine.orm.entity_manager", getRepository ]
+        arguments:
+            - Main\PasswordBundle\Entity\PasswordAccess
+
+    main_password.entity.password_user_group_access_repository:
+         class: Main\PasswordBundle\Entity\PasswordUserGroupAccessRepository
+         factory: [ "@doctrine.orm.entity_manager", getRepository ]
+         arguments:
+             - Main\PasswordBundle\Entity\PasswordUserGroupAccess
+
+    main_password.entity.password_group_repository:
+        class: Main\PasswordBundle\Entity\PasswordGroupRepository
+        factory: [ "@doctrine.orm.entity_manager", getRepository ]
+        arguments:
+            - Main\PasswordBundle\Entity\PasswordGroup
+
+    main_password.entity.password_group_access_repository:
+        class: Main\PasswordBundle\Entity\PasswordGroupAccessRepository
+        factory: [ "@doctrine.orm.entity_manager", getRepository ]
+        arguments:
+            - Main\PasswordBundle\Entity\PasswordGroupAccess
+
+    main_password.entity.password_group_user_group_access_repository:
+        class: Main\PasswordBundle\Entity\PasswordGroupUserGroupAccessRepository
+        factory: [ "@doctrine.orm.entity_manager", getRepository ]
+        arguments:
+            - Main\PasswordBundle\Entity\PasswordGroupUserGroupAccess
+
+    main_password.entity.password_log_repository:
+        class: Main\PasswordBundle\Entity\PasswordLogRepository
+        factory: [ "@doctrine.orm.entity_manager", getRepository ]
+        arguments:
+            - Main\PasswordBundle\Entity\PasswordLog
+
+    main_password.entity.password_share_link_repository:
+        class: Main\PasswordBundle\Entity\PasswordShareLinkRepository
+        factory: [ "@doctrine.orm.entity_manager", getRepository ]
+        arguments:
+            - Main\PasswordBundle\Entity\PasswordShareLink
+
+    main_password.entity.password_group_sorting_repository:
+        class: Main\PasswordBundle\Entity\PasswordGroupSortRepository
+        factory: [ "@doctrine.orm.entity_manager", getRepository ]
+        arguments:
+            - Main\PasswordBundle\Entity\PasswordGroupSort

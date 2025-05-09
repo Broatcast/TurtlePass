@@ -1,0 +1,3 @@
+LDAP.INFORMATION.ACCOUNT_CREATED: 'Your account has been created successfully. Please fulfill the following fields to continue using TurtlePass.'
+LDAP.BUTTON.FULFILL_INFORMATION: 'Fulfill Information'
+LDAP.BUTTON.ABORT: 'Abort'
